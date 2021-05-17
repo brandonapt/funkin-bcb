@@ -1,6 +1,11 @@
 # Brandon's Custom Buld
 
-This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
+Developed with:  
+[Haxe](https://haxe.org)  
+[Visual Studio Code](https://code.visualstudio.com)  
+and on Microsoft Windows (lol u dont need link)
+
+This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading. (rn web version asset loading kinda sucks. fixing in update 0.4a)
 
 Play online demo: https://www.fused.fans/funkin-bcb
 Play the Original Game: https://www.newgrounds.com/portal/view/770371
@@ -8,7 +13,7 @@ Play the Original Game: https://www.newgrounds.com/portal/view/770371
 
 ## Credits / shoutouts
 
-- [ninjamuffin99] (https://twitter.com/ninja_muffin99) - Programmer
+- [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
 - [brandon(me!)](https://www.fused.fans) - BCB Programmer

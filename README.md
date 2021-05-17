@@ -1,28 +1,24 @@
-# Friday Night Funkin
+# Brandon's Custom Buld
 
-This is the repository for Friday Night Funkin, a game originally made for Ludum Dare 47 "Stuck In a Loop".
+This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
 
-Play the Ludum Dare prototype here: https://ninja-muffin24.itch.io/friday-night-funkin
-Play the Newgrounds one here: https://www.newgrounds.com/portal/view/770371
-Support the project on the itch.io page: https://ninja-muffin24.itch.io/funkin
+Play online demo: https://www.fused.fans/funkin-bcb
+Play the Original Game: https://www.newgrounds.com/portal/view/770371
 
-IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMIPLED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL
 
 ## Credits / shoutouts
 
-- [ninjamuffin99 (me!)](https://twitter.com/ninja_muffin99) - Programmer
+- [ninjamuffin99] (https://twitter.com/ninja_muffin99) - Programmer
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
+- [brandon(me!)](https://www.fused.fans) - BCB Programmer
 
-This game was made with love to Newgrounds and it's community. Extra love to Tom Fulp.
 
 ## Build instructions
 
 THESE INSTRUCTIONS ARE FOR COMPILING THE GAME'S SOURCE CODE!!!
 
-IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, GO TO ITCH.IO TO DOWNLOAD THE GAME FOR PC, MAC, AND LINUX!!
-
-https://ninja-muffin24.itch.io/funkin
+IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, RELEASES OR THE GAMEBANANA (SOON) AND DOWNLOAD FOR WINDOWS
 
 IF YOU WANT TO COMPILE THE GAME YOURSELF, CONTINUE READING!!!
 
@@ -39,11 +35,13 @@ flixel-addons
 flixel-ui
 hscript
 newgrounds
+lime
+openfl
 ```
 So for each of those type `haxelib install [library]` so shit like `haxelib install newgrounds`
 
 You'll also need to install a couple things that involve Gits. To do this, you need to do a few things first.
-1. Download [git-scm](https://git-scm.com/downloads). Works for Windows, Mac, and Linux, just select your build.
+1. Download [git](https://git-scm.com/downloads). Works for Windows, Mac, and Linux, just select your build.
 2. Follow instructions to install the application properly.
 3. Run `haxelib git polymod https://github.com/larsiusprime/polymod.git` to install Polymod.
 4. Run `haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc` to install Discord RPC.
@@ -55,23 +53,7 @@ At the moment, you can optionally fix the transition bug in songs with zoomed ou
 
 ### Ignored files
 
-I gitignore the API keys for the game, so that no one can nab them and post fake highscores on the leaderboards. But because of that the game
-doesn't compile without it.
-
-Just make a file in `/source` and call it `APIStuff.hx`, and copy paste this into it
-
-```haxe
-package;
-
-class APIStuff
-{
-	public static var API:String = "";
-	public static var EncKey:String = "";
-}
-
-```
-
-and you should be good to go there.
+I readded the APIStuff.hx and made it empty.
 
 ### Compiling game
 

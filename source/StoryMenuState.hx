@@ -44,7 +44,6 @@ class StoryMenuState extends MusicBeatState
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf']
 	];
-
 	var weekNames:Array<String> = [
 		"",
 		"Daddy Dearest",
@@ -401,7 +400,6 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[0].animation.play(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].animation.play(weekCharacters[curWeek][2]);
-		txtTracklist.text = "Tracks\n";
 
 		switch (grpWeekCharacters.members[0].animation.curAnim.name)
 		{
@@ -424,23 +422,25 @@ class StoryMenuState extends MusicBeatState
 			default:
 				grpWeekCharacters.members[0].offset.set(100, 100);
 				grpWeekCharacters.members[0].setGraphicSize(Std.int(grpWeekCharacters.members[0].width * 1));
-				// grpWeekCharacters.members[0].updateHitbox();
+				//grpWeekCharacters.members[0].updateHitbox();
 		}
 
+		txtTracklist.text = "Tracks\n";
 		var stringThing:Array<String> = weekData[curWeek];
 
 		for (i in stringThing)
-		{
 			txtTracklist.text += "\n" + i;
-		}
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();
 
 		txtTracklist.screenCenter(X);
 		txtTracklist.x -= FlxG.width * 0.35;
 
+		txtTracklist.text += "\n";
+
 		#if !switch
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
 		#end
 	}
 }
+

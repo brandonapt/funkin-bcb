@@ -45,11 +45,11 @@ class StoryMenuState extends MusicBeatState
 		['senpai', 'bf', 'gf']
 	];
 	var weekNames:Array<String> = [
-		"",
+		"how to Funk",
 		"Daddy Dearest",
 		"Skid and Pump",
 		"Pico",
-		"Mommy Must Murder",
+		"Mommy Mearest",
 		"Mom and Dad",
 		"Senpai"
 	];
@@ -91,7 +91,9 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.alpha = 0.7;
 
 		var rankText:FlxText = new FlxText(0, 10);
-		rankText.text = 'RANK: GREAT';
+		rankText.text = 'RANK: ';
+
+
 		rankText.setFormat(Paths.font("vcr.ttf"), 32);
 		rankText.size = scoreText.size;
 		rankText.screenCenter(X);
@@ -210,9 +212,12 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
 		add(txtTracklist);
-		// add(rankText);
+		//add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
+
+
+		
 
 		updateText();
 
@@ -223,13 +228,23 @@ class StoryMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
+
+
+
 		scoreText.text = "High Score: " + lerpScore;
+
+
+
 
 		txtWeekTitle.text = weekNames[curWeek].toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
+
+				lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
+
 
 		// FlxG.watch.addQuick('font', scoreText.font);
 
@@ -284,6 +299,8 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		super.update(elapsed);
+
+		
 	}
 
 	var movedBack:Bool = false;
@@ -329,6 +346,7 @@ class StoryMenuState extends MusicBeatState
 		}
 	}
 
+
 	function changeDifficulty(change:Int = 0):Void
 	{
 		curDifficulty += change;
@@ -369,8 +387,15 @@ class StoryMenuState extends MusicBeatState
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
+	
+
 	function changeWeek(change:Int = 0):Void
 	{
+
+		
+
+
+	
 		curWeek += change;
 
 		if (curWeek >= weekData.length)

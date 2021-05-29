@@ -76,6 +76,8 @@ class PlayState extends MusicBeatState
 
 	var halloweenLevel:Bool = false;
 
+	public static var carGf:Bool = true;
+
 	private var vocals:FlxSound;
 
 	private var dad:Character;
@@ -137,7 +139,6 @@ class PlayState extends MusicBeatState
 	var songMisses:Int = 0;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
-	var missesTxt:FlxText;
 
 	public static var campaignScore:Int = 0;
 
@@ -148,14 +149,12 @@ class PlayState extends MusicBeatState
 
 	var inCutscene:Bool = false;
 
-	#if desktop
 	// Discord RPC variables
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
 	var songLength:Float = 0;
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
-	#end
 
 	override public function create()
 	{
@@ -207,9 +206,7 @@ class PlayState extends MusicBeatState
 			case 'thorns':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
 		}
-
-		#if desktop
-		// Making difficulty text for Discord Rich Presence.
+		
 		switch (storyDifficulty)
 		{
 			case 0:
@@ -219,6 +216,9 @@ class PlayState extends MusicBeatState
 			case 2:
 				storyDifficultyText = "Hard";
 		}
+		#if desktop
+		// Making difficulty text for Discord Rich Presence.
+
 
 		iconRPC = SONG.player2;
 
@@ -758,15 +758,12 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(curcol, curcol2); // Use those colors
 		// healthBar
 		add(healthBar);
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 40, 0, "", 20);
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 580, healthBarBG.y + 40, 0, "", 20);
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT);
 		scoreTxt.scrollFactor.set();
-		missesTxt = new FlxText(healthBarBG.x + healthBarBG.width - 550, healthBarBG.y + 40, 0, "", 20);
-		missesTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER);
-		missesTxt.scrollFactor.set();
-		add(missesTxt);
 		add(scoreTxt);
+
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -1394,8 +1391,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore + " | " + Application.current.meta.get('version');
-		missesTxt.text = "Misses:" + songMisses;
+		scoreTxt.text = "Misses: " + songMisses + " | " + "Score: " + songScore + " | v" + Application.current.meta.get('version') + " | Song: " + SONG.song + " (" + storyDifficultyText + ")";
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -1452,9 +1448,6 @@ class PlayState extends MusicBeatState
 			iconP2.animation.curAnim.curFrame = 1;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
-
-		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(new Charting()); */
 
 		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
@@ -1757,8 +1750,7 @@ class PlayState extends MusicBeatState
 				transOut = FlxTransitionableState.defaultTransOut;
 
 				FlxG.switchState(new StoryMenuState());
-
-				// if ()
+				//dix if ()
 				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
 
 				if (SONG.validScore)
@@ -1816,7 +1808,7 @@ class PlayState extends MusicBeatState
 	private function popUpScore(strumtime:Float):Void
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
-		// boyfriend.playAnim('hey');
+		//boyfriend.playAnim('hey');
 		vocals.volume = 1;
 
 		var placement:String = Std.string(combo);
@@ -2162,120 +2154,121 @@ class PlayState extends MusicBeatState
 	}
 
 	function noteMiss(direction:Int = 1):Void
-	{
-		if (!boyfriend.stunned)
 		{
-			health -= 0.04;
-			if (combo > 5 && gf.animOffsets.exists('sad'))
+			if (!boyfriend.stunned)
 			{
-				gf.playAnim('sad');
-			}
-			combo = 0;
-
-			songScore -= 10;
-
-			FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
-			// FlxG.log.add('played imss note');
-
-			boyfriend.stunned = true;
-
-			// get stunned for 5 seconds
-			new FlxTimer().start(5 / 60, function(tmr:FlxTimer)
-			{
-				boyfriend.stunned = false;
-				songMisses += 1;
-			});
-
-			switch (direction)
-			{
-				case 0:
-					boyfriend.playAnim('singLEFTmiss', true);
-				case 1:
-					boyfriend.playAnim('singDOWNmiss', true);
-				case 2:
-					boyfriend.playAnim('singUPmiss', true);
-				case 3:
-					boyfriend.playAnim('singRIGHTmiss', true);
-			}
-		}
-	}
-
-	function badNoteCheck()
-	{
-		// just double pasting this shit cuz fuk u
-		// REDO THIS SYSTEM!
-		var upP = controls.UP_P;
-		var rightP = controls.RIGHT_P;
-		var downP = controls.DOWN_P;
-		var leftP = controls.LEFT_P;
-
-		if (leftP)
-			noteMiss(0);
-		if (downP)
-			noteMiss(1);
-		if (upP)
-			noteMiss(2);
-		if (rightP)
-			noteMiss(3);
-	}
-
-	function noteCheck(keyP:Bool, note:Note):Void
-	{
-		if (keyP)
-			goodNoteHit(note);
-		else
-		{
-			badNoteCheck();
-		}
-	}
-
-	function goodNoteHit(note:Note):Void
-	{
-		if (!note.wasGoodHit)
-		{
-			if (!note.isSustainNote)
-			{
-				popUpScore(note.strumTime);
-				combo += 1;
-			}
-
-			if (note.noteData >= 0)
-				health += 0.023;
-			else
-				health += 0.004;
-
-			switch (note.noteData)
-			{
-				case 0:
-					boyfriend.playAnim('singLEFT', true);
-				case 1:
-					boyfriend.playAnim('singDOWN', true);
-				case 2:
-					boyfriend.playAnim('singUP', true);
-				case 3:
-					boyfriend.playAnim('singRIGHT', true);
-			}
-
-			playerStrums.forEach(function(spr:FlxSprite)
-			{
-				if (Math.abs(note.noteData) == spr.ID)
+				health -= 0.04;
+				if (combo > 5 && gf.animOffsets.exists('sad'))
 				{
-					spr.animation.play('confirm', true);
+					gf.playAnim('sad');
 				}
-			});
-
-			note.wasGoodHit = true;
-			vocals.volume = 1;
-
-			if (!note.isSustainNote)
-			{
-				note.kill();
-				notes.remove(note, true);
-				note.destroy();
+				combo = 0;
+	
+				songScore -= 10;
+	
+				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+				// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
+				// FlxG.log.add('played imss note');
+	
+				boyfriend.stunned = true;
+				songMisses += 1;
+					
+				// get stunned for 5 seconds
+				new FlxTimer().start(5 / 60, function(tmr:FlxTimer)
+				{
+					boyfriend.stunned = false;
+				});
+	
+				switch (direction)
+				{
+					case 0:
+						boyfriend.playAnim('singLEFTmiss', true);
+					case 1:
+						boyfriend.playAnim('singDOWNmiss', true);
+					case 2:
+						boyfriend.playAnim('singUPmiss', true);
+					case 3:
+						boyfriend.playAnim('singRIGHTmiss', true);
+				}
 			}
 		}
-	}
+	
+		function badNoteCheck()
+		{
+			// just double pasting this shit cuz fuk u
+			// REDO THIS SYSTEM!
+			var upP = controls.UP_P;
+			var rightP = controls.RIGHT_P;
+			var downP = controls.DOWN_P;
+			var leftP = controls.LEFT_P;
+	
+			if (leftP)
+				noteMiss(0);
+			if (downP)
+				noteMiss(1);
+			if (upP)
+				noteMiss(2);
+			if (rightP)
+				noteMiss(3);
+		}
+	
+		function noteCheck(keyP:Bool, note:Note):Void
+		{
+			if (keyP)
+				goodNoteHit(note);
+			else
+			{
+				badNoteCheck();
+			}
+		}
+	
+		function goodNoteHit(note:Note):Void
+		{
+			if (!note.wasGoodHit)
+			{
+				if (!note.isSustainNote)
+				{
+					popUpScore(note.strumTime);
+					combo += 1;
+				}
+	
+				if (note.noteData >= 0)
+					health += 0.023;
+				else
+					health += 0.004;
+	
+				switch (note.noteData)
+				{
+					case 0:
+						boyfriend.playAnim('singLEFT', true);
+					case 1:
+						boyfriend.playAnim('singDOWN', true);
+					case 2:
+						boyfriend.playAnim('singUP', true);
+					case 3:
+						boyfriend.playAnim('singRIGHT', true);
+				}
+	
+				playerStrums.forEach(function(spr:FlxSprite)
+				{
+					if (Math.abs(note.noteData) == spr.ID)
+					{
+						spr.animation.play('confirm', true);
+					}
+				});
+	
+				note.wasGoodHit = true;
+				vocals.volume = 1;
+	
+				if (!note.isSustainNote)
+				{
+					note.kill();
+					notes.remove(note, true);
+					note.destroy();
+				}
+			}
+		}
+	
 
 	var fastCarCanDrive:Bool = true;
 

@@ -43,7 +43,7 @@ newgrounds
 lime
 openfl
 ```
-So for each of those type `haxelib install [library]` so shit like `haxelib install newgrounds`
+So for each of those type `haxelib install [library]` so like `haxelib install newgrounds`
 
 You'll also need to install a couple things that involve Gits. To do this, you need to do a few things first.
 1. Download [git](https://git-scm.com/downloads). Works for Windows, Mac, and Linux, just select your build.
@@ -58,7 +58,7 @@ At the moment, you can optionally fix the transition bug in songs with zoomed ou
 
 ### Ignored files
 
-I readded the APIStuff.hx and made it empty.
+I readded the APIStuff.hx and made it empty. :) I also fixed the NGio bug.
 
 ### Compiling game
 

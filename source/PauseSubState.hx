@@ -21,6 +21,7 @@ class PauseSubState extends MusicBeatSubstate
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
+	var yourMom:FlxSound;
 
 	public function new(x:Float, y:Float)
 	{
@@ -43,6 +44,7 @@ class PauseSubState extends MusicBeatSubstate
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
 		levelInfo.updateHitbox();
 		add(levelInfo);
+
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
 		levelDifficulty.text += CoolUtil.difficultyString();
@@ -107,6 +109,14 @@ class PauseSubState extends MusicBeatSubstate
 					close();
 				case "Restart Song":
 					FlxG.resetState();
+				/*case "Your Mom":
+					yourMom = new FlxSound().loadEmbedded(Paths.music('dab'), false, true);
+					yourMom.volume = 0;
+					yourMom.play(false, FlxG.random.int(0, Std.int(yourMom.length / 2)));
+
+					yourMom.volume = 1;
+					FlxG.sound.list.add(yourMom);
+					*/
 				case "Exit to menu":
 					if (PlayState.isStoryMode)
 						FlxG.switchState(new StoryMenuState());

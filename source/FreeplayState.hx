@@ -213,6 +213,7 @@ class FreeplayState extends MusicBeatState
 		if (controls.BACK)
 		{
 			FlxG.switchState(new MainMenuState());
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 		}
 
 		if (accepted)

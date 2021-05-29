@@ -73,7 +73,7 @@ class TitleState extends MusicBeatState
 		{
 			// FIX LATER!!!
 			// WEEK UNLOCK PROGRESSION!!
-			// StoryMenuState.weekUnlocked = FlxG.save.data.weekUnlocked;
+			//StoryMenuState.weekUnlocked = FlxG.save.data.weekUnlocked;
 
 			if (StoryMenuState.weekUnlocked.length < 4)
 				StoryMenuState.weekUnlocked.insert(0, true);
@@ -178,7 +178,7 @@ class TitleState extends MusicBeatState
 		logo.antialiasing = true;
 		// add(logo);
 
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
 		credGroup = new FlxGroup();
@@ -376,9 +376,9 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				createCoolText(['i made this', 'with']);
+				createCoolText(['i suck at']);
 			case 7:
-				addMoreText('nobody lol');
+				addMoreText('coding');
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();

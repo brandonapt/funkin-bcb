@@ -185,7 +185,10 @@ class MainMenuState extends MusicBeatState
 										FlxG.switchState(new FreeplayState());
 
 										trace("Freeplay Menu Selected");
+
+									
 								}
+								
 							});
 						}
 					});

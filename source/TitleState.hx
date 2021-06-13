@@ -128,9 +128,9 @@ class TitleState extends MusicBeatState
 			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
 			// https://github.com/HaxeFlixel/flixel-addons/pull/348
 
-			// var music:FlxSound = new FlxSound();
-			// music.loadStream(Paths.music('freakyMenu'));
-			// FlxG.sound.list.add(music);
+			 //var music:FlxSound = new FlxSound();
+			 //music.loadStream(Paths.music('freakyMenu'));
+			 //FlxG.sound.list.add(music);
 			// music.play();
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
@@ -193,7 +193,7 @@ class TitleState extends MusicBeatState
 
 		// credTextShit.alignment = CENTER;
 
-		credTextShit.visible = false;
+		credTextShit.visible = true;
 
 		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
 		add(ngSpr);
@@ -212,7 +212,7 @@ class TitleState extends MusicBeatState
 		else
 			initialized = true;
 
-		// credGroup.add(credTextShit);
+		//credGroup.add(credTextShit);
 	}
 
 	function getIntroTextShit():Array<Array<String>>
@@ -269,45 +269,56 @@ class TitleState extends MusicBeatState
 		}
 
 		if (pressedEnter && !transitioning && skippedIntro)
-		{
-			#if !switch
-			NGio.unlockMedal(60960);
-
-			// If it's Friday according to da clock
-			if (Date.now().getDay() == 5)
-				NGio.unlockMedal(61034);
-			#end
-
-			titleText.animation.play('press');
-
-			FlxG.camera.flash(FlxColor.WHITE, 1);
-			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-
-			transitioning = true;
-			// FlxG.sound.music.stop();
-
-			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				// Check if version is outdated
-
-				var version:String = Application.current.meta.get('version');
-
-				//if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState)
-				//{
-					//FlxG.switchState(new OutdatedSubState());
-					//trace('OLD VERSION!');
-					//trace('old ver');
-					//trace(version.trim());
-					///trace('cur ver');
-					///trace(NGio.GAME_VER_NUMS.trim());
-				///}
-				//else
-				//{
-					FlxG.switchState(new MainMenuState());
-				//}
-			});
-			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
-		}
+				#if !switch
+				NGio.unlockMedal(60960);
+	
+				// If it's Friday according to da clock
+				if (Date.now().getDay() == 5)
+					NGio.unlockMedal(61034);
+				#end
+	
+				titleText.animation.play('press');
+	
+				FlxG.camera.flash(FlxColor.WHITE, 1);
+				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+	
+				transitioning = true;
+				// FlxG.sound.music.stop();
+	
+	
+				new FlxTimer().start(2, function(tmr:FlxTimer)
+				{
+					// Get current version of bcb
+					
+					var http = new haxe.Http("https://raw.githubusercontent.com/brandoge91/funkin-bcb/master/version.downloadMe");
+					var returnedData:Array<String> = [];
+					
+					http.onData = function (data:String)
+					{
+						returnedData[0] = data.substring(0, data.indexOf(';'));
+						returnedData[1] = data.substring(data.indexOf('-'), data.length);
+						  if (!Application.current.meta.get('version').contains(returnedData[0].trim()))
+						{
+							OutdatedSubState.needVer = returnedData[0];
+							OutdatedSubState.currChanges = returnedData[1];
+							FlxG.switchState(new OutdatedSubState());
+						}
+						else
+						{
+							FlxG.switchState(new MainMenuState());
+						}
+					}
+					
+					http.onError = function (error) {
+					  trace('error: $error');
+					  FlxG.switchState(new MainMenuState()); // fail but we go anyway
+					}
+					
+					http.request();
+				});
+				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
+			}
 
 		if (pressedEnter && !skippedIntro)
 		{
@@ -376,9 +387,9 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				createCoolText(['i suck at']);
+				createCoolText(['Competing with']);
 			case 7:
-				addMoreText('coding');
+				addMoreText('Kade Engine');
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();

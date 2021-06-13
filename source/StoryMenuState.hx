@@ -21,7 +21,7 @@ using StringTools;
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
-
+	var loltext:FlxText;
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
 		['Bopeebo', 'Fresh', 'Dadbattle'],
@@ -90,13 +90,10 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
 
-		var rankText:FlxText = new FlxText(0, 10);
-		rankText.text = 'RANK: ';
 
-
-		rankText.setFormat(Paths.font("vcr.ttf"), 32);
-		rankText.size = scoreText.size;
-		rankText.screenCenter(X);
+		loltext = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
+		loltext.setFormat("VCR OSD Mono", 32);
+		loltext.screenCenter(X);
 
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
 		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
@@ -209,28 +206,47 @@ class StoryMenuState extends MusicBeatState
 
 		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;
-		txtTracklist.font = rankText.font;
+		txtTracklist.font = loltext.font;
 		txtTracklist.color = 0xFFe55777;
 		add(txtTracklist);
-		//add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
 
 
-		
+		add(loltext);
+
 
 		updateText();
 
 		trace("Line 165");
 
 		super.create();
+
+
 	}
 
 	override function update(elapsed:Float)
 	{
+		var rank:String = ".";
 
-		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
+
+		if (lerpScore <= 3000)
+		{
+			rank = "Bad";
+		}
+		
+		if (lerpScore >= 7500)
+		{
+			rank = "Okay";
+		}
+		if (lerpScore >= 20000)
+		{
+			rank = "Great";
+		}
+
+		loltext.text = "Rank: " + rank;
+
 
 
 

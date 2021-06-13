@@ -10,7 +10,9 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
+import flixel.effects.FlxFlicker;
 import flixel.util.FlxColor;
+import flixel.system.FlxSound;
 import lime.utils.Assets;
 
 using StringTools;
@@ -137,7 +139,7 @@ class FreeplayState extends MusicBeatState
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
-		/* 
+		 /*
 			var md:String = Markdown.markdownToHtml(Assets.getText('CHANGELOG.md'));
 
 			var texFel:TextField = new TextField();
@@ -148,12 +150,13 @@ class FreeplayState extends MusicBeatState
 
 			FlxG.stage.addChild(texFel);
 
-			// scoreText.textField.htmlText = md;
+			 scoreText.textField.htmlText = md;
 
 			trace(md);
-		 */
+		 
 
 		super.create();
+		*/
 	}
 
 	public function addSong(songName:String, weekNum:Int, songCharacter:String)
@@ -218,11 +221,19 @@ class FreeplayState extends MusicBeatState
 
 		if (accepted)
 		{
+		
+			var yourMom = new FlxSound().loadEmbedded(Paths.sound('confirmMenu'), false, true);
+			yourMom.volume = 0;
+			yourMom.play(false, FlxG.random.int(0, Std.int(yourMom.length / 2)));
+			yourMom.volume = 1.5;
+			FlxG.sound.list.add(yourMom);
+			
+			
 			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), curDifficulty);
 
 			trace(poop);
-
 			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
+
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
 

@@ -38,6 +38,7 @@ class TitleState extends MusicBeatState
 	var credGroup:FlxGroup;
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
+	var FNF:FlxSprite;
 	var ngSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
@@ -194,6 +195,14 @@ class TitleState extends MusicBeatState
 		// credTextShit.alignment = CENTER;
 
 		credTextShit.visible = true;
+
+		FNF = new FlxSprite(0, FlxG.height * 0.40).loadGraphic(Paths.image('preloaderArt'));
+		add(FNF);
+		FNF.visible = false;
+		FNF.setGraphicSize(Std.int(FNF.width * 0.4));
+		FNF.updateHitbox();
+		FNF.screenCenter(X);
+		FNF.antialiasing = true;
 
 		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
 		add(ngSpr);
@@ -387,12 +396,14 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				createCoolText(['Competing with']);
+				createCoolText(['Newgrounds']);
 			case 7:
-				addMoreText('Kade Engine');
+				addMoreText('Forever');
+				FNF.visible = true;
 			// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();
+				FNF.visible = false;
 			// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';

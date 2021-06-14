@@ -14,7 +14,7 @@ import flixel.util.FlxColor;
 
 class OptionsMenuSubState extends MusicBeatState
 {
-    var menuItems:Array<String> = ['Downscroll'];
+    var menuItems:Array<String> = ["Changelog"];
     public static var downscroll:Bool = false;
     var curSelected:Int = 0;
 	var magenta:FlxSprite;
@@ -100,7 +100,7 @@ class OptionsMenuSubState extends MusicBeatState
                                 if (downscroll = true)
                                     downscroll = false;
                                 if (downscroll = false)
-                                    downscroll = true
+                                    downscroll = true;
                         }
                     }
         
@@ -119,8 +119,9 @@ class OptionsMenuSubState extends MusicBeatState
                     curSelected = 0;
         
                 var bullShit:Int = 0;
-                if (curSelected == )
-
+                if (curSelected == 0) {
+                    descriptionTxt.text = "View the changelog.";
+                }
         
                 for (item in grpMenuShit.members)
                 {

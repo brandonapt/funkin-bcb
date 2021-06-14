@@ -1,10 +1,15 @@
-0.5;
+0.6;
 
-POGGERS
-i added stuffs
+ight this is a big boy release
+added: 
+- options menu
+right now you can view the changelog for the latest release. thats really iy
+-flash animation for the opponents notes
+-when you toggle beta BF icon, it saves when you go to another week/song
+-on hard mode, the opponent will push against your icon as you do to them on normal and easy mode. hard mode got so much harder.
+-added the unused fnf x newgrounds picture on the boot screen
 
-   - readded short-lived ranking system
-   - cool outdated thing
-   - some other stuff i fogot
-
-and the bug fixes, oh lord so many bug fixes.
+fixed:
+-freeplay would preload songs in a way causing major ram usage
+-improved misses and calculations
+-combo counter now goes above 999 without the game crashing

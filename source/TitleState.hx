@@ -1,5 +1,6 @@
 package;
 
+import OptionsMenu.OptionsMenuSubState;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -311,6 +312,8 @@ class TitleState extends MusicBeatState
 						{
 							OutdatedSubState.needVer = returnedData[0];
 							OutdatedSubState.currChanges = returnedData[1];
+							OptionsMenuSubState.needVer = returnedData[0];
+							OptionsMenuSubState.currChanges = returnedData[1];
 							FlxG.switchState(new OutdatedSubState());
 						}
 						else

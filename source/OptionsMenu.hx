@@ -21,6 +21,8 @@ class OptionsMenuSubState extends MusicBeatState
     var title:Alphabet;
     var grpMenuShit:FlxTypedGroup<Alphabet>;
     var descriptionTxt:FlxText;
+    public static var needVer:String = "kjNKFJNKJNS LOL";
+	public static var currChanges:String = "ef";
     var flxBG:FlxSprite;
     var currentDescription:String;
 
@@ -41,6 +43,10 @@ class OptionsMenuSubState extends MusicBeatState
         title = new Alphabet(0, 15, "OPTIONS", true, false);
         title.screenCenter(X);
         add(title);
+
+
+      
+
 
         descriptionTxt = new FlxText(15, 675, 0, currentDescription, 25);
 		descriptionTxt.setFormat("VCR OSD Mono", 29, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -96,11 +102,30 @@ class OptionsMenuSubState extends MusicBeatState
             
                         switch (daSelected)
                         {
-                            case "Downscroll":
-                                if (downscroll = true)
-                                    downscroll = false;
-                                if (downscroll = false)
-                                    downscroll = true;
+                            case "Changelog":
+
+                                var http = new haxe.Http("https://raw.githubusercontent.com/brandoge91/funkin-bcb/master/version.downloadMe");
+                                var returnedData:Array<String> = [];
+                                
+                                http.onData = function (data:String)
+                                {
+                                    returnedData[0] = data.substring(0, data.indexOf(';'));
+                                    returnedData[1] = data.substring(data.indexOf('-'), data.length);
+                                }
+                                var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+                                bg.scrollFactor.set();
+                                add(bg);
+                                var txt:FlxText = new FlxText(0, 0, FlxG.width,
+                                    "The most recent version is " +  needVer + "."
+                                    + "\n\nWhat's new:\n\n" + currChanges,
+                                    32);
+                                    txt.setFormat("VCR OSD Mono", 32, FlxColor.fromRGB(200, 200, 200), CENTER);
+                                    txt.borderColor = FlxColor.BLACK;
+                                    txt.borderSize = 3;
+                                    txt.borderStyle = FlxTextBorderStyle.OUTLINE;
+                                    txt.screenCenter();
+                                    txt.visible = true;
+                                    add(txt);
                         }
                     }
         

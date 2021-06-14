@@ -308,12 +308,12 @@ class TitleState extends MusicBeatState
 					{
 						returnedData[0] = data.substring(0, data.indexOf(';'));
 						returnedData[1] = data.substring(data.indexOf('-'), data.length);
+						OptionsMenuSubState.needVer = returnedData[0];
+						OptionsMenuSubState.currChanges = returnedData[1];
 						  if (!Application.current.meta.get('version').contains(returnedData[0].trim()))
 						{
 							OutdatedSubState.needVer = returnedData[0];
 							OutdatedSubState.currChanges = returnedData[1];
-							OptionsMenuSubState.needVer = returnedData[0];
-							OptionsMenuSubState.currChanges = returnedData[1];
 							FlxG.switchState(new OutdatedSubState());
 						}
 						else

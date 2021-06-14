@@ -118,7 +118,6 @@ class PauseSubState extends MusicBeatSubstate
 				case "Restart Song":
 					FlxG.resetState();
 				case "Skip Song":
-					// small things: skip song
 					PlayState.storyPlaylist.remove(PlayState.storyPlaylist[0]);
 	
 					var difficulty:String = "";

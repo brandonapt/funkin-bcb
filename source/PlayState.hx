@@ -142,8 +142,8 @@ class PlayState extends MusicBeatState
 
 	var talking:Bool = true;
 	var songMisses:Int = 0;
-	private var accuracy:Float = 0.00;
 	private var totalNotesHit:Float = 0;
+	private var accuracy:Float = 0.00;
 	private var totalPlayed:Int = 0;
 	private var ss:Bool = false;
 	var songScore:Int = 0;
@@ -778,9 +778,11 @@ class PlayState extends MusicBeatState
 		if (isBfOld)
 			{
 				iconP1 = new HealthIcon('bf-old', true);
+				curcol2 = 0xFFe0ed24;
 			} else
 			{
 				iconP1 = new HealthIcon(SONG.player1, true);
+				curcol2 = col[characterCol.indexOf(boyfriend.curCharacter)];
 			}
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		add(iconP1);
@@ -1412,11 +1414,17 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.NINE) 
 		{
-			if (iconP1.animation.curAnim.name == 'bf-old')
-				iconP1.animation.play(SONG.player1);
-			else
+			if (iconP1.animation.curAnim.name != 'bf-old')
+			{
 				iconP1.animation.play('bf-old');
-			isBfOld = !isBfOld;
+				isBfOld = !isBfOld;
+				
+			}
+			else
+			{
+				iconP1.animation.play(SONG.player1);
+			}
+
 		}
 
 		switch (curStage)
@@ -1735,7 +1743,9 @@ class PlayState extends MusicBeatState
 							if (Math.abs(daNote.noteData) == spr.ID)
 							{
 								if (storyDifficulty == 2) {
-								health -= 0.0175;
+									if (FlxG.save.data.harderMode == true) {
+										health -= 0.0175;
+									}
 								}
 								spr.animation.play('confirm', true);
 								sustain2(spr.ID, daNote);
@@ -2022,8 +2032,13 @@ class PlayState extends MusicBeatState
 		var seperatedScore:Array<Int> = [];
 		var comboSplit:Array<String> = (combo + "").split('');
 
-		if (comboSplit.length == 2)
-			seperatedScore.push(0); // make sure theres a 0 in front or it looks weird lol!
+		if (comboSplit.length == 1)
+			{
+				seperatedScore.push(0);
+				seperatedScore.push(0);
+			}
+			else if (comboSplit.length == 2)
+				seperatedScore.push(0);
 
 		for(i in 0...comboSplit.length)
 		{
@@ -2053,10 +2068,7 @@ class PlayState extends MusicBeatState
 			numScore.acceleration.y = FlxG.random.int(200, 300);
 			numScore.velocity.y -= FlxG.random.int(140, 160);
 			numScore.velocity.x = FlxG.random.float(-5, 5);
-
-			if (combo >= 10 || combo == 0)
-				add(numScore);
-
+ 				add(numScore);
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
 				{

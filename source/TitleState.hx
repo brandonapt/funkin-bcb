@@ -179,8 +179,10 @@ class TitleState extends MusicBeatState
 		logo.screenCenter();
 		logo.antialiasing = true;
 		// add(logo);
-
-		FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		if (FlxG.save.data.movingLogo == true)
+		{
+			FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		}
 		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
 		credGroup = new FlxGroup();
@@ -383,7 +385,8 @@ class TitleState extends MusicBeatState
 			gfDance.animation.play('danceLeft');
 
 		FlxG.log.add(curBeat);
-
+if (FlxG.save.data.customIntroText == true)
+	{
 		switch (curBeat)
 		{
 			case 1:
@@ -434,6 +437,58 @@ class TitleState extends MusicBeatState
 			case 16:
 				skipIntro();
 		}
+	} else {
+		switch (curBeat)
+		{
+			case 1:
+				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+			// credTextShit.visible = true;
+			case 3:
+				addMoreText('present');
+			// credTextShit.text += '\npresent...';
+			// credTextShit.addText();
+			case 4:
+				deleteCoolText();
+			// credTextShit.visible = false;
+			// credTextShit.text = 'In association \nwith';
+			// credTextShit.screenCenter();
+			case 5:
+				createCoolText(['In association', 'with']);
+			case 7:
+				addMoreText('newgrounds');
+				ngSpr.visible = true;
+			// credTextShit.text += '\nNewgrounds';
+			case 8:
+				deleteCoolText();
+				ngSpr.visible = false;
+			// credTextShit.visible = false;
+
+			// credTextShit.text = 'Shoutouts Tom Fulp';
+			// credTextShit.screenCenter();
+			case 9:
+				createCoolText([curWacky[0]]);
+			// credTextShit.visible = true;
+			case 11:
+				addMoreText(curWacky[1]);
+			// credTextShit.text += '\nlmao';
+			case 12:
+				deleteCoolText();
+			// credTextShit.visible = false;
+			// credTextShit.text = "Friday";
+			// credTextShit.screenCenter();
+			case 13:
+				addMoreText('Friday');
+			// credTextShit.visible = true;
+			case 14:
+				addMoreText('Night');
+			// credTextShit.text += '\nNight';
+			case 15:
+				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+
+			case 16:
+				skipIntro();
+		}
+	}
 	}
 
 	var skippedIntro:Bool = false;
@@ -443,6 +498,7 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
+			remove(FNF);
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);

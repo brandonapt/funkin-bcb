@@ -4,27 +4,39 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionableState;
+import flixel.util.FlxSave;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
+import Controls.Control;
+import Controls.KeyboardScheme;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
+import sys.FileSystem;
+import haxe.Json;
+import sys.io.File;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import openfl.display.StageDisplayState;
+import openfl.Lib;
+
 
 class OptionsMenuSubState extends MusicBeatState
 {
-    var menuItems:Array<String> = ["Changelog"];
-    public static var downscroll:Bool = false;
+
+    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation"];
+
+
     var curSelected:Int = 0;
 	var magenta:FlxSprite;
     var title:Alphabet;
     var grpMenuShit:FlxTypedGroup<Alphabet>;
     var descriptionTxt:FlxText;
-    public static var needVer:String = "kjNKFJNKJNS LOL";
-	public static var currChanges:String = "ef";
+    public static var needVer:String = "No Internet!";
+	public static var currChanges:String = "Connect to the internet to view the changelog!";
     var flxBG:FlxSprite;
     var currentDescription:String;
+
 
 
 	public function new()
@@ -77,7 +89,23 @@ class OptionsMenuSubState extends MusicBeatState
 
     override function update(elapsed:Float)
     {
+
         super.update(elapsed);
+
+        function toggleFullscreen() {
+
+            if(Lib.current.stage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE){
+        
+                Lib.current.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+        
+            }else {
+        
+                Lib.current.stage.displayState = StageDisplayState.NORMAL;
+        
+            }
+        
+        }
+        
 
         var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -86,14 +114,17 @@ class OptionsMenuSubState extends MusicBeatState
         if (upP)
             {
                 changeSelection(-1);
+                FlxG.sound.play(Paths.sound('scrollMenu'), 50);
             }
         if (downP)
             {
                 changeSelection(1);
+                FlxG.sound.play(Paths.sound('scrollMenu'), 50);
             }
             if (controls.BACK)
                 {
-                    FlxG.switchState(new MainMenuState());
+                    FlxG.save.flush();
+                   FlxG.switchState(new MainMenuState());
                 }
 
                 if (accepted)
@@ -103,7 +134,7 @@ class OptionsMenuSubState extends MusicBeatState
                         switch (daSelected)
                         {
                             case "Changelog":
-
+                                trace(FlxG.save.data.harderMode);
                                 var http = new haxe.Http("https://raw.githubusercontent.com/brandoge91/funkin-bcb/master/version.downloadMe");
                                 var returnedData:Array<String> = [];
                                 
@@ -126,6 +157,37 @@ class OptionsMenuSubState extends MusicBeatState
                                     txt.screenCenter();
                                     txt.visible = true;
                                     add(txt);
+
+                            case 'Fullscreen':
+                                    toggleFullscreen();
+                                    trace('it did something i hope');
+                            case "HardER Hard Mode":
+                                if (FlxG.save.data.harderMode  == false) {
+                                    FlxG.save.data.harderMode  = true;
+                                    descriptionTxt.text = "Makes hard mode even harder! On: TRUE";
+                                } else {
+                                    FlxG.save.data.harderMode  = false;
+                                    descriptionTxt.text = "Makes hard mode even harder! On: FALSE";
+                                }
+                            case "Custom Boot Intro":
+                                if (FlxG.save.data.customIntroText == true)
+                                    {
+                                    FlxG.save.data.customIntroText = false;
+                                    descriptionTxt.text = "Toggles the custom intro text. On: FALSE";
+                            } else {
+                                    FlxG.save.data.customIntroText = true;
+                                    descriptionTxt.text = "Toggles the custom intro text. On: TRUE";
+                                    }
+                            case "Logo Animation":
+                                if (FlxG.save.data.movingLogo == true)
+                                    {
+                                    FlxG.save.data.movingLogo = false;
+                                    descriptionTxt.text = "Makes the logo do a cool bumping animation on the bootscreen. On: FALSE";
+                            } else {
+                                    FlxG.save.data.movingLogo = true;
+                                    descriptionTxt.text = "Makes the logo do a cool bumping animation on the bootscreen. On: TRUE";
+                                    }
+                            
                         }
                     }
         
@@ -144,9 +206,34 @@ class OptionsMenuSubState extends MusicBeatState
                     curSelected = 0;
         
                 var bullShit:Int = 0;
-                if (curSelected == 0) {
-                    descriptionTxt.text = "View the changelog.";
+                switch (curSelected)
+                {
+                    case 0:
+                        descriptionTxt.text = "View the changelog.";
+                    case 1:
+                        descriptionTxt.text = "Toggle Fullscreen on and off.";
+                    case 2:
+                        if (FlxG.save.data.harderMode  == true) {
+                            descriptionTxt.text = "Makes hard mode even harder! Toggled: TRUE";
+                        }
+                        if (FlxG.save.data.harderMode == false) {
+                            descriptionTxt.text = "Makes hard mode even harder! Toggled: FALSE";
+                        }
+                    case 3:
+                        if (FlxG.save.data.customIntroText == false)
+                            descriptionTxt.text = "Toggled the custom intro text. On: FALSE";
+                        if (FlxG.save.data.customIntroText == true)
+                            descriptionTxt.text = "Toggled the custom intro text. On: TRUE";
+                    case 4:
+                        if (FlxG.save.data.movingLogo == false)
+                            descriptionTxt.text = "Makes the logo do a cool bumping animation on the bootscreen. On: FALSE";
+                        if (FlxG.save.data.movingLogo == true)
+                            descriptionTxt.text = "Makes the logo do a cool bumping animation on the bootscreen. On: TRUE";
+
+
                 }
+
+
         
                 for (item in grpMenuShit.members)
                 {

@@ -807,62 +807,67 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 
-		
-
-		if (isStoryMode)
-		{
-			switch (curSong.toLowerCase())
+		if (isStoryMode || FlxG.save.data.playDialogue == true)
 			{
-				case "winter-horrorland":
-					var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
-					add(blackScreen);
-					blackScreen.scrollFactor.set();
-					camHUD.visible = false;
-
-					new FlxTimer().start(0.1, function(tmr:FlxTimer)
-					{
-						remove(blackScreen);
-						FlxG.sound.play(Paths.sound('Lights_Turn_On'));
-						camFollow.y = -2050;
-						camFollow.x += 200;
-						FlxG.camera.focusOn(camFollow.getPosition());
-						FlxG.camera.zoom = 1.5;
-
-						new FlxTimer().start(0.8, function(tmr:FlxTimer)
+				switch (curSong.toLowerCase())
+				{
+					case "winter-horrorland":
+						var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
+						add(blackScreen);
+						blackScreen.scrollFactor.set();
+						camHUD.visible = false;
+	
+						new FlxTimer().start(0.1, function(tmr:FlxTimer)
 						{
-							camHUD.visible = true;
 							remove(blackScreen);
-							FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
-								ease: FlxEase.quadInOut,
-								onComplete: function(twn:FlxTween)
-								{
-									startCountdown();
-								}
+							FlxG.sound.play(Paths.sound('Lights_Turn_On'));
+							camFollow.y = -2050;
+							camFollow.x += 200;
+							FlxG.camera.focusOn(camFollow.getPosition());
+							FlxG.camera.zoom = 1.5;
+	
+							new FlxTimer().start(0.8, function(tmr:FlxTimer)
+							{
+								camHUD.visible = true;
+								remove(blackScreen);
+								FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 2.5, {
+									ease: FlxEase.quadInOut,
+									onComplete: function(twn:FlxTween)
+									{
+										startCountdown();
+									}
+								});
 							});
 						});
-					});
-				case 'senpai':
-					schoolIntro(doof);
-				case 'roses':
-					FlxG.sound.play(Paths.sound('ANGRY'));
-					schoolIntro(doof);
-				case 'thorns':
-					schoolIntro(doof);
-				default:
-					startCountdown();
+					case 'senpai':
+						schoolIntro(doof);
+					case 'roses':
+						FlxG.sound.play(Paths.sound('ANGRY'));
+							schoolIntro(doof);
+					case 'thorns':
+							schoolIntro(doof);
+					default:
+						startCountdown();
+				}
 			}
-		}
-		else
-		{
-			switch (curSong.toLowerCase())
+			else
 			{
-				default:
-					startCountdown();
+				switch (curSong.toLowerCase())
+				{
+					default:
+						startCountdown();
+				}
 			}
+	
+			super.create();
 		}
 
-		super.create();
-	}
+
+
+	
+
+
+	
 
 	function updateAccuracy()
 		{
@@ -881,6 +886,9 @@ class PlayState extends MusicBeatState
 			}
 
 		}
+
+
+	
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
@@ -968,6 +976,7 @@ class PlayState extends MusicBeatState
 
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
+	
 
 	function startCountdown():Void
 	{
@@ -1010,8 +1019,13 @@ class PlayState extends MusicBeatState
 
 			{
 				case 0:
-					FlxG.sound.play(Paths.sound('intro3'), 0.6);
-				case 1:
+					if (SONG.song.toLowerCase() == "senpai" || SONG.song.toLowerCase() == "roses" || SONG.song.toLowerCase() == "thorns")
+						{
+							FlxG.sound.play(Paths.sound('intro3-pixel'), 0.6);
+						} else {
+							FlxG.sound.play(Paths.sound('intro3'), 0.6);
+						}
+					case 1:
 					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
 					ready.updateHitbox();
@@ -1028,8 +1042,13 @@ class PlayState extends MusicBeatState
 							ready.destroy();
 						}
 					});
-					FlxG.sound.play(Paths.sound('intro2'), 0.6);
-				case 2:
+					if (SONG.song.toLowerCase() == "senpai" || SONG.song.toLowerCase() == "roses" || SONG.song.toLowerCase() == "thorns")
+						{
+							FlxG.sound.play(Paths.sound('intro2-pixel'), 0.6);
+						} else {
+							FlxG.sound.play(Paths.sound('intro2'), 0.6);
+						}			
+							case 2:
 					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					set.scrollFactor.set();
 
@@ -1045,8 +1064,13 @@ class PlayState extends MusicBeatState
 							set.destroy();
 						}
 					});
-					FlxG.sound.play(Paths.sound('intro1'), 0.6);
-				case 3:
+					if (SONG.song.toLowerCase() == "senpai" || SONG.song.toLowerCase() == "roses" || SONG.song.toLowerCase() == "thorns")
+						{
+							FlxG.sound.play(Paths.sound('intro1-pixel'), 0.6);
+						} else {
+							FlxG.sound.play(Paths.sound('intro1'), 0.6);
+						}				
+							case 3:
 					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
 					go.scrollFactor.set();
 
@@ -1064,8 +1088,13 @@ class PlayState extends MusicBeatState
 							go.destroy();
 						}
 					});
-					FlxG.sound.play(Paths.sound('introGo'), 0.6);
-				case 4:
+					if (SONG.song.toLowerCase() == "senpai" || SONG.song.toLowerCase() == "roses" || SONG.song.toLowerCase() == "thorns")
+						{
+							FlxG.sound.play(Paths.sound('introGo-pixel'), 0.6);
+						} else {
+							FlxG.sound.play(Paths.sound('introGo'), 0.6);
+						}
+							case 4:
 			}
 
 			swagCounter += 1;

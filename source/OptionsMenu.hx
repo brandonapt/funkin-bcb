@@ -24,7 +24,7 @@ import openfl.Lib;
 class OptionsMenuSubState extends MusicBeatState
 {
 
-    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation"];
+    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews"];
 
 
     var curSelected:Int = 0;
@@ -54,7 +54,7 @@ class OptionsMenuSubState extends MusicBeatState
 		add(magenta);
         title = new Alphabet(0, 15, "OPTIONS", true, false);
         title.screenCenter(X);
-        add(title);
+        //add(title);
 
 
       
@@ -187,6 +187,24 @@ class OptionsMenuSubState extends MusicBeatState
                                     FlxG.save.data.movingLogo = true;
                                     descriptionTxt.text = "Makes the logo do a cool bumping animation on the bootscreen. On: TRUE";
                                     }
+                                case "Toggle Dialogue":
+                                    if (FlxG.save.data.playDialogue == true)
+                                        {
+                                        FlxG.save.data.playDialogue = false;
+                                        descriptionTxt.text = "Toggles the dialogue in freeplay on songs that have it. On: FALSE";
+                                } else {
+                                        FlxG.save.data.playDialogue = true;
+                                        descriptionTxt.text = "Toggles the dialogue in freeplay on songs that have it. On: TRUE";
+                                        }
+                                case "Freeplay Song Previews":
+                                    if (FlxG.save.data.playSongs == true)
+                                        {
+                                        FlxG.save.data.playSongs = false;
+                                        descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: FALSE";
+                                } else {
+                                        FlxG.save.data.playSongs = true;
+                                        descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: TRUE";
+                                        }
                             
                         }
                     }
@@ -229,7 +247,16 @@ class OptionsMenuSubState extends MusicBeatState
                             descriptionTxt.text = "Makes the logo do a cool bumping animation on the bootscreen. On: FALSE";
                         if (FlxG.save.data.movingLogo == true)
                             descriptionTxt.text = "Makes the logo do a cool bumping animation on the bootscreen. On: TRUE";
-
+                    case 5:
+                        if (FlxG.save.data.playDialogue == false)
+                            descriptionTxt.text = "Toggles the dialogue in freeplay on songs that have it. On: FALSE";
+                        if (FlxG.save.data.playDialogue == true)
+                            descriptionTxt.text = "Toggles the dialogue in freeplay on songs that have it. On: TRUE";
+                    case 6:
+                        if (FlxG.save.data.playSongs == false)
+                            descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: FALSE";
+                        if (FlxG.save.data.playSongs == true)
+                            descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: TRUE";                            
 
                 }
 

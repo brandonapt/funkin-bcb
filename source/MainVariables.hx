@@ -11,6 +11,11 @@ class MainVariables
             FlxG.save.data.customIntroText = true;
         if (FlxG.save.data.movingLogo == null)
             FlxG.save.data.movingLogo = true;
+        if (FlxG.save.data.playDialogue == null)
+            FlxG.save.data.playDialogue = true;
+        if (FlxG.save.data.playSongs == null)
+            FlxG.save.data.playSongs = false;
+
 
 	}
 }

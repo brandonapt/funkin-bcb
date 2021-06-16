@@ -24,7 +24,7 @@ import openfl.Lib;
 class OptionsMenuSubState extends MusicBeatState
 {
 
-    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews"];
+    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews", "Song Progress Bar"];
 
 
     var curSelected:Int = 0;
@@ -63,7 +63,7 @@ class OptionsMenuSubState extends MusicBeatState
         descriptionTxt = new FlxText(15, 675, 0, currentDescription, 25);
 		descriptionTxt.setFormat("VCR OSD Mono", 29, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		
-      //  descriptionTxt.screenCenter(X);
+        //descriptionTxt.screenCenter(X);
 
         descriptionTxt.visible = true;
 		add(descriptionTxt);
@@ -205,6 +205,15 @@ class OptionsMenuSubState extends MusicBeatState
                                         FlxG.save.data.playSongs = true;
                                         descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: TRUE";
                                         }
+                                case "Song Progress Bar":
+                                    if (FlxG.save.data.songPosition == true)
+                                        {
+                                        FlxG.save.data.songPosition = false;
+                                        descriptionTxt.text = "Toggles a, well, song progress bar. On: FALSE";
+                                } else {
+                                        FlxG.save.data.songPosition = true;
+                                        descriptionTxt.text = "Toggles a, well, song progress bar. On: TRUE";
+                                        }
                             
                         }
                     }
@@ -256,7 +265,14 @@ class OptionsMenuSubState extends MusicBeatState
                         if (FlxG.save.data.playSongs == false)
                             descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: FALSE";
                         if (FlxG.save.data.playSongs == true)
-                            descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: TRUE";                            
+                            descriptionTxt.text = "Toggles song previews in freeplay. Can reduce loading times. On: TRUE";         
+                    case 7:
+                        if (FlxG.save.data.songPosition == false)
+                            descriptionTxt.text = "Toggles a, well, song progress bar. On: FALSE";
+                        if (FlxG.save.data.songPosition == true)
+                            descriptionTxt.text = "Toggles a, well, song progress bar. On: TRUE";       
+                    case 8:
+                        descriptionTxt.text = "Send feedback to the developers.";          
 
                 }
 

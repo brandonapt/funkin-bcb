@@ -1,0 +1,9 @@
+name: Setup Haxe environment
+  # You may pin to the exact commit or the version.
+  # uses: krdlab/setup-haxe@ecabf0d046aee1608c62ebbd1393c0658b06c1f9
+  uses: krdlab/setup-haxe@v1.1.5
+  with:
+    # Version Spec of the version to use. Example: 3.4.7
+    haxe-version: # default is 4.2.0
+        
+

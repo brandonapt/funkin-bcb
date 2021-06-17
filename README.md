@@ -4,7 +4,7 @@ Developed with:
 [Visual Studio Code](https://code.visualstudio.com)  
 and on Microsoft Windows (lol u dont need link)
 
-This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading. (rn web version asset loading kinda sucks. fixing in update 0.4a)
+This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
 
 Play online demo: https://www.fused.fans/funkin-bcb
 Play the Original Game: https://www.newgrounds.com/portal/view/770371

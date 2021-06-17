@@ -14,6 +14,8 @@ import flixel.text.FlxText;
 import sys.FileSystem;
 import haxe.Json;
 import sys.io.File;
+import flixel.animation.FlxBaseAnimation;
+import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
@@ -79,9 +81,22 @@ class OptionsMenuSubState extends MusicBeatState
                 songText.isMenuItem = true;
                 songText.targetY = i;
                 grpMenuShit.add(songText);
+                var checkbox:FlxSprite = new FlxSprite(songText.x + 35, songText.targetY);
+                var frames = Paths.getSparrowAtlas('checkboxThingie');
+                checkbox.animation.addByPrefix('selected', 'Check Box Selected Static', 1, true);
+                checkbox.animation.addByPrefix('unselected', 'Check Box unselected', 0, true);
+                checkbox.animation.addByPrefix('select', 'Check Box selecting animation', 10, false);
+                checkbox.frames = frames;
+                checkbox.scrollFactor.set();
+                checkbox.antialiasing = true;
+                //add(checkbox);
             }
 
+    
+
         changeSelection();
+
+   
         super.create();
 
     }

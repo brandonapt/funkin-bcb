@@ -205,6 +205,10 @@ class StoryMenuState extends MusicBeatState
 	{
 		var rank:String = ".";
 
+		if (curWeek == 0) {
+			trace('tutorail');
+		}
+
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
 		if (lerpScore <= 3000)
@@ -406,6 +410,7 @@ class StoryMenuState extends MusicBeatState
 				item.alpha = 0.6;
 			bullShit++;
 		}
+
 
 		FlxG.sound.play(Paths.sound('scrollMenu'));
 

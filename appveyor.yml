@@ -21,6 +21,7 @@ install:
   - haxelib install flixel-ui
   - haxelib install hscript
   - haxelib install newgrounds
+  - haxelib install HtmlParser
   - haxelib install markdown
   - haxelib install flixel-addons
   - haxelib git polymod https://github.com/larsiusprime/polymod.git

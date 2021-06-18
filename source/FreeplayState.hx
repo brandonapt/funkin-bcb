@@ -373,7 +373,9 @@ class FreeplayState extends MusicBeatState
 				#end
 
 				#if PRELOAD_ALL
-				FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
+				if (FlxG.save.data.playSongs == true) {
+				FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 1);
+				}
 				#end
 			}
 		});

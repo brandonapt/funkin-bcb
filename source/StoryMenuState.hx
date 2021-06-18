@@ -206,7 +206,13 @@ class StoryMenuState extends MusicBeatState
 		var rank:String = ".";
 
 		if (curWeek == 0) {
-			trace('tutorail');
+			rightArrow.visible = false;
+			leftArrow.visible = false;
+			sprDifficulty.visible = false;
+		} else {
+			rightArrow.visible = true;
+			leftArrow.visible = true;
+			sprDifficulty.visible = true;
 		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
@@ -328,6 +334,10 @@ class StoryMenuState extends MusicBeatState
 					diffic = '-easy';
 				case 2:
 					diffic = '-hard';
+			}
+			if (curWeek == 0) {
+				diffic = "";
+				curDifficulty = 1;
 			}
 
 			PlayState.storyDifficulty = curDifficulty;

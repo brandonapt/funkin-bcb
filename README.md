@@ -3,19 +3,35 @@ Developed with:
 [Haxe](https://haxe.org)  
 [Visual Studio Code](https://code.visualstudio.com)  
 and on Microsoft Windows (lol u dont need link)
+# Friday Night Funkin': BCB
 
 This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
+Brandon's Custom Build is a build made by me, (Brandon) and (zero) contributers :(.
 
 Play online demo: https://www.fused.fans/funkin-bcb
 Play the Original Game: https://www.newgrounds.com/portal/view/770371
+Some features include:
+- New options Menu
+- Note rework
+- More modding capabilities
+- Asset optimization
+- and some quality of life improvements.
 
+Download the nightly builds here: https://ci.appveyor.com/project/brandoge91/funkin-bcb/build/artifacts
+Download the latest stable release here: https://github.com/brandoge91/funkin-bcb/releases
 
 ## Credits / shoutouts
+Credits:
+KadeDeveloper: Idea for making this engine (and because I was bored at 2 am.)
+ninjamuffin99 - Friday Night Funkin Programming
+PhantomArcade3K and Evilsk8r - Friday Night Funkin Art
+Kawai Sprite - Friday Night Funkin Music
 
 - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
 - [brandon(me!)](https://www.fused.fans) - BCB Programmer
+ME: idk i typed at 11 pm some code into visual studio and it worked
 
 
 ## Build instructions
@@ -84,3 +100,4 @@ As for Mac, 'lime test mac -debug' should work, if not the internet surely has a
 ### Additional guides
 
 - [Command line basics](https://ninjamuffin99.newgrounds.com/news/post/1090480)
+Happy funking!

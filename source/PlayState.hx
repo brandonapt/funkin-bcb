@@ -1510,7 +1510,7 @@ class PlayState extends MusicBeatState
 			paused = true;
 
 			// 1 / 1000 chance for Gitaroo Man easter egg
-			if (FlxG.random.bool(1))
+			if (FlxG.random.bool(0.1))
 			{
 				// gitaroo man easter egg
 				FlxG.switchState(new GitarooPause());

@@ -38,6 +38,8 @@ class OptionsMenuSubState extends MusicBeatState
 	public static var currChanges:String = "Connect to the internet to view the changelog!";
     var flxBG:FlxSprite;
     var currentDescription:String;
+    private var checkboxes:Array<Checkboxes> = [];
+
 
 
 
@@ -73,7 +75,9 @@ class OptionsMenuSubState extends MusicBeatState
 
 
         grpMenuShit = new FlxTypedGroup<Alphabet>();
+        //checkboxes = new FlxTypedGroup<FlxSprite>();
 		add(grpMenuShit);
+
 
         for (i in 0...menuItems.length)
             {
@@ -81,15 +85,11 @@ class OptionsMenuSubState extends MusicBeatState
                 songText.isMenuItem = true;
                 songText.targetY = i;
                 grpMenuShit.add(songText);
-                var checkbox:FlxSprite = new FlxSprite(songText.x + 35, songText.targetY);
-                var frames = Paths.getSparrowAtlas('checkboxThingie');
-                checkbox.animation.addByPrefix('selected', 'Check Box Selected Static', 1, true);
-                checkbox.animation.addByPrefix('unselected', 'Check Box unselected', 0, true);
-                checkbox.animation.addByPrefix('select', 'Check Box selecting animation', 10, false);
-                checkbox.frames = frames;
-                checkbox.scrollFactor.set();
-                checkbox.antialiasing = true;
+                var checkbox:Checkboxes = new Checkboxes();
+                checkbox.sprTracker = songText;
+                checkboxes.push(checkbox);
                 //add(checkbox);
+
             }
 
     
@@ -106,7 +106,6 @@ class OptionsMenuSubState extends MusicBeatState
     {
 
         super.update(elapsed);
-
         function toggleFullscreen() {
 
             if(Lib.current.stage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE){
@@ -246,8 +245,23 @@ class OptionsMenuSubState extends MusicBeatState
                     curSelected = menuItems.length - 1;
                 if (curSelected >= menuItems.length)
                     curSelected = 0;
+
+                for (i in 0...checkboxes.length)
+                    {
+                        //checkboxes[i].alpha = 0.6;
+                    }
         
                 var bullShit:Int = 0;
+
+                for (i in 0...checkboxes.length)
+                    {
+                        checkboxes[i].alpha = 0.6;
+                    }
+            
+                    checkboxes[curSelected].alpha = 1;
+
+                //[curSelected].alpha = 1;
+
                 switch (curSelected)
                 {
                     case 0:

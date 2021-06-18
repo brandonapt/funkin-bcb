@@ -47,26 +47,7 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
-	var characterCol:Array<String> = CoolUtil.coolTextFile(Paths.txt('characterList'));
-	var col:Array<FlxColor> = [
-		0xFF51d8fb,
-		0xFF9fe6ff, 
-		0xFF51d8fb, 
-		0xFF51d8fb,
-		0xFFca1f6f, 
-		0xFFca1f6f,
-		0xFFc885e5,
-		0xFFec7aac,
-		0xFFec7aac,
-		0xFFffffff,
-		0xFFf9a326, 
-		0xFFceec75,
-		0xFFf5ff8a, 
-		0xFFf5ff8a, 
-		0xFFffaa6f, 
-		0xFFffaa6f, 
-		0xFFff5d87
-	];
+
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
@@ -782,10 +763,11 @@ class PlayState extends MusicBeatState
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
-		var curcol:FlxColor = col[characterCol.indexOf(dad.curCharacter)]; // Dad Icon
-		var curcol2:FlxColor = col[characterCol.indexOf(boyfriend.curCharacter)]; // Bf Icon
-		healthBar.createFilledBar(curcol, curcol2); // Use those colors
-		// healthBar
+		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+		'health', 0, 2);
+	healthBar.scrollFactor.set();
+	healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
+	// healthBar
 		add(healthBar);
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 580, healthBarBG.y + 40, 0, "", 20);
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
@@ -797,11 +779,9 @@ class PlayState extends MusicBeatState
 		if (isBfOld)
 			{
 				iconP1 = new HealthIcon('bf-old', true);
-				curcol2 = 0xFFe0ed24;
 			} else
 			{
 				iconP1 = new HealthIcon(SONG.player1, true);
-				curcol2 = col[characterCol.indexOf(boyfriend.curCharacter)];
 			}
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		add(iconP1);

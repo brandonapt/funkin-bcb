@@ -32,12 +32,9 @@ class OutdatedSubState extends MusicBeatState
 
 		
 		var txt:FlxText = new FlxText(0, 0, FlxG.width,
-			"Your BCB Engine is outdated!\nYou are on "
+			"Your BCB is outdated!\nYou are on "
 			+ Application.current.meta.get('version')
 			+ "\nwhile the most recent version is " + needVer + "."
-			+ "\n\nWhat's new:\n\n"
-			+ currChanges
-			+ "\n& more changes and bugfixes in the full changelog"
 			+ "\n\nPress Space to view the full changelog and update\nor ESCAPE to ignore this",
 			32);
 		

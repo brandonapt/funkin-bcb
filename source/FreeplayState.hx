@@ -363,7 +363,7 @@ class FreeplayState extends MusicBeatState
 
 		var temp:Int = curSelected;
 
-		new FlxTimer().start(FlxG.random.float(0.7), function(tmr:FlxTimer)
+		new FlxTimer().start(FlxG.random.float(0.1), function(tmr:FlxTimer)
 		{
 			if (curSelected == temp && !lockedIn)
 			{

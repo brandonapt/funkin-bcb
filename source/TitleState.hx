@@ -291,6 +291,15 @@ class TitleState extends MusicBeatState
 				#end
 	
 				titleText.animation.play('press');
+				FlxTween.tween(titleText,{y: 900},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+					{ 
+					}});
+					FlxTween.tween(logoBl,{y: -300},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+						{ 
+						}});
+						FlxTween.tween(gfDance,{y: -300},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+							{ 
+							}});
 	
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);

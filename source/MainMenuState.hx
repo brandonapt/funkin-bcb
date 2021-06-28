@@ -93,6 +93,11 @@ class MainMenuState extends MusicBeatState
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
+
+			FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.25) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+				{ 
+					changeItem();
+				}});
 		}
 
 		FlxG.camera.follow(camFollow, null, 0.06);
@@ -158,21 +163,33 @@ class MainMenuState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
 					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+					
 
 					menuItems.forEach(function(spr:FlxSprite)
 					{
 						if (curSelected != spr.ID)
 						{
-							FlxTween.tween(spr, {alpha: 0}, 0.4, {
+							FlxTween.tween(spr,{y: -400},2,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+								{ 
+									changeItem();
+								}});
+
+							/*FlxTween.tween(spr, {alpha: 0}, 0.4, {
 								ease: FlxEase.quadOut,
 								onComplete: function(twn:FlxTween)
 								{
 									spr.kill();
 								}
 							});
+							*/
 						}
 						else
 						{
+							FlxTween.tween(spr,{y: 150 - 300},6 ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+								{ 
+									changeItem();
+								}});
+
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];

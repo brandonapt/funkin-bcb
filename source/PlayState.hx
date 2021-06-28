@@ -1820,7 +1820,7 @@ class PlayState extends MusicBeatState
 				}
 
 				// WIP interpolation shit? Need to fix the pause issue
-				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
+				 //daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
 				if (daNote.y < -daNote.height)
 				{
@@ -1828,6 +1828,7 @@ class PlayState extends MusicBeatState
 					{
 						health -= 0.0475;
 						songMisses = songMisses + 1;
+						boyfriend.stunned = true;
 						vocals.volume = 0;
 					}
 

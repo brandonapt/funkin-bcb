@@ -1,31 +1,22 @@
-0.7;
+0.8;
 
+this is another big update because im on summer vacation and have nothing better to do.
+added-
+appveyor automated builds. check readme for link.
+removed difficulty on tutorial since its all the same
+cool tweens/animations on title and mainmenu
 
--so uh i was working on this and 0.6 at the same time thats why it came out so fast
+fixed:
+fixed not hitting a note not counting towards misses
+fixed health bar text
+fixed freeplay song preview option not working.
+fixed gitaroo man pause menu having 1/100 chance instead of 1000
+got a new pc so set up environment again differently and more efficient.
+options menu would have null options, causing description text to not work right
+pure black senpai would be behind/infront of spirit headshot in thorns dialogue
+transitions not filling screen
+icons not being as boppy as in week 7
+sustain note y value being screwy
+cleaned up some code in playstate.
 
-IF YOU ARE ON 0.7 AND YOU ARE STiLL GETTING THIS MESSAGE, PLEASE REDOWNLOAD. IT HAS BEEN FIXED.
-
-this is a CHONKER UPDATE POG
-
-added: 
-make freeplay bg fade based on characters like on week7
-remove some freeplay menu lag
-reworked the way story menu characters are loaded, based off of kade engines loading
-**MORE OpTIONS**!!!1!!!
-progress bar toggle
-freeplay dialogue toggle
-freeplay song preview toggle!
-fullscreen toggle!
-cool logo animation toggle!
-custom boot messages toggle!
-harder hard mode toggle!
-**very cool yes**
-
-ok now these are the bugs i squashed
-fixed a bug where changelog would crash the game if you had no internet
-removed daddy dearest from tutorial week
-combo counter didnt display 0-9 combo
-improved modding capability
-lol
-
-HAVE Fun!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+sorry for 0.7 being so buggy! I didnt properly playtest it before release

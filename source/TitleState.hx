@@ -1,5 +1,6 @@
 package;
 
+import Preload.PreloadingState;
 import OptionsMenu.OptionsMenuSubState;
 #if desktop
 import Discord.DiscordClient;
@@ -52,6 +53,9 @@ class TitleState extends MusicBeatState
 		//polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 
+		#if PRELOAD_ALL
+		FlxG.switchState(new PreloadingState());
+		#end
 		PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());

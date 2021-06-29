@@ -25,6 +25,7 @@ class MainMenuState extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
+	public static var doneMoving:Bool = false;
 
 	#if !switch
 	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
@@ -94,10 +95,12 @@ class MainMenuState extends MusicBeatState
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
 
-			FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.25) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
-				{ 
-					changeItem();
-				}});
+			//FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.50) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+			///	{ 
+				//	changeItem();
+//
+//					doneMoving = true; 
+//				}});
 		}
 
 		FlxG.camera.follow(camFollow, null, 0.06);
@@ -227,13 +230,14 @@ class MainMenuState extends MusicBeatState
 
 	function changeItem(huh:Int = 0)
 	{
-		curSelected += huh;
 
-		if (curSelected >= menuItems.length)
-			curSelected = 0;
-		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
-
+				curSelected += huh;
+	
+				if (curSelected >= menuItems.length)
+					curSelected = 0;
+				if (curSelected < 0)
+					curSelected = menuItems.length - 1;
+			
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.animation.play('idle');

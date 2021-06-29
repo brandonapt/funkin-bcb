@@ -9,6 +9,8 @@ import flixel.input.FlxKeyManager;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 
 using StringTools;
 
@@ -53,12 +55,14 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade.alpha = 0;
 		add(bgFade);
 
-		new FlxTimer().start(0.83, function(tmr:FlxTimer)
-		{
-			bgFade.alpha += (1 / 5) * 0.7;
-			if (bgFade.alpha > 0.7)
-				bgFade.alpha = 0.7;
-		}, 5);
+	
+			FlxTween.tween(bgFade, {alpha: 0.7}, 0.8, {
+				ease: FlxEase.quadOut,
+				onComplete: function(twn:FlxTween)
+					{
+						
+					}
+				});
 
 		box = new FlxSprite(-20, 45);
 		
@@ -87,10 +91,14 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
-				new FlxTimer().start(2.5, function(tmr:FlxTimer)
-					{
 						face.alpha += 1 / 5;
-					}, 5);
+						FlxTween.tween(face, {alpha: 1}, 0.8, {
+							ease: FlxEase.quadOut,
+							onComplete: function(twn:FlxTween)
+								{
+									
+								}
+							});
 		}
 
 		this.dialogueList = dialogueList;

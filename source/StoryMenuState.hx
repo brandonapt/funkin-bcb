@@ -31,7 +31,7 @@ class StoryMenuState extends MusicBeatState
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 		['Senpai', 'Roses', 'Thorns']
 	];
-	var curDifficulty:Int = 1;
+	public static var curDifficulty:Int = 1;
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
 
@@ -233,7 +233,16 @@ class StoryMenuState extends MusicBeatState
 
 		loltext.text = "Rank: " + rank;
 
-
+		switch (curDifficulty)
+		{
+			case 0:
+				txtTracklist.color = FlxColor.LIME;
+			case 1:
+				txtTracklist.color = FlxColor.YELLOW;
+			case 2:
+				txtTracklist.color = FlxColor.RED;
+			
+		}
 
 
 

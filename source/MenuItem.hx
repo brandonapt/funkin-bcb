@@ -6,6 +6,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import StoryMenuState;
 
 class MenuItem extends FlxSpriteGroup
 {
@@ -42,6 +43,7 @@ class MenuItem extends FlxSpriteGroup
 			flashingInt += 1;
 
 		if (flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
+			//shouldve used switch statement but im lazy and stupid
 			week.color = FlxColor.YELLOW;
 		else
 			week.color = FlxColor.WHITE;

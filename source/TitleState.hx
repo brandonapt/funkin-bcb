@@ -298,9 +298,20 @@ class TitleState extends MusicBeatState
 				FlxTween.tween(titleText,{y: 900},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 					{ 
 					}});
-					FlxTween.tween(logoBl,{y: 0},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+					FlxTween.tween(logoBl,{y: 0} ,1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 						{ 
 						}});
+						FlxTween.tween(logoBl,{x: 150} ,1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+							{ 
+							}});
+
+								FlxTween.tween(gfDance, {alpha: 0}, 0.5, {
+								ease: FlxEase.quadOut,
+								onComplete: function(twn:FlxTween)
+								{
+									gfDance.kill();
+								}
+							});
 						FlxTween.tween(gfDance,{y: 0},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 							{ 
 							}});

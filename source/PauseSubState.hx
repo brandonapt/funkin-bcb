@@ -155,6 +155,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (FlxG.keys.justPressed.J)
 		{
+			//PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxKey.J, null);
 			// for reference later!
 			// PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxKey.J, null);
 		}

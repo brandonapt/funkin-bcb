@@ -41,19 +41,21 @@ class PreloadingState extends MusicBeatState
 		logoBl.screenCenter(X);
         logoBl.screenCenter(Y);
 
-        text = new FlxText(FlxG.width / 2, FlxG.height / 2 + 300,0,"Loading...");
-        text.size = 34;
-        text.alpha = 1;
-        text.y = 50;
-        text.updateHitbox();
-        text.screenCenter(X);
+
 
         pressEnter = new FlxText(FlxG.width / 2, FlxG.height / 2 + 300,0,"Press Enter to Skip Initialization");
         pressEnter.size = 20;
         pressEnter.alpha = 1;
-        pressEnter.y = 75;
+        pressEnter.y = 95;
         pressEnter.updateHitbox();
         pressEnter.screenCenter(X);
+
+        text = new FlxText(-150 / 2, FlxG.height / 2 + 300,0,"Loading Assets...");
+        text.size = 34;
+        text.alpha = 1;
+        text.y = 50;
+        text.x = pressEnter.x - 25;
+
         add(text);
         add(pressEnter);
         add(logoBl);
@@ -75,7 +77,7 @@ class PreloadingState extends MusicBeatState
 
         if (toBeDone != 0 && done != toBeDone)
         {
-            text.text = "Loading Assets - " + done + "/" + toBeDone + "";
+            text.text = "Preloading Assets - " + done + "/" + toBeDone + "";
         }
 
         if (accepted)

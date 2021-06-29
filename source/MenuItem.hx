@@ -1,5 +1,6 @@
 package;
 
+import Preload.PreloadingState;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -44,7 +45,15 @@ class MenuItem extends FlxSpriteGroup
 
 		if (flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
 			//shouldve used switch statement but im lazy and stupid
-			week.color = FlxColor.YELLOW;
+		switch (PlayState.storyDifficulty)
+		{
+			case 0:
+				week.color = FlxColor.LIME;
+			case 1:
+				week.color = FlxColor.YELLOW;
+			case 2: 
+				week.color = FlxColor.RED;
+			}
 		else
 			week.color = FlxColor.WHITE;
 	}

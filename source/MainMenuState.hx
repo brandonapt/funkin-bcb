@@ -177,15 +177,15 @@ class MainMenuState extends MusicBeatState
 									changeItem();
 								}});
 
-							/*FlxTween.tween(spr, {alpha: 0}, 0.4, {
+							FlxTween.tween(spr, {alpha: 0}, 0.2, {
 								ease: FlxEase.quadOut,
 								onComplete: function(twn:FlxTween)
 								{
 									spr.kill();
 								}
 							});
-							*/
-						}
+							
+						};
 						else
 						{
 							FlxTween.tween(spr,{y: -400},2 ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 

@@ -8,7 +8,7 @@ and on Microsoft Windows (lol u dont need link)
 This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
 Brandon's Custom Build is a build made by me, (Brandon) and (zero) contributers :(.
 
-Play online demo: https://www.fused.fans/funkin-bcb
+Play online demo: https://www.fused.fans/funkin
 Play the Original Game: https://www.newgrounds.com/portal/view/770371
 Some features include:
 - New options Menu

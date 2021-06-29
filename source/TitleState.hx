@@ -7,6 +7,7 @@ import Discord.DiscordClient;
 import sys.thread.Thread;
 #end
 import flixel.FlxG;
+import Preload;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.display.FlxGridOverlay;
@@ -53,9 +54,13 @@ class TitleState extends MusicBeatState
 		//polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 
-		#if PRELOAD_ALL
+		#if desktop
+		if (PreloadingState.isItDone == false)
+		{
 		FlxG.switchState(new PreloadingState());
+		}
 		#end
+
 		PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());

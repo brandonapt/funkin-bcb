@@ -4,6 +4,7 @@ import haxe.Exception;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import sys.FileSystem;
+import Controls.Control;
 import sys.io.File;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -24,16 +25,14 @@ class PreloadingState extends MusicBeatState
 {
     var toBeDone = 0;
     var done = 0;
+    public static var isItDone:Bool = false;
 
     var text:FlxText;
+    var pressEnter:FlxText;
     var logoBl:FlxSprite;
 
 	override function create()
 	{
-        FlxG.mouse.visible = false;
-
-        FlxG.worldBounds.set(0,0);
-
         logoBl = new FlxSprite(-150, -100);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
@@ -44,11 +43,19 @@ class PreloadingState extends MusicBeatState
 
         text = new FlxText(FlxG.width / 2, FlxG.height / 2 + 300,0,"Loading...");
         text.size = 34;
-        text.alignment = FlxTextAlign.CENTER;
         text.alpha = 1;
         text.y = 50;
+        text.updateHitbox();
         text.screenCenter(X);
+
+        pressEnter = new FlxText(FlxG.width / 2, FlxG.height / 2 + 300,0,"Press Enter to Skip Initialization");
+        pressEnter.size = 20;
+        pressEnter.alpha = 1;
+        pressEnter.y = 75;
+        pressEnter.updateHitbox();
+        pressEnter.screenCenter(X);
         add(text);
+        add(pressEnter);
         add(logoBl);
         
         sys.thread.Thread.create(() -> {
@@ -64,9 +71,17 @@ class PreloadingState extends MusicBeatState
     override function update(elapsed) 
     {
 
+        var accepted = controls.ACCEPT;
+
         if (toBeDone != 0 && done != toBeDone)
         {
-            text.text = "Loading... (" + done + "/" + toBeDone + ")";
+            text.text = "Loading Assets - " + done + "/" + toBeDone + "";
+        }
+
+        if (accepted)
+        {
+            isItDone = true;
+            FlxG.switchState(new TitleState());
         }
 
         super.update(elapsed);
@@ -78,6 +93,7 @@ class PreloadingState extends MusicBeatState
 
         var images = [];
         var music = [];
+        var charts = [];
 
 
         for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/peoples")))
@@ -91,7 +107,6 @@ class PreloadingState extends MusicBeatState
         {
             music.push(i);
         }
-
         toBeDone = Lambda.count(images) + Lambda.count(music);
 
         for (i in images)
@@ -108,7 +123,7 @@ class PreloadingState extends MusicBeatState
             FlxG.sound.cache(Paths.voices(i));
             done++;
         }
-
+        isItDone = true;
         FlxG.switchState(new TitleState());
     }
 

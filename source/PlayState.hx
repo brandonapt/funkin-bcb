@@ -63,7 +63,7 @@ class PlayState extends MusicBeatState
 
 	private var dad:Character;
 	private var gf:Character;
-	private var boyfriend:Boyfriend;
+	public static var boyfriend:Boyfriend;
 
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
@@ -101,7 +101,7 @@ class PlayState extends MusicBeatState
 
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
-	private var camHUD:FlxCamera;
+	public static var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
@@ -1483,6 +1483,11 @@ class PlayState extends MusicBeatState
 			}
 
 		}
+
+		if (FlxG.keys.justPressed.FOUR)
+			{
+				LoadingState.loadAndSwitchState(new CutsceneState(), true);
+			}
 
 		switch (curStage)
 		{

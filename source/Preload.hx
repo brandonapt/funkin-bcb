@@ -95,7 +95,9 @@ class PreloadingState extends MusicBeatState
 
         var images = [];
         var music = [];
+        //CHART PRELOADING IS COMING SOON. SOME OTHER STUFF ASWELL
         var charts = [];
+        var data = [];
 
 
         for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/peoples")))
@@ -105,11 +107,25 @@ class PreloadingState extends MusicBeatState
             images.push(i);
         }
 
+        for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/preload/data")))
+            {
+                if (!i.endsWith(".txt"))
+                    continue;
+                data.push(i);
+            }
+
         for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs")))
         {
             music.push(i);
         }
         toBeDone = Lambda.count(images) + Lambda.count(music);
+
+        for (i in music)
+            {
+                FlxG.sound.cache(Paths.inst(i));
+                FlxG.sound.cache(Paths.voices(i));
+                done++;
+            }
 
         for (i in images)
         {
@@ -119,12 +135,7 @@ class PreloadingState extends MusicBeatState
             done++;
         }
 
-        for (i in music)
-        {
-            FlxG.sound.cache(Paths.inst(i));
-            FlxG.sound.cache(Paths.voices(i));
-            done++;
-        }
+
         isItDone = true;
         FlxG.switchState(new TitleState());
     }

@@ -26,6 +26,7 @@ class PreloadingState extends MusicBeatState
     var toBeDone = 0;
     var done = 0;
     public static var isItDone:Bool = false;
+    var skippedLol:Bool = false;
 
     var text:FlxText;
     var pressEnter:FlxText;
@@ -33,6 +34,11 @@ class PreloadingState extends MusicBeatState
 
 	override function create()
 	{
+
+
+
+
+
         logoBl = new FlxSprite(-150, -100);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
@@ -83,6 +89,7 @@ class PreloadingState extends MusicBeatState
         if (accepted)
         {
             isItDone = true;
+            skippedLol = true;
             FlxG.switchState(new TitleState());
         }
 
@@ -96,7 +103,7 @@ class PreloadingState extends MusicBeatState
         var images = [];
         var music = [];
         //CHART PRELOADING IS COMING SOON. SOME OTHER STUFF ASWELL
-        var charts = [];
+        var others = [];
         var data = [];
 
 
@@ -106,6 +113,8 @@ class PreloadingState extends MusicBeatState
                 continue;
             images.push(i);
         }
+
+
 
         for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs")))
         {
@@ -128,9 +137,11 @@ class PreloadingState extends MusicBeatState
             done++;
         }
 
-
         isItDone = true;
-        FlxG.switchState(new TitleState());
+        if (skippedLol == false) {
+            FlxG.switchState(new TitleState());
+        }
     }
 
 }
+

@@ -22,16 +22,16 @@ Download the latest stable release here: https://github.com/brandoge91/funkin-bc
 
 ## Credits / shoutouts
 Credits:
-KadeDeveloper: Idea for making this engine (and because I was bored at 2 am.)
-ninjamuffin99 - Friday Night Funkin Programming
-PhantomArcade3K and Evilsk8r - Friday Night Funkin Art
-Kawai Sprite - Friday Night Funkin Music
+KadeDeveloper: Idea for making this engine (and because I was bored at 2 am.)  
+ninjamuffin99 - Friday Night Funkin Programming  
+PhantomArcade3K and Evilsk8r - Friday Night Funkin Art  
+Kawai Sprite - Friday Night Funkin Music  
+ME: idk i typed at 11 pm some code into visual studio and it worked  
 
-- [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer
-- [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
-- [Kawaisprite](https://twitter.com/kawaisprite) - Musician
-- [brandon(me!)](https://www.fused.fans) - BCB Programmer
-ME: idk i typed at 11 pm some code into visual studio and it worked
+- [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer  
+- [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art  
+- [Kawaisprite](https://twitter.com/kawaisprite) - Musician  
+- [brandon(me!)](https://www.fused.fans) - BCB Programmer  
 
 
 ## Build instructions

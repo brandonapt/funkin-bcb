@@ -107,13 +107,6 @@ class PreloadingState extends MusicBeatState
             images.push(i);
         }
 
-        for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/preload/data")))
-            {
-                if (!i.endsWith(".txt"))
-                    continue;
-                data.push(i);
-            }
-
         for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs")))
         {
             music.push(i);

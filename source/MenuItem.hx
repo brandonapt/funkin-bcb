@@ -44,7 +44,7 @@ class MenuItem extends FlxSpriteGroup
 			flashingInt += 1;
 
 		if (flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
-			//shouldve used switch statement but im lazy and stupid
+			//so very innificne t but WHATEVER
 		switch (PlayState.storyDifficulty)
 		{
 			case 0:

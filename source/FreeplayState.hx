@@ -27,6 +27,7 @@ class FreeplayState extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
+	public static var songText:Alphabet;
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
@@ -97,7 +98,7 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
+			songText = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
@@ -221,8 +222,12 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.BACK)
 		{
+			if (FlxG.save.data.playSongs == true)
+				{
+					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				}
 			FlxG.switchState(new MainMenuState());
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				
 		}
 
 		if (accepted)

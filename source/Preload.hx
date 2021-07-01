@@ -1,3 +1,4 @@
+#if desktop
 package;
 
 import haxe.Exception;
@@ -145,3 +146,4 @@ class PreloadingState extends MusicBeatState
 
 }
 
+#end

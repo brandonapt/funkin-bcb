@@ -17,6 +17,8 @@ class MainVariables
             FlxG.save.data.playSongs = false;
         if (FlxG.save.data.songPosition == null)
             FlxG.save.data.songPosition = false;
+        if (FlxG.save.data.autoplay == null)
+            FlxG.save.data.autoplay = false;
 
 
 	}

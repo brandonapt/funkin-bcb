@@ -24,7 +24,7 @@ import openfl.Lib;
 class OptionsMenuSubState extends MusicBeatState
 {
 
-    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews", "Song Progress Bar"];
+    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews", "Song Progress Bar", "Autoplay"];
 
 
     var curSelected:Int = 0;
@@ -58,11 +58,12 @@ class OptionsMenuSubState extends MusicBeatState
         title.screenCenter(X);
         //add(title);
 
+		descriptionTxt = new FlxText(40, 5, 0, "", 32);
+
 
       
 
 
-        descriptionTxt = new FlxText(15, 675, 0, currentDescription, 25);
 		descriptionTxt.setFormat("VCR OSD Mono", 29, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		
         //descriptionTxt.screenCenter(X);
@@ -226,6 +227,16 @@ class OptionsMenuSubState extends MusicBeatState
                                         FlxG.save.data.songPosition = true;
                                         descriptionTxt.text = "Toggles a, well, song progress bar. On: TRUE";
                                         }
+                                case "Autoplay":
+                                    if (FlxG.save.data.autoplay == true)
+                                        {
+                                        FlxG.save.data.autoplay = false;
+                                        descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: FALSE";
+                                } else {
+                                        FlxG.save.data.autoplay = true;
+                                        descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: TRUE";
+                                        }
+                                
                             
                         }
                     }
@@ -299,7 +310,10 @@ class OptionsMenuSubState extends MusicBeatState
                         if (FlxG.save.data.songPosition == true)
                             descriptionTxt.text = "Toggles a, well, song progress bar. On: TRUE";       
                     case 8:
-                        descriptionTxt.text = "Send feedback to the developers.";          
+                        if (FlxG.save.data.autoplay == false)
+                            descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: FALSE";
+                        if (FlxG.save.data.autoplay == true)
+                            descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: TRUE";              
 
                 }
 

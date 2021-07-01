@@ -269,7 +269,7 @@ class Character extends FlxSprite
 			case 'bf':
 				var tex = Paths.getSparrowAtlas('peoples/BOYFRIEND');
 				frames = tex;
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('idle', 'BF idle dance', 24, true);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
@@ -279,7 +279,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
-				
+
 				animation.addByPrefix('attack', 'boyfriend attack', 6, false);
 
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);

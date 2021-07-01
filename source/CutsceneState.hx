@@ -196,13 +196,36 @@ class CutsceneState extends MusicBeatState
 		FlxG.camera.focusOn(camFollow.getPosition());
 
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
-		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
+
+        startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
             {
                 dad.dance();
                 gf.dance();
-                boyfriend.playAnim('idle');
+				boyfriend.playAnim('idle');
             }, 0);
 
         super.create();
     }
+
+    override public function update(elapsed:Float)
+        {
+
+            super.update(elapsed);
+
+            if (FlxG.keys.pressed.H)
+                {
+                    boyfriend.playAnim('hey', true);
+                }
+			if (FlxG.keys.pressed.E)
+				{
+					gf.playAnim('cheer');
+				}
+
+				
+                    
+
+
+            
+            
+        }
 }

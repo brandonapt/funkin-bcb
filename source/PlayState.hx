@@ -2189,7 +2189,7 @@ class PlayState extends MusicBeatState
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
+		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || FlxG.save.data.autoplay)
 		{
 			boyfriend.holdTimer = 0;
 
@@ -2223,7 +2223,7 @@ class PlayState extends MusicBeatState
 					{
 						for (coolNote in possibleNotes)
 						{
-							if (controlArray[coolNote.noteData])
+							if (controlArray[coolNote.noteData] || FlxG.save.data.autoplay)
 								goodNoteHit(coolNote);
 							else
 							{
@@ -2294,27 +2294,44 @@ class PlayState extends MusicBeatState
 		if ((up || right || down || left) && !boyfriend.stunned && generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note)
-			{
-				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 				{
-					switch (daNote.noteData)
+					if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 					{
-						// NOTES YOU ARE HOLDING
-						case 0:
-							if (left)
+						if (FlxG.save.data.autoplay) {
+						switch (daNote.noteData)
+						{
+							// NOTES YOU ARE HOLDING
+							case 0:
 								goodNoteHit(daNote);
-						case 1:
-							if (down)
+							case 1:
 								goodNoteHit(daNote);
-						case 2:
-							if (up)
+							case 2:
 								goodNoteHit(daNote);
-						case 3:
-							if (right)
+							case 3:
 								goodNoteHit(daNote);
-					}
+						}
+					} else {
+					if (up || right || down || left) {
+						switch (daNote.noteData)
+						{
+							// NOTES YOU ARE HOLDING
+							case 0:
+								if (left)
+									goodNoteHit(daNote);
+							case 1:
+								if (down)
+									goodNoteHit(daNote);
+							case 2:
+								if (up)
+									goodNoteHit(daNote);
+							case 3:
+								if (right)
+									goodNoteHit(daNote);
+						}
 				}
-			});
+			}
+					}
+				});
 		}
 
 		if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
@@ -2326,41 +2343,40 @@ class PlayState extends MusicBeatState
 		}
 
 		playerStrums.forEach(function(spr:FlxSprite)
-		{
-			switch (spr.ID)
 			{
-				case 0:
-					if (leftP && spr.animation.curAnim.name != 'confirm')
-						spr.animation.play('pressed');
-					if (leftR)
-						spr.animation.play('static');
-				case 1:
-					if (downP && spr.animation.curAnim.name != 'confirm')
-						spr.animation.play('pressed');
-					if (downR)
-						spr.animation.play('static');
-				case 2:
-					if (upP && spr.animation.curAnim.name != 'confirm')
-						spr.animation.play('pressed');
-					if (upR)
-						spr.animation.play('static');
-				case 3:
-					if (rightP && spr.animation.curAnim.name != 'confirm')
-						spr.animation.play('pressed');
-					if (rightR)
-						spr.animation.play('static');
-			}
-
-			if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
-			{
-				spr.centerOffsets();
-				spr.offset.x -= 13;
-				spr.offset.y -= 13;
-			}
-			else
-				spr.centerOffsets();
-		});
-
+				switch (spr.ID)
+				{
+					case 0:
+						if ((leftP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if ((leftR || FlxG.save.data.autoplay))
+							spr.animation.play('static');
+					case 1:
+						if ((downP || FlxG.save.data.autoplay)  && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if ((downR || FlxG.save.data.autoplay))
+							spr.animation.play('static');
+					case 2:
+						if ((upP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if ((upR || FlxG.save.data.autoplay))
+							spr.animation.play('static');
+					case 3:
+						if ((rightP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
+							spr.animation.play('pressed');
+						if ((rightR || FlxG.save.data.autoplay))
+							spr.animation.play('static');
+				}
+	
+				if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+				{
+					spr.centerOffsets();
+					spr.offset.x -= 13;
+					spr.offset.y -= 13;
+				}
+				else
+					spr.centerOffsets();
+			});
 
 		player2Strums.forEach(function(spr:FlxSprite)
 			{
@@ -2458,7 +2474,7 @@ class PlayState extends MusicBeatState
 	
 		function noteCheck(keyP:Bool, note:Note):Void
 		{
-			if (keyP)
+			if (keyP || FlxG.save.data.autoplay)
 				goodNoteHit(note);
 			else
 			{
@@ -2677,6 +2693,7 @@ class PlayState extends MusicBeatState
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
 		{
 			boyfriend.playAnim('hey', true);
+			gf.playAnim('cheer', true);
 		}
 		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 		{

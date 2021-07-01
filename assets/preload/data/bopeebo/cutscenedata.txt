@@ -1,0 +1,3 @@
+cutscene:true
+:bf:hey
+:gf:cheer

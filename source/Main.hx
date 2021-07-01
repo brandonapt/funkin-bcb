@@ -1,6 +1,5 @@
 package;
 
-import Preload.PreloadingState;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;

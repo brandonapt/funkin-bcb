@@ -1,10 +1,10 @@
 package;
 
-import Preload.PreloadingState;
 import OptionsMenu.OptionsMenuSubState;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
+import Preload.PreloadingState;
 #end
 import flixel.FlxG;
 import Preload;

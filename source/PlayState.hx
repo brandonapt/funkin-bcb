@@ -2189,7 +2189,7 @@ class PlayState extends MusicBeatState
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || FlxG.save.data.autoplay)
+		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
 		{
 			boyfriend.holdTimer = 0;
 
@@ -2223,7 +2223,7 @@ class PlayState extends MusicBeatState
 					{
 						for (coolNote in possibleNotes)
 						{
-							if (controlArray[coolNote.noteData] || FlxG.save.data.autoplay)
+							if (controlArray[coolNote.noteData])
 								goodNoteHit(coolNote);
 							else
 							{
@@ -2297,20 +2297,6 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 					{
-						if (FlxG.save.data.autoplay) {
-						switch (daNote.noteData)
-						{
-							// NOTES YOU ARE HOLDING
-							case 0:
-								goodNoteHit(daNote);
-							case 1:
-								goodNoteHit(daNote);
-							case 2:
-								goodNoteHit(daNote);
-							case 3:
-								goodNoteHit(daNote);
-						}
-					} else {
 					if (up || right || down || left) {
 						switch (daNote.noteData)
 						{
@@ -2330,7 +2316,7 @@ class PlayState extends MusicBeatState
 						}
 				}
 			}
-					}
+					
 				});
 		}
 
@@ -2347,24 +2333,24 @@ class PlayState extends MusicBeatState
 				switch (spr.ID)
 				{
 					case 0:
-						if ((leftP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
+						if ((leftP) && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((leftR || FlxG.save.data.autoplay))
+						if ((leftR))
 							spr.animation.play('static');
 					case 1:
-						if ((downP || FlxG.save.data.autoplay)  && spr.animation.curAnim.name != 'confirm')
+						if ((downP)  && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((downR || FlxG.save.data.autoplay))
+						if ((downR))
 							spr.animation.play('static');
 					case 2:
-						if ((upP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
+						if ((upP) && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((upR || FlxG.save.data.autoplay))
+						if ((upR))
 							spr.animation.play('static');
 					case 3:
-						if ((rightP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
+						if ((rightP) && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((rightR || FlxG.save.data.autoplay))
+						if ((rightR))
 							spr.animation.play('static');
 				}
 	

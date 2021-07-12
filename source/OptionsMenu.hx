@@ -147,6 +147,7 @@ class OptionsMenuSubState extends MusicBeatState
                         switch (daSelected)
                         {
                             case "Changelog":
+                                /*
                                 trace(FlxG.save.data.harderMode);
                                 var http = new haxe.Http("https://raw.githubusercontent.com/brandoge91/funkin-bcb/master/version.downloadMe");
                                 var returnedData:Array<String> = [];
@@ -170,6 +171,8 @@ class OptionsMenuSubState extends MusicBeatState
                                     txt.screenCenter();
                                     txt.visible = true;
                                     add(txt);
+                                    */
+                                    FlxG.switchState(new ChangelogState());
 
                             case 'Fullscreen':
                                     toggleFullscreen();

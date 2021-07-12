@@ -216,16 +216,16 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
+		
+		if (lerpScore == 0)
+			{
+				rank = "Unattempted";
+			}
 
 		if (lerpScore <= 3000)
 		{
 			rank = "Bad";
 		}
-
-		if (lerpScore == 0)
-			{
-				rank = "Unattempted";
-			}
 		
 		if (lerpScore >= 7500)
 		{

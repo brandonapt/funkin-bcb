@@ -8,6 +8,7 @@ import sys.FileSystem;
 import Controls.Control;
 import sys.io.File;
 import flixel.FlxG;
+import flixel.effects.FlxFlicker;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
@@ -89,9 +90,17 @@ class PreloadingState extends MusicBeatState
 
         if (accepted)
         {
-            isItDone = true;
-            skippedLol = true;
-            FlxG.switchState(new TitleState());
+            FlxG.sound.play(Paths.sound('confirmMenu'));
+            FlxFlicker.flicker(pressEnter, 1.5, 0.15, false);
+            FlxFlicker.flicker(text, 1.5, 0.15, false);
+            new FlxTimer().start(2, function(tmr:FlxTimer)
+                {
+                    isItDone = true;
+                    skippedLol = true;
+                    FlxG.switchState(new TitleState());
+                });
+
+
         }
 
         super.update(elapsed);

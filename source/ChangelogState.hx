@@ -34,8 +34,8 @@ class ChangelogState extends MusicBeatState
             var txt:FlxText = new FlxText(0, 0, FlxG.width,
                 "The most recent version is " +  OptionsMenuSubState.needVer + "."
                 + "\n\nWhat's new:\n\n" + OptionsMenuSubState.currChanges,
-                26);
-                txt.setFormat("VCR OSD Mono", 32, FlxColor.fromRGB(200, 200, 200), CENTER);
+                32);
+                txt.setFormat("VCR OSD Mono", 26, FlxColor.fromRGB(200, 200, 200), CENTER);
                 txt.borderColor = FlxColor.BLACK;
                 txt.borderSize = 3;
                 txt.borderStyle = FlxTextBorderStyle.OUTLINE;

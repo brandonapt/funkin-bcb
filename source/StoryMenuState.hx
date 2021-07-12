@@ -221,6 +221,11 @@ class StoryMenuState extends MusicBeatState
 		{
 			rank = "Bad";
 		}
+
+		if (lerpScore == 0)
+			{
+				rank = "Unattempted";
+			}
 		
 		if (lerpScore >= 7500)
 		{
@@ -236,11 +241,11 @@ class StoryMenuState extends MusicBeatState
 		switch (curDifficulty)
 		{
 			case 0:
-				txtTracklist.color = FlxColor.LIME;
+				FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.LIME);
 			case 1:
-				txtTracklist.color = FlxColor.YELLOW;
+				FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.YELLOW);
 			case 2:
-				txtTracklist.color = FlxColor.RED;
+				FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.RED);
 			
 		}
 

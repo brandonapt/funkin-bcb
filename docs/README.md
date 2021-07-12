@@ -1,5 +1,5 @@
 # Brandon's Custom Build
-## Documentation  
+## About  
 
 This is a ~~sucky~~ somewhat decent attempt at fixing the engine that runs under the hood of [Friday Night Funkin'](https://github.com/ninjamuffin99/funkin). This was made to create a engine experience for the people who just want to customize their game more then the default game and even the week 7 update will allow them to.  
 

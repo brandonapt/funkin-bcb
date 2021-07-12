@@ -120,8 +120,8 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
-	<haxelib name="markdown" /> 
-	<haxelib name="HtmlParser" /> 
+	<!--haxelib name="markdown" /> -->
+	<!--haxelib name="HtmlParser" /> -->
 
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape-haxe4" />-->

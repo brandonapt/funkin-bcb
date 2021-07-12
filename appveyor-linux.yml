@@ -1,4 +1,4 @@
-version: '{build}'
+version: 'nightly-{build}'
 image: Ubuntu2004
 environment:
   global:

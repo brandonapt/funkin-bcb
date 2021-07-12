@@ -18,6 +18,7 @@ Some features include:
 - and some quality of life improvements.
 
 Download the nightly builds here: https://ci.appveyor.com/project/brandoge91/funkin-bcb/build/artifacts
+Download the nightly linux builds here: https://ci.appveyor.com/project/brandoge91/bcb-linux/build/artifacts
 Download the latest stable release here: https://github.com/brandoge91/funkin-bcb/releases
 
 ## Credits / shoutouts

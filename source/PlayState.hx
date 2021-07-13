@@ -770,9 +770,9 @@ class PlayState extends MusicBeatState
 	healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 	// healthBar
 		add(healthBar);
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 590, healthBarBG.y + 40, 0, "", 20);
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 630, healthBarBG.y + 40, 0, "", 20);
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
@@ -2486,7 +2486,7 @@ class PlayState extends MusicBeatState
 	
 		function noteCheck(keyP:Bool, note:Note):Void
 		{
-			if (keyP || FlxG.save.data.autoplay)
+			if (keyP)
 				goodNoteHit(note);
 			else
 			{
@@ -2505,6 +2505,8 @@ class PlayState extends MusicBeatState
 				{
 					popUpScore(note.strumTime);
 					combo += 1;
+				} else {
+					totalNotesHit += 1;
 				}
 	
 				if (note.noteData >= 0)
@@ -2689,8 +2691,8 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		iconP1.setGraphicSize(Std.int(iconP1.width + 45));
-		iconP2.setGraphicSize(Std.int(iconP2.width + 45));
+		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
+		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();

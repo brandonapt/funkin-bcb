@@ -44,6 +44,8 @@ class OptionsMenuSubState extends MusicBeatState
 	public function new()
     {
         super();
+        transIn = FlxTransitionableState.defaultTransIn;
+		transOut = FlxTransitionableState.defaultTransOut;
         currentDescription = 'none';
         magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.scrollFactor.x = 0;

@@ -238,17 +238,19 @@ class StoryMenuState extends MusicBeatState
 
 		loltext.text = "Rank: " + rank;
 
-		switch (curDifficulty)
+		if (curWeek != 0)
 		{
-			case 0:
-				FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.LIME);
-			case 1:
-				FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.YELLOW);
-			case 2:
-				FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.RED);
-			
+			switch (curDifficulty)
+			{
+				case 0:
+					FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.LIME);
+				case 1:
+					FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.YELLOW);
+				case 2:
+					FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.RED);
+				
+			}
 		}
-
 
 
 		scoreText.text = "High Score: " + lerpScore;
@@ -423,6 +425,7 @@ class StoryMenuState extends MusicBeatState
 			curWeek = 0;
 		if (curWeek < 0)
 			curWeek = weekData.length - 1;
+		
 
 		var bullShit:Int = 0;
 

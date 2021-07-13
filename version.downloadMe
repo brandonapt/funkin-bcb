@@ -1,22 +1,19 @@
-0.8;
+0.9;
 
-this is another big update because im on summer vacation and have nothing better to do.
-added-
-appveyor automated builds. check readme for link.
-removed difficulty on tutorial since its all the same
-cool tweens/animations on title and mainmenu
+poo (not funni)
 
-fixed:
-fixed not hitting a note not counting towards misses
-fixed health bar text
-fixed freeplay song preview option not working.
-fixed gitaroo man pause menu having 1/100 chance instead of 1000
-got a new pc so set up environment again differently and more efficient.
-options menu would have null options, causing description text to not work right
-pure black senpai would be behind/infront of spirit headshot in thorns dialogue
-transitions not filling screen
-icons not being as boppy as in week 7
-sustain note y value being screwy
-cleaned up some code in playstate.
+added:
+cool preloader thing (skippable)
+week flash and tracklist now change color based on the difficulty
+start work on docs
+start work on cutscene state for future easier cutscenes
+changelog state is now a thing so now that way changelog isnt just an overlay on the screen
+linux automated builds
 
-sorry for 0.7 being so buggy! I didnt properly playtest it before release
+fixed: 
+web building is now possible
+transitions more
+
+change:
+pico lighting buildings things
+title enter animation

@@ -43,6 +43,7 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var FNF:FlxSprite;
 	var ngSpr:FlxSprite;
+	public static var tween:FlxTween;
 
 	var curWacky:Array<String> = [];
 
@@ -194,7 +195,7 @@ class TitleState extends MusicBeatState
 		// add(logo);
 		if (FlxG.save.data.movingLogo == true)
 		{
-			FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+			tween = FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		}
 		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
@@ -302,7 +303,7 @@ class TitleState extends MusicBeatState
 				if (Date.now().getDay() == 5)
 					NGio.unlockMedal(61034);
 				#end
-	
+				tween.cancel();
 				titleText.animation.play('press');
 				FlxTween.tween(titleText,{y: 900},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 					{ 

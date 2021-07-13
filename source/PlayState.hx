@@ -770,7 +770,7 @@ class PlayState extends MusicBeatState
 	healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 	// healthBar
 		add(healthBar);
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 580, healthBarBG.y + 40, 0, "", 20);
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 590, healthBarBG.y + 40, 0, "", 20);
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT);
 		scoreTxt.scrollFactor.set();
@@ -865,31 +865,6 @@ class PlayState extends MusicBeatState
 			}
 	
 			super.create();
-		}
-
-
-
-	
-
-
-	
-
-	function updateAccuracy()
-		{
-
-			totalPlayed += 1;
-			accuracy = totalNotesHit / totalPlayed * 100;
-			if (accuracy >= 100.00)
-			{
-				if (ss && songMisses == 0)
-					accuracy = 100.00;
-				else
-				{
-					accuracy = 99.98;
-					ss = false;
-				}
-			}
-
 		}
 
 
@@ -1506,7 +1481,15 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Misses: " + songMisses + " | " + "Score: " + songScore + " | v" + Application.current.meta.get('version') + " | Song: " + SONG.song + " (" + storyDifficultyText + ")";
+		accuracy = FlxMath.roundDecimal(totalNotesHit / (totalNotesHit + songMisses) * 100, 0);
+
+		if (Math.isNaN(accuracy))
+			{
+				accuracy = 100;
+			}
+	
+
+		scoreTxt.text = "Misses: " + songMisses + " | " + "Score: " + songScore + " | " + " Song: " + SONG.song + " (" + storyDifficultyText + ")" + " | " + "Accuracy: " + accuracy + "%";
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -2401,6 +2384,8 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1):Void
 		{
+			if (!FlxG.save.data.ghosttaps)
+				{
 			if (!boyfriend.stunned)
 			{
 				health -= 0.04;
@@ -2437,6 +2422,45 @@ class PlayState extends MusicBeatState
 						boyfriend.playAnim('singRIGHTmiss', true);
 				}
 			}
+		} else {
+			if (!boyfriend.stunned)
+				{
+					//health -= 0.04;
+					//if (combo > 5 && gf.animOffsets.exists('sad'))
+					//{
+					//	gf.playAnim('sad');
+					//}
+					//combo = 0;
+		
+					//songScore -= (songScore - 10) >= 0 ? 10 : songScore;
+	
+					//FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+					// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
+					// FlxG.log.add('played imss note');
+		
+					//boyfriend.stunned = true;
+					//songMisses += 1;
+						
+					// get stunned for 5 seconds
+					//new FlxTimer().start(5 / 60, function(tmr:FlxTimer)
+					//{
+					//	boyfriend.stunned = false;
+					//});
+		/*
+					switch (direction)
+					{
+						case 0:
+							boyfriend.playAnim('singLEFTmiss', true);
+						case 1:
+							boyfriend.playAnim('singDOWNmiss', true);
+						case 2:
+							boyfriend.playAnim('singUPmiss', true);
+						case 3:
+							boyfriend.playAnim('singRIGHTmiss', true);
+					}
+					*/
+				}
+		}
 		}
 	
 		function badNoteCheck()
@@ -2447,6 +2471,8 @@ class PlayState extends MusicBeatState
 			var rightP = controls.RIGHT_P;
 			var downP = controls.DOWN_P;
 			var leftP = controls.LEFT_P;
+
+
 	
 			if (leftP)
 				noteMiss(0);
@@ -2465,6 +2491,9 @@ class PlayState extends MusicBeatState
 			else
 			{
 				badNoteCheck();
+			}
+			if (!note.isSustainNote) {
+				totalNotesHit += 1;
 			}
 		}
 	

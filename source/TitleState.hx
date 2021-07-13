@@ -43,6 +43,7 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var FNF:FlxSprite;
 	var ngSpr:FlxSprite;
+	var tween1:FlxTween;
 	public static var tween:FlxTween;
 
 	var curWacky:Array<String> = [];
@@ -195,6 +196,7 @@ class TitleState extends MusicBeatState
 		// add(logo);
 		if (FlxG.save.data.movingLogo == true)
 		{
+			new FlxTimer().start(1.5);
 			tween = FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		}
 		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
@@ -303,7 +305,10 @@ class TitleState extends MusicBeatState
 				if (Date.now().getDay() == 5)
 					NGio.unlockMedal(61034);
 				#end
+				if (FlxG.save.data.movingLogo == true)
+					{
 				tween.cancel();
+					}
 				titleText.animation.play('press');
 				FlxTween.tween(titleText,{y: 900},1,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 					{ 
@@ -536,7 +541,21 @@ if (FlxG.save.data.customIntroText == true)
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
+			if (FlxG.save.data.movingLogo == true)
+				{
+					//tween.cancel();
+				}
+				
+			//tween1 = FlxTween.tween(logoBl,{y: -100}, 1.4, {ease: FlxEase.expoInOut});
+			
+
 			skippedIntro = true;
+			if (FlxG.save.data.movingLogo == true)
+				{
+					new FlxTimer().start(1.5);
+					//tween1.cancel();
+
+				}
 		}
 	}
 }

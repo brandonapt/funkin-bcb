@@ -24,7 +24,7 @@ import openfl.Lib;
 class OptionsMenuSubState extends MusicBeatState
 {
 
-    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews", "Song Progress Bar"];
+    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews", "Song Progress Bar", "Ghost Taps"];
 
 
     var curSelected:Int = 0;
@@ -232,14 +232,14 @@ class OptionsMenuSubState extends MusicBeatState
                                         FlxG.save.data.songPosition = true;
                                         descriptionTxt.text = "Toggles a, well, song progress bar. On: TRUE";
                                         }
-                                case "Autoplay":
-                                    if (FlxG.save.data.autoplay == true)
+                                case "Ghost Taps":
+                                    if (FlxG.save.data.ghosttaps == true)
                                         {
-                                        FlxG.save.data.autoplay = false;
-                                        descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: FALSE";
+                                        FlxG.save.data.ghosttaps = false;
+                                        descriptionTxt.text = "Toggles ghost tapping. On: FALSE";
                                 } else {
-                                        FlxG.save.data.autoplay = true;
-                                        descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: TRUE";
+                                        FlxG.save.data.ghosttaps = true;
+                                        descriptionTxt.text = "Toggles ghost tapping. On: TRUE";
                                         }
                                 
                             
@@ -315,10 +315,10 @@ class OptionsMenuSubState extends MusicBeatState
                         if (FlxG.save.data.songPosition == true)
                             descriptionTxt.text = "Toggles a, well, song progress bar. On: TRUE";       
                     case 8:
-                        if (FlxG.save.data.autoplay == false)
-                            descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: FALSE";
-                        if (FlxG.save.data.autoplay == true)
-                            descriptionTxt.text = "Toggles a autoplaying bot. Great for mod showcase. On: TRUE";              
+                        if (FlxG.save.data.ghosttaps == false)
+                            descriptionTxt.text = "Toggles ghost tapping. On: FALSE";
+                        if (FlxG.save.data.ghosttaps == true)
+                            descriptionTxt.text = "Toggles ghost tapping. On: TRUE";              
 
                 }
 

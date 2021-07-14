@@ -1481,7 +1481,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		accuracy = FlxMath.roundDecimal(totalNotesHit / (totalNotesHit + songMisses) * 100, 0);
+		accuracy = FlxMath.roundDecimal(totalNotesHit / (totalNotesHit + songMisses) * 100, 1);
 
 		if (Math.isNaN(accuracy))
 			{

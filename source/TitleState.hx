@@ -539,7 +539,7 @@ if (FlxG.save.data.customIntroText == true)
 			remove(ngSpr);
 			remove(FNF);
 
-			FlxG.camera.flash(FlxColor.WHITE, 4);
+			FlxG.camera.flash(FlxColor.WHITE, 3);
 			remove(credGroup);
 			if (FlxG.save.data.movingLogo == true)
 				{

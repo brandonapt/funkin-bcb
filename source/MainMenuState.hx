@@ -57,7 +57,7 @@ class MainMenuState extends MusicBeatState
 		bg = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.18;
-		bg.setGraphicSize(Std.int(bg.width * 1.1));
+		bg.setGraphicSize(Std.int(bg.width * 1.2));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = true;
@@ -69,7 +69,7 @@ class MainMenuState extends MusicBeatState
 		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.18;
-		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
+		magenta.setGraphicSize(Std.int(magenta.width * 1.2));
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		magenta.visible = false;
@@ -85,7 +85,7 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(-600, 80 + (i * 160));
+			var menuItem:FlxSprite = new FlxSprite(-600, FlxG.height * 1.6);
 			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
@@ -97,12 +97,12 @@ class MainMenuState extends MusicBeatState
 			
 		FlxTween.tween(menuItem, {x: 15}, 0.9, {ease: FlxEase.expoInOut});
 
-			//FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.50) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
-			///	{ 
-				//	changeItem();
-//
-//					doneMoving = true; 
-//				}});
+			FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.50) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+				{ 
+					changeItem();
+
+					doneMoving = true; 
+				}});
 		}
 
 		FlxG.camera.follow(camFollow, null, 0.5);
@@ -150,11 +150,13 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.BACK)
 			{
+				doneMoving = false;
 				FlxG.switchState(new TitleState());
 			}
 
 			if (controls.ACCEPT)
 			{
+				doneMoving = false;
 				if (optionShit[curSelected] == 'donate')
 				{
 					//#if linux
@@ -256,18 +258,21 @@ class MainMenuState extends MusicBeatState
 	function changeItem(huh:Int = 0)
 	{
 
+		if (doneMoving)
+			{
 				curSelected += huh;
 	
 				if (curSelected >= menuItems.length)
 					curSelected = 0;
 				if (curSelected < 0)
 					curSelected = menuItems.length - 1;
+			}
 			
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.animation.play('idle');
 
-			if (spr.ID == curSelected)
+			if (spr.ID == curSelected && doneMoving)
 			{
 				spr.animation.play('selected');
 

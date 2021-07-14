@@ -27,8 +27,9 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	public static var doneMoving:Bool = false;
 
+	public static var bg:FlxSprite;
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'options'];
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -53,7 +54,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		bg = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.18;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
@@ -84,13 +85,12 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(0, 60 + (i * 160));
+			var menuItem:FlxSprite = new FlxSprite(15, 80 + (i * 160));
 			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
@@ -103,7 +103,7 @@ class MainMenuState extends MusicBeatState
 //				}});
 		}
 
-		FlxG.camera.follow(camFollow, null, 0.06);
+		FlxG.camera.follow(camFollow, null, 0.5);
 
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "Version " + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
@@ -154,16 +154,19 @@ class MainMenuState extends MusicBeatState
 			{
 				if (optionShit[curSelected] == 'donate')
 				{
-					#if linux
-					Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
-					#else
-					FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
-					#end
+					//#if linux
+					//Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
+					//#else
+					//FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
+					//#end
 				}
 				else
 				{
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
+
+					
+
 
 					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 					
@@ -176,6 +179,19 @@ class MainMenuState extends MusicBeatState
 								{ 
 									changeItem();
 								}});
+
+								menuItems.forEach(function(spr:FlxSprite)
+									{
+										//FlxTween.tween(FlxG.camera, {zoom: 5}, 0.8, {ease: FlxEase.expoIn});
+										//FlxTween.tween(bg, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
+										FlxTween.tween(spr, {x: -600}, 0.6, {
+											ease: FlxEase.backIn,
+											onComplete: function(twn:FlxTween)
+											{
+												spr.kill();
+											}
+										});
+									});
 
 							FlxTween.tween(spr, {alpha: 0}, 0.2, {
 								ease: FlxEase.quadOut,
@@ -206,6 +222,12 @@ class MainMenuState extends MusicBeatState
 										FlxG.switchState(new FreeplayState());
 
 										trace("Freeplay Menu Selected");
+									case 'donate':
+										#if linux
+										Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
+										#else
+										FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
+										#end
 									case 'options':
 										FlxG.switchState(new OptionsMenuSubState());
 										MainVariables.initSave();
@@ -224,7 +246,7 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			spr.screenCenter(X);
+			//spr.screenCenter(X);
 		});
 	}
 

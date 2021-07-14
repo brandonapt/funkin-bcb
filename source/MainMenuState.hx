@@ -267,6 +267,9 @@ class MainMenuState extends MusicBeatState
 			if (spr.ID == curSelected)
 			{
 				spr.animation.play('selected');
+
+				//HEREL
+				//FlxTween.tween(spr, {x: spr.x + 50}, 0.4);
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}
 

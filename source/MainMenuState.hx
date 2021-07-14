@@ -85,7 +85,7 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(15, 80 + (i * 160));
+			var menuItem:FlxSprite = new FlxSprite(-600, 80 + (i * 160));
 			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
@@ -94,6 +94,8 @@ class MainMenuState extends MusicBeatState
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
+			
+		FlxTween.tween(menuItem, {x: 15}, 0.9, {ease: FlxEase.expoInOut});
 
 			//FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.50) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 			///	{ 
@@ -118,6 +120,7 @@ class MainMenuState extends MusicBeatState
 		// NG.core.calls.event.logEvent('swag').send();
 
 		changeItem();
+
 
 		super.create();
 	}

@@ -404,7 +404,7 @@ class StoryMenuState extends MusicBeatState
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
 		#end
 
-		FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07);
+		FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.05);
 	}
 
 	var lerpScore:Int = 0;

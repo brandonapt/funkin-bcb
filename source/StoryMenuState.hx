@@ -224,7 +224,10 @@ class StoryMenuState extends MusicBeatState
 
 		if (lerpScore <= 3000)
 		{
+                        if (lerpscore >= 1)
+                        {
 			rank = "Bad";
+                        }
 		}
 		
 		if (lerpScore >= 7500)

@@ -6,7 +6,10 @@ and on Microsoft Windows (lol u dont need link)
 # Friday Night Funkin': BCB
 
 This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
-Brandon's Custom Build is a build made by me, (Brandon) and (zero) contributers :(.
+Brandon's Custom Build is a build made by me, (Brandon) and (zero) contributers :(.  
+  
+This mod was made entirely for fun. I'm aware zero people have downloaded it and I don't care. This is for me to learn.
+
 
 Play online demo: https://www.fused.fans/funkin
 Play the Original Game: https://www.newgrounds.com/portal/view/770371
@@ -21,13 +24,7 @@ Download the nightly builds here: https://ci.appveyor.com/project/brandoge91/fun
 Download the nightly linux builds here: https://ci.appveyor.com/project/brandoge91/bcb-linux/build/artifacts
 Download the latest stable release here: https://github.com/brandoge91/funkin-bcb/releases
 
-## Credits / shoutouts
-Credits:
-KadeDeveloper: Idea for making this engine (and because I was bored at 2 am.)  
-ninjamuffin99 - Friday Night Funkin Programming  
-PhantomArcade3K and Evilsk8r - Friday Night Funkin Art  
-Kawai Sprite - Friday Night Funkin Music  
-ME: idk i typed at 11 pm some code into visual studio and it worked  
+## Credits / shoutouts  
 
 - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer  
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art  

@@ -13,6 +13,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
+import haxe.Http;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import io.newgrounds.NG;
@@ -78,6 +79,31 @@ class MainMenuState extends MusicBeatState
 		add(magenta);
 		//magenta.scrollFactor.set();
 
+		var http = new haxe.Http("https://raw.githubusercontent.com/brandoge91/funkin-bcb/master/news.downloadMe");
+		var returnedData:Array<String> = [];
+		var date:String;
+		var newst:String;
+		
+		http.onData = function (data:String)
+		{
+			returnedData[0] = data.substring(0, data.indexOf(';'));
+			returnedData[1] = data.substring(data.indexOf('-'), data.length);
+		}
+		date = returnedData[0];
+		newst = returnedData[1];
+		var txt:FlxText = new FlxText(0, 0, FlxG.width,
+			date + "\n\n NEWS:"
+			+ newst,
+			32);
+			txt.setFormat("VCR OSD Mono", 26, FlxColor.fromRGB(200, 200, 200), CENTER);
+			txt.borderColor = FlxColor.BLACK;
+			txt.borderSize = 3;
+			txt.scrollFactor.set();
+			txt.borderStyle = FlxTextBorderStyle.OUTLINE;
+			txt.visible = true;
+			add(txt);
+
+
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
@@ -107,6 +133,14 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollow, null, 0.5);
 
+		
+		var newsBG:FlxSprite = new FlxSprite(3000, 210).makeGraphic(Std.int(FlxG.width * 0.35), 320, 0xFF000000);
+		newsBG.alpha = 0.6;
+		newsBG.scrollFactor.set();
+		add(newsBG);
+
+
+
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "Version " + Application.current.meta.get('version'), 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -116,6 +150,8 @@ class MainMenuState extends MusicBeatState
 		lmaotext.scrollFactor.set();
 		lmaotext.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(lmaotext);
+
+		FlxTween.tween(newsBG,{x: 800},2,{ease: FlxEase.expoInOut});
 
 		// NG.core.calls.event.logEvent('swag').send();
 

@@ -61,6 +61,7 @@ class PlayState extends MusicBeatState
 
 	private var vocals:FlxSound;
 
+	var skippedtime:Bool = false;
 	private var dad:Character;
 	private var gf:Character;
 	public static var boyfriend:Boyfriend;
@@ -1550,6 +1551,9 @@ class PlayState extends MusicBeatState
 		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
 			FlxG.switchState(new AnimationDebug(SONG.player2));
+
+
+		
 		#end
 
 		if (startingSong)

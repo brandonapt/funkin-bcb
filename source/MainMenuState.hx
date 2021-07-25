@@ -89,9 +89,16 @@ class MainMenuState extends MusicBeatState
 			returnedData[0] = data.substring(0, data.indexOf(';'));
 			returnedData[1] = data.substring(data.indexOf('-'), data.length);
 		}
+
+		http.onError = function (error) {
+			trace('error: $error');
+			FlxG.switchState(new MainMenuState()); // fail but we go anyway
+		  }
+		  
+		  http.request();
 		date = returnedData[0];
 		newst = returnedData[1];
-		var txt:FlxText = new FlxText(0, 0, FlxG.width,
+		var txt:FlxText = new FlxText(3000,210 , FlxG.width - 10,
 			date + "\n\n NEWS:"
 			+ newst,
 			32);
@@ -152,6 +159,7 @@ class MainMenuState extends MusicBeatState
 		add(lmaotext);
 
 		FlxTween.tween(newsBG,{x: 800},2,{ease: FlxEase.expoInOut});
+		FlxTween.tween(txt, {x: 500, y: 210},2,{ease: FlxEase.expoInOut});
 
 		// NG.core.calls.event.logEvent('swag').send();
 

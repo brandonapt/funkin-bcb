@@ -60,9 +60,20 @@ class Paths
 		return getPath('data/$key.txt', TEXT, library);
 	}
 
+	inline static public function txt2(key:String, ?library:String)
+		{
+			return getPath('videos/vid/$key.txt', TEXT, library);
+		}
+	
+
 	inline static public function xml(key:String, ?library:String)
 	{
 		return getPath('data/$key.xml', TEXT, library);
+	}
+
+	inline static public function video(key:String, ?library:String)
+	{
+		return getPath('videos/$key.webm', TEXT, library);
 	}
 
 	inline static public function json(key:String, ?library:String)

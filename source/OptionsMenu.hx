@@ -21,10 +21,10 @@ import openfl.display.StageDisplayState;
 import openfl.Lib;
 
 
-class OptionsMenuSubState extends MusicBeatState
+class OldOptions extends MusicBeatState
 {
 
-    var menuItems:Array<String> = ["Changelog", "Fullscreen", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews", "Song Progress Bar", "Ghost Taps"];
+    var menuItems:Array<String> = ["Changelog", "HardER Hard Mode", "Custom Boot Intro", "Logo Animation", "Toggle Dialogue", "Freeplay Song Previews", "Song Progress Bar", "Ghost Taps"];
 
 
     var curSelected:Int = 0;

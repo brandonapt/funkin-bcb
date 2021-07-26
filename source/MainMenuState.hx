@@ -1,6 +1,7 @@
 package;
 
-import OptionsMenu.OptionsMenuSubState;
+import OptionsMenu.OldOptions;
+import NewOptions.OptionsMenuSubState;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -87,7 +88,7 @@ class MainMenuState extends MusicBeatState
 		http.onData = function (data:String)
 		{
 			returnedData[0] = data.substring(0, data.indexOf(';'));
-			returnedData[1] = data.substring(data.indexOf('-'), data.length);
+			returnedData[1] = data.substring(data.indexOf(':'));
 		}
 
 		http.onError = function (error) {
@@ -99,10 +100,9 @@ class MainMenuState extends MusicBeatState
 		date = returnedData[0];
 		newst = returnedData[1];
 		var txt:FlxText = new FlxText(3000,210 , FlxG.width - 10,
-			date + "\n\n NEWS:"
-			+ newst,
+			newst + ' ...Press P to read more',
 			32);
-			txt.setFormat("VCR OSD Mono", 26, FlxColor.fromRGB(200, 200, 200), CENTER);
+			txt.setFormat("VCR OSD Mono", 26, FlxColor.fromRGB(200, 200, 200), LEFT);
 			txt.borderColor = FlxColor.BLACK;
 			txt.borderSize = 3;
 			txt.scrollFactor.set();
@@ -158,8 +158,8 @@ class MainMenuState extends MusicBeatState
 		lmaotext.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(lmaotext);
 
-		FlxTween.tween(newsBG,{x: 800},2,{ease: FlxEase.expoInOut});
-		FlxTween.tween(txt, {x: 500, y: 210},2,{ease: FlxEase.expoInOut});
+		//FlxTween.tween(newsBG,{x: 800},2,{ease: FlxEase.expoInOut});
+		//FlxTween.tween(txt, {x: 440, y: 210},2,{ease: FlxEase.expoInOut});
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -197,6 +197,15 @@ class MainMenuState extends MusicBeatState
 				doneMoving = false;
 				FlxG.switchState(new TitleState());
 			}
+
+			if (FlxG.keys.justPressed.P)
+				{
+					#if linux
+					Sys.command('/usr/bin/xdg-open', ["https://raw.githubusercontent.com/brandoge91/funkin-bcb/main/news.downloadMe", "&"]);
+					#else
+					FlxG.openURL('https://raw.githubusercontent.com/brandoge91/funkin-bcb/main/news.downloadMen');
+					#end
+				}
 
 			if (controls.ACCEPT)
 			{

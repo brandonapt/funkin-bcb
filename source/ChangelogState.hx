@@ -1,6 +1,7 @@
 package;
 import flixel.FlxG;
 import OptionsMenu;
+import NewOptions;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 import haxe.Http;
@@ -43,8 +44,8 @@ class ChangelogState extends MusicBeatState
                 returnedData[1] = data.substring(data.indexOf('-'), data.length);
             }
             var txt:FlxText = new FlxText(0, 0, FlxG.width,
-                "The most recent version is " +  OptionsMenuSubState.needVer + "."
-                + "\n\nWhat's new:\n\n" + OptionsMenuSubState.currChanges,
+                "The most recent version is " +  OldOptions.needVer + "."
+                + "\n\nWhat's new:\n\n" + OldOptions.currChanges,
                 32);
                 txt.setFormat("VCR OSD Mono", 26, FlxColor.fromRGB(200, 200, 200), CENTER);
                 txt.borderColor = FlxColor.BLACK;

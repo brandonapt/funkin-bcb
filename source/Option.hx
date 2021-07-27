@@ -251,3 +251,25 @@ class GhostTaps extends Option
 	}
 }
 
+class Fullscreen extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.fullscreen = !FlxG.save.data.fullscreen;
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.ghosttaps ? "Ghost Tapping" : "No Ghost Tapping";
+	}
+}
+

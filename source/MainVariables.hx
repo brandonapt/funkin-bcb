@@ -21,6 +21,7 @@ class MainVariables
             FlxG.save.data.autoplay = false;
         if (FlxG.save.data.ghosttaps == null)
             FlxG.save.data.ghosttaps = true;
+        if (FlxG.save)
 
 
 	}

@@ -76,6 +76,7 @@ class PlayState extends MusicBeatState
 	private var curSection:Int = 0;
 
 	private var camFollow:FlxObject;
+	private var autoplayText:FlxText;
 
 	private static var prevCamFollow:FlxObject;
 
@@ -790,7 +791,14 @@ class PlayState extends MusicBeatState
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
-		add(scoreTxt);
+		if (!FlxG.save.data.autoplay)	
+			add(scoreTxt);
+
+		autoplayText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 40, healthBarBG.y + -100, 0, "AUTOPLAY ON", 20);
+		autoplayText.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		autoplayText.scrollFactor.set();
+
+		if(FlxG.save.data.autoplay) add(autoplayText);
 
 		// changes health icon if old bf is toggled 
 		if (isBfOld)
@@ -1958,6 +1966,9 @@ class PlayState extends MusicBeatState
 
 				transIn = FlxTransitionableState.defaultTransIn;
 				transOut = FlxTransitionableState.defaultTransOut;
+				paused = true;
+				//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+
 
 				FlxG.switchState(new StoryMenuState());
 				//dix if ()
@@ -2003,6 +2014,7 @@ class PlayState extends MusicBeatState
 				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
 				FlxG.sound.music.stop();
 
+				//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 				LoadingState.loadAndSwitchState(new PlayState());
 			}
 		}
@@ -2203,7 +2215,7 @@ class PlayState extends MusicBeatState
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
 		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic)
+		if ((upP || rightP || downP || leftP) && !boyfriend.stunned && generatedMusic || FlxG.save.data.autoplay)
 		{
 			boyfriend.holdTimer = 0;
 
@@ -2237,7 +2249,7 @@ class PlayState extends MusicBeatState
 					{
 						for (coolNote in possibleNotes)
 						{
-							if (controlArray[coolNote.noteData])
+							if (controlArray[coolNote.noteData] || FlxG.save.data.autoplay)
 								goodNoteHit(coolNote);
 							else
 							{
@@ -2305,34 +2317,48 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		if ((up || right || down || left) && !boyfriend.stunned && generatedMusic)
-		{
-			notes.forEachAlive(function(daNote:Note)
-				{
-					if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
+		if (generatedMusic)
+			{
+				notes.forEachAlive(function(daNote:Note)
 					{
-					if (up || right || down || left) {
-						switch (daNote.noteData)
+						if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 						{
-							// NOTES YOU ARE HOLDING
-							case 0:
-								if (left)
+							if (FlxG.save.data.autoplay) {
+							switch (daNote.noteData)
+							{
+								// NOTES YOU ARE HOLDING
+								case 0:
 									goodNoteHit(daNote);
-							case 1:
-								if (down)
+								case 1:
 									goodNoteHit(daNote);
-							case 2:
-								if (up)
+								case 2:
 									goodNoteHit(daNote);
-							case 3:
-								if (right)
+								case 3:
 									goodNoteHit(daNote);
-						}
+							}
+						} else {
+						if (up || right || down || left) {
+								switch (daNote.noteData)
+								{
+									// NOTES YOU ARE HOLDING
+									case 0:
+										if (left)
+											goodNoteHit(daNote);
+									case 1:
+										if (down)
+											goodNoteHit(daNote);
+									case 2:
+										if (up)
+											goodNoteHit(daNote);
+									case 3:
+										if (right)
+											goodNoteHit(daNote);
+								}
+					}
 				}
+						}
+					});
 			}
-					
-				});
-		}
 
 		if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
 		{
@@ -2347,24 +2373,24 @@ class PlayState extends MusicBeatState
 				switch (spr.ID)
 				{
 					case 0:
-						if ((leftP) && spr.animation.curAnim.name != 'confirm')
+						if ((leftP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((leftR))
+						if ((leftR || FlxG.save.data.autoplay))
 							spr.animation.play('static');
 					case 1:
-						if ((downP)  && spr.animation.curAnim.name != 'confirm')
+						if ((downP || FlxG.save.data.autoplay)  && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((downR))
+						if ((downR || FlxG.save.data.autoplay))
 							spr.animation.play('static');
 					case 2:
-						if ((upP) && spr.animation.curAnim.name != 'confirm')
+						if ((upP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((upR))
+						if ((upR || FlxG.save.data.autoplay))
 							spr.animation.play('static');
 					case 3:
-						if ((rightP) && spr.animation.curAnim.name != 'confirm')
+						if ((rightP || FlxG.save.data.autoplay) && spr.animation.curAnim.name != 'confirm')
 							spr.animation.play('pressed');
-						if ((rightR))
+						if ((rightR || FlxG.save.data.autoplay))
 							spr.animation.play('static');
 				}
 	
@@ -2428,8 +2454,12 @@ class PlayState extends MusicBeatState
 	
 				songScore -= (songScore - 10) >= 0 ? 10 : songScore;
 
-				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-				// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
+				if(FlxG.save.data.missSfx)
+					{
+						FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+						// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
+						// FlxG.log.add('played imss note');
+					}				// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 				// FlxG.log.add('played imss note');
 	
 				boyfriend.stunned = true;
@@ -2517,7 +2547,7 @@ class PlayState extends MusicBeatState
 	
 		function noteCheck(keyP:Bool, note:Note):Void
 		{
-			if (keyP)
+			if (keyP || FlxG.save.data.autoplay)
 				goodNoteHit(note);
 			else
 			{
@@ -2534,7 +2564,8 @@ class PlayState extends MusicBeatState
 			{
 				if (!note.isSustainNote)
 				{
-					popUpScore(note.strumTime);
+					if (!FlxG.save.data.autoplay)
+						popUpScore(note.strumTime);
 					combo += 1;
 				} else {
 					totalNotesHit += 1;

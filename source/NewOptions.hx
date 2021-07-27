@@ -33,12 +33,13 @@ class OptionsMenuSubState extends MusicBeatState
         var options:Array<OptionCategory> = [
             new OptionCategory("Menus", [
                 new LogoAnimation('Enables a cool animation on the title screen.')
-
             ]),
             new OptionCategory("Gameplay", [
                 new HarderMode('Makes Hard Mode Even HARDER!'),
                 new SongBar('Toggles a bar with the song progress.'),
-                new GhostTaps('Toggles ghost tapping.')
+                new GhostTaps('Toggles ghost tapping.'),
+                new Autoplay('Toggles an autoplaying bot for mod showcase.'),
+                new MissSFX('Toggles miss sound effects.'),
             ]),
             new OptionCategory("Freeplay", [
                 new FreeplayPreviews('Toggles the song previews in freeplay.'),
@@ -49,11 +50,11 @@ class OptionsMenuSubState extends MusicBeatState
             new OptionCategory("Appearance", [
                 new CustomIntro('Toggles a custom intro text set.'),
                 new FpsCounter('Toggles a FPS Counter.'),
-                new MemCounter('Toggles a Memory Counter')
+                new MemCounter('Toggles a Memory Counter.')
             ]),
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),
-                new Fullscreen('Toggle fullscreen.')
+                new Fullscreen('Toggle fullscreen.'),
             ])
             
         ];

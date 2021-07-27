@@ -20,14 +20,17 @@ class Highscore
 		NGio.postScore(score, song);
 		#end
 
-
-		if (songScores.exists(daSong))
+		if(!FlxG.save.data.autoplay)
 		{
-			if (songScores.get(daSong) < score)
-				setScore(daSong, score);
-		}
-		else
-			setScore(daSong, score);
+			if (songScores.exists(daSong))
+				{
+					if (songScores.get(daSong) < score)
+						setScore(daSong, score);
+				}
+				else
+					setScore(daSong, score);
+		}else trace('this person has no skill');
+
 	}
 
 	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0):Void
@@ -38,15 +41,19 @@ class Highscore
 		#end
 
 
-		var daWeek:String = formatSong('week' + week, diff);
 
-		if (songScores.exists(daWeek))
+		if(!FlxG.save.data.autoplay)
 		{
-			if (songScores.get(daWeek) < score)
+			var daWeek:String = formatSong('week' + week, diff);
+
+			if (songScores.exists(daWeek))
+			{
+				if (songScores.get(daWeek) < score)
+					setScore(daWeek, score);
+			}
+			else
 				setScore(daWeek, score);
-		}
-		else
-			setScore(daWeek, score);
+		}else trace('this person has no skill');
 	}
 
 	/**

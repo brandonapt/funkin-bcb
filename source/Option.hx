@@ -383,3 +383,49 @@ class FPBG extends Option
 		return  FlxG.save.data.fpbg ? "Freeplay BG Color changes" : "freeplay bg color static";
 	}
 }
+
+class Autoplay extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.autoplay = !FlxG.save.data.autoplay;
+
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.autoplay ? "Autoplay on" : "Autoplay off";
+	}
+}
+
+class MissSFX extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.missSfx = !FlxG.save.data.missSfx;
+
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.missSfx ? "miss sfx on" : "miss sfx off";
+	}
+}

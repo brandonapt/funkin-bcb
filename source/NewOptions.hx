@@ -31,17 +31,28 @@ class OptionsMenuSubState extends MusicBeatState
 
 
         var options:Array<OptionCategory> = [
+            new OptionCategory("Menus", [
+                new LogoAnimation('Enables a cool animation on the title screen.')
+
+            ]),
             new OptionCategory("Gameplay", [
                 new HarderMode('Makes Hard Mode Even HARDER!'),
-                new FreeplayDialogue('Dialogue in Freeplay'),
                 new SongBar('Toggles a bar with the song progress.'),
-                new GhostTaps('Toggles ghost tapping')
+                new GhostTaps('Toggles ghost tapping.')
+            ]),
+            new OptionCategory("Freeplay", [
+                new FreeplayPreviews('Toggles the song previews in freeplay.'),
+                new FreeplayDialogue('Dialogue in Freeplay.'),
+                new FreeplayIcons('Toggles the freepelay Icons.')
+            ]),
+            new OptionCategory("Appearance", [
+                new CustomIntro('Toggles a custom intro text set.'),
+                new FpsCounter('Toggles a FPS Counter.'),
+                new MemCounter('Toggles a Memory Counter')
             ]),
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),
-                new LogoAnimation('Enables a cool animation on the title screen.'),
-                new CustomIntro('Toggles a custom intro text set.'),
-                new FreeplayPreviews('Toggles the song previews in freeplay.')
+                new Fullscreen('Toggle fullscreen.')
             ])
             
         ];
@@ -181,9 +192,7 @@ class OptionsMenuSubState extends MusicBeatState
                             versionShit.text = currentDescription;
                         }
                     
-            
-                        if (controls.RESET)
-                                FlxG.save.data.offset = 0;
+
             
                         if (controls.ACCEPT)
                         {

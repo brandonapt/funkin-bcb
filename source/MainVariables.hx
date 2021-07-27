@@ -23,6 +23,12 @@ class MainVariables
             FlxG.save.data.ghosttaps = true;
         if (FlxG.save.data.fullscreen == null)
             FlxG.save.data.fullscreen = false;
+        if (FlxG.save.data.freeplayIcons == null)
+            FlxG.save.data.freeplayIcons = true;
+        if (FlxG.save.data.fpsCounter == null)
+            FlxG.save.data.fpsCounter = true;
+        if (FlxG.save.data.memCounter == null)
+            FlxG.save.data.memCounter = false;
 
 
 	}

@@ -79,7 +79,7 @@ class TitleState extends MusicBeatState
 		#end
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
-
+		MainVariables.initSave();
 		Highscore.load();
 
 		if (FlxG.save.data.weekUnlocked != null)

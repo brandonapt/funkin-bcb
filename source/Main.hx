@@ -3,13 +3,18 @@ package;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;
+import MemCount;
 import openfl.Lib;
 import openfl.display.FPS;
+import flixel.FlxG;
 import openfl.display.Sprite;
 import openfl.events.Event;
 
 class Main extends Sprite
 {
+		
+	public var webmHandle:WebmHandler;
+
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState> = TitleState; // The FlxState the game starts with.
@@ -19,6 +24,8 @@ class Main extends Sprite
 	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
+
+
 
 	public static function main():Void
 	{
@@ -70,9 +77,41 @@ class Main extends Sprite
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 
+		var ourSource:String = "assets/videos/dontDelete.webm";
+
+		var str1:String = "WEBM SHIT";
+		webmHandle = new WebmHandler();
+		webmHandle.source(ourSource);
+		webmHandle.makePlayer();
+		webmHandle.webm.name = str1;
+		addChild(webmHandle.webm);
+		GlobalVideo.setWebm(webmHandle);
 
 		#if !mobile
-		addChild(new FPS(10, 3, 0xFFFFFF));
+		MainVariables.initSave();
+
+		
+
+		fpsCounter = new FPS(10, 3, 0xFFFFFF);
+
+		addChild(fpsCounter);
+		memoryCounter = new MemoryCounter(10, 3, 0xffffff);
+			
+		addChild(memoryCounter);
 		#end
+	}
+
+	public static var memoryCounter:MemoryCounter;
+
+	public static function toggleMem(memEnabled:Bool):Void
+	{
+		memoryCounter.visible = memEnabled;
+	}
+
+	public static var fpsCounter:FPS;
+
+	public static function toggleFPS(fpsEnabled:Bool):Void
+	{
+		fpsCounter.visible = fpsEnabled;
 	}
 }

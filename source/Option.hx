@@ -7,6 +7,8 @@ import Controls.KeyboardScheme;
 import flixel.FlxG;
 import openfl.display.FPS;
 import openfl.Lib;
+import openfl.display.StageDisplayState;
+
 
 
 class OptionCategory
@@ -251,6 +253,8 @@ class GhostTaps extends Option
 	}
 }
 
+
+
 class Fullscreen extends Option
 {
 	public function new(desc:String)
@@ -261,6 +265,20 @@ class Fullscreen extends Option
 
 	public override function press():Bool
 	{
+		function toggleFullscreen() {
+
+            if(Lib.current.stage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE){
+        
+                Lib.current.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+        
+            }else {
+        
+                Lib.current.stage.displayState = StageDisplayState.NORMAL;
+        
+            }
+        
+        }
+		toggleFullscreen();
 		FlxG.save.data.fullscreen = !FlxG.save.data.fullscreen;
 		
 		display = updateDisplay();
@@ -269,7 +287,76 @@ class Fullscreen extends Option
 
 	private override function updateDisplay():String
 	{
-		return  FlxG.save.data.ghosttaps ? "Ghost Tapping" : "No Ghost Tapping";
+		return  FlxG.save.data.fullscreen ? "Fullscreen On" : "Fullscreen Off";
 	}
 }
 
+class FreeplayIcons extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.freeplayIcons = !FlxG.save.data.freeplayIcons;
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.freeplayIcons ? "Freeplay icons on" : "Freeplay icons off";
+	}
+}
+
+class FpsCounter extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.fpsCounter = !FlxG.save.data.fpsCounter;
+
+		Main.toggleFPS(FlxG.save.data.fpsCounter);
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.fpsCounter ? "FPS Counter" : "No FPS Counter";
+	}
+}
+
+class MemCounter extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.memCounter = !FlxG.save.data.memCounter;
+
+		Main.toggleMem(FlxG.save.data.memCounter);
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.memCounter ? "Memory Counter" : "No Memory Counter";
+	}
+}

@@ -97,11 +97,17 @@ class PlayState extends MusicBeatState
 	private var healthBar:FlxBar;
 	private var songPositionBar:Float = 0;
 
+
+
 	private var generatedMusic:Bool = false;
 	private var startingSong:Bool = false;
 
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
+	public static var goods:Int;
+	public static var sicks:Int;
+	public static var shits:Int;
+	public static var bads:Int;
 	public static var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
@@ -127,12 +133,12 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
 	var talking:Bool = true;
-	var songMisses:Int = 0;
-	private var totalNotesHit:Float = 0;
-	private var accuracy:Float = 0.00;
-	private var totalPlayed:Int = 0;
+	public static var songMisses:Int = 0;
+	public static var totalNotesHit:Float = 0;
+	public static var accuracy:Float = 0.00;
+	public static  var totalPlayed:Int = 0;
 	private var ss:Bool = false;
-	var songScore:Int = 0;
+	public static var songScore:Int = 0;
 	var scoreTxt:FlxText;
 
 	public static var campaignScore:Int = 0;
@@ -144,6 +150,10 @@ class PlayState extends MusicBeatState
 
 	var inCutscene:Bool = false;
 
+	
+
+
+
 	// Discord RPC variables
 	public static var storyDifficultyText:String = "";
 	var iconRPC:String = "";
@@ -151,8 +161,11 @@ class PlayState extends MusicBeatState
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 
+
 	override public function create()
 	{
+
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -165,6 +178,8 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.add(camHUD);
 
 		FlxCamera.defaultCameras = [camGame];
+
+		
 
 		persistentUpdate = true;
 		persistentDraw = true;
@@ -1510,7 +1525,8 @@ class PlayState extends MusicBeatState
 				FlxG.switchState(new GitarooPause());
 			}
 			else
-				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				//openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		
 			#if desktop
 			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -1919,6 +1935,7 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+		trace('SICKS: ' + sicks + '\nGOODS: ' + goods + '\nBADS:' + bads + "\nUHOHS: " + shits);
 		canPause = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
@@ -2019,17 +2036,22 @@ class PlayState extends MusicBeatState
 		if (noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
 			daRating = 'shit';
+			shits = shits + 1;
 			score = 50;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
+			bads = bads + 1;
 			score = 100;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
 			daRating = 'good';
+			goods = goods + 1;
 			score = 200;
+		} else {
+			sicks = sicks + 1;
 		}
 
 		songScore += score;

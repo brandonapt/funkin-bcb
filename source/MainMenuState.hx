@@ -80,35 +80,6 @@ class MainMenuState extends MusicBeatState
 		add(magenta);
 		//magenta.scrollFactor.set();
 
-		var http = new haxe.Http("https://raw.githubusercontent.com/brandoge91/funkin-bcb/master/news.downloadMe");
-		var returnedData:Array<String> = [];
-		var date:String;
-		var newst:String;
-		
-		http.onData = function (data:String)
-		{
-			returnedData[0] = data.substring(0, data.indexOf(';'));
-			returnedData[1] = data.substring(data.indexOf(':'));
-		}
-
-		http.onError = function (error) {
-			trace('error: $error');
-			FlxG.switchState(new MainMenuState()); // fail but we go anyway
-		  }
-		  
-		  http.request();
-		date = returnedData[0];
-		newst = returnedData[1];
-		var txt:FlxText = new FlxText(3000,210 , FlxG.width - 10,
-			newst + ' ...Press P to read more',
-			32);
-			txt.setFormat("VCR OSD Mono", 26, FlxColor.fromRGB(200, 200, 200), LEFT);
-			txt.borderColor = FlxColor.BLACK;
-			txt.borderSize = 3;
-			txt.scrollFactor.set();
-			txt.borderStyle = FlxTextBorderStyle.OUTLINE;
-			txt.visible = true;
-			add(txt);
 
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
@@ -118,7 +89,7 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...optionShit.length)
 		{
-			var menuItem:FlxSprite = new FlxSprite(-600, FlxG.height * 1.6);
+			var menuItem:FlxSprite = new FlxSprite(5000, 60 + (i * 160));
 			menuItem.frames = tex;
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
@@ -128,9 +99,8 @@ class MainMenuState extends MusicBeatState
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
 			
-		FlxTween.tween(menuItem, {x: 15}, 0.9, {ease: FlxEase.expoInOut});
 
-			FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.50) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+			FlxTween.tween(menuItem,{x: 15},1 ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 				{ 
 					changeItem();
 
@@ -140,11 +110,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollow, null, 0.5);
 
-		
-		var newsBG:FlxSprite = new FlxSprite(3000, 210).makeGraphic(Std.int(FlxG.width * 0.35), 320, 0xFF000000);
-		newsBG.alpha = 0.6;
-		newsBG.scrollFactor.set();
-		add(newsBG);
+
 
 
 
@@ -158,8 +124,7 @@ class MainMenuState extends MusicBeatState
 		lmaotext.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(lmaotext);
 
-		//FlxTween.tween(newsBG,{x: 800},2,{ease: FlxEase.expoInOut});
-		//FlxTween.tween(txt, {x: 440, y: 210},2,{ease: FlxEase.expoInOut});
+
 
 		// NG.core.calls.event.logEvent('swag').send();
 
@@ -233,10 +198,7 @@ class MainMenuState extends MusicBeatState
 					{
 						if (curSelected != spr.ID)
 						{
-							FlxTween.tween(spr,{y: -400},2,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
-								{ 
 									changeItem();
-								}});
 
 								menuItems.forEach(function(spr:FlxSprite)
 									{

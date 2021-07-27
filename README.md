@@ -30,6 +30,7 @@ Download the latest stable release here: https://github.com/brandoge91/funkin-bc
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art  
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician  
 - [brandon(me!)](https://www.fused.fans) - BCB Programmer  
+- [KadeDev/KE](https://github.com/kadedev/) - Options Menu 
 
 
 ## Build instructions

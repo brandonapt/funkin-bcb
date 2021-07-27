@@ -89,8 +89,12 @@ class FreeplayState extends MusicBeatState
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
-
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		if (FlxG.save.data.fpbg == true)
+		{
+			bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		} else {
+			bg = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		}
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -312,7 +316,8 @@ class FreeplayState extends MusicBeatState
 
 		iconArray[curSelected].alpha = 1;
 
-
+		if (FlxG.save.data.fpbg == true)
+		{
 		if (curSelected >= 0)
 			{
 				if (curSelected >= 4)
@@ -352,7 +357,7 @@ class FreeplayState extends MusicBeatState
 					FlxTween.color(bg, 0.5, bg.color, FlxColor.fromRGB(96, 66, 245));
 				}
 			}
-
+		}
 
 		for (item in grpSongs.members)
 		{

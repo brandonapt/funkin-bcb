@@ -43,7 +43,8 @@ class OptionsMenuSubState extends MusicBeatState
             new OptionCategory("Freeplay", [
                 new FreeplayPreviews('Toggles the song previews in freeplay.'),
                 new FreeplayDialogue('Dialogue in Freeplay.'),
-                new FreeplayIcons('Toggles the freepelay Icons.')
+                new FreeplayIcons('Toggles the freepelay Icons.'),
+                new FPBG('Toggles Freeplay Background Changes.')
             ]),
             new OptionCategory("Appearance", [
                 new CustomIntro('Toggles a custom intro text set.'),

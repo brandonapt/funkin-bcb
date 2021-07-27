@@ -29,6 +29,8 @@ class MainVariables
             FlxG.save.data.fpsCounter = true;
         if (FlxG.save.data.memCounter == null)
             FlxG.save.data.memCounter = false;
+        if (!FlxG.save.data.fpbg)
+            FlxG.save.data.fpbg = true; 
 
 
 	}

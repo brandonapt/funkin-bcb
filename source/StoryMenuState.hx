@@ -367,8 +367,9 @@ class StoryMenuState extends MusicBeatState
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				//FlxG.camera.fade(FlxColor.BLACK, 1.3, true);
-				//LoadingState.loadAndSwitchState(new PlayState(), true);
-				FlxG.switchState(new VideoState('paint', new PlayState()));
+				LoadingState.loadAndSwitchState(new PlayState(), true);
+				//FlxG.switchState(new VideoState('paint', new PlayState()));
+				//FlxG.state.openSubState(new VideoState('paint', new PlayState()));
 			});
 		}
 	}

@@ -68,6 +68,8 @@ You'll also need to install a couple things that involve Gits. To do this, you n
 5. Run `haxelib git extension-webm https://github.com/GrowtopiaFli/extension-webm` to install extension-webm and run `lime rebuild extension-webm windows`. This is required to run webm videos in-game.
 You should have everything ready for compiling the game! Follow the guide below to continue!
 
+ViDEOS ARE VERy Very BORKEN RN DONT TRY TO USE IT LOL
+
 At the moment, you can optionally fix the transition bug in songs with zoomed out cameras.
 - Run `haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons` in the terminal/command-prompt.
 

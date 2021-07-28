@@ -1,21 +1,27 @@
-0.9;
+1.0;
 
-
-whoops i forgot to change version again pls redownload lol
-poo (not funni)
+okok i added so much stuff with some help from some friends when i got stuck because i suck
 
 added:
-cool preloader thing (skippable)
-week flash and tracklist now change color based on the difficulty
-start work on docs
-start work on cutscene state for future easier cutscenes
-changelog state is now a thing so now that way changelog isnt just an overlay on the screen
-linux automated builds
+GHOST TAPPING!!!!!!!!!!! (you can disable this in options)
+ACCURACY COUNTERRRRR
+NEW MAIN MENU!!!!!!!!!!
+AUTOPLAY!! SHOW OFF UR CHARTS N MODS
+NEW LOGO
+MEMORY COUNTER
+NEW OPTIONS MENUUUUUUU WITH CATAGORIES(credit: ke)
+NEW OPTIONS:
+-GHOST TAPPING
+-TOGGLeS FOR FPS AND MEMORY COUNTERS
+-TOGGLE FOR FREEPLAY ICONS AND BG CHANGES
+-AUTOPLAY TOGGLE
+-MISS SFX TOGGLE
 
-fixed: 
-web building is now possible
-transitions more
+bugs i squashed:
+an auto win bug if you had the old autoplay on
+if u had logo tween on the animation would bug out
 
-change:
-pico lighting buildings things
-title enter animation
+changed:
+lots of transitions
+input  
+

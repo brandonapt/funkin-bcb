@@ -791,8 +791,7 @@ class PlayState extends MusicBeatState
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
-		if (!FlxG.save.data.autoplay)	
-			add(scoreTxt);
+		add(scoreTxt);
 
 		autoplayText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 40, healthBarBG.y + -100, 0, "AUTOPLAY ON", 20);
 		autoplayText.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
@@ -1464,6 +1463,10 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		if (FlxG.keys.justPressed.TWO)
+			{
+				songScore = 1000;
+			}
 		#if !debug
 		perfectMode = false;
 		#end
@@ -1533,8 +1536,8 @@ class PlayState extends MusicBeatState
 				FlxG.switchState(new GitarooPause());
 			}
 			else
-				//openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-			openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			//openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		
 			#if desktop
 			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -1553,8 +1556,8 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, 150, 0.09 / (60 / 60))));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(iconP2.width, 150, 0.09 / (60 / 60))));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
@@ -1939,91 +1942,108 @@ class PlayState extends MusicBeatState
 			}
 		}
 	
-	
-
-	function endSong():Void
-	{
-		trace('SICKS: ' + sicks + '\nGOODS: ' + goods + '\nBADS:' + bads + "\nUHOHS: " + shits);
-		canPause = false;
-		FlxG.sound.music.volume = 0;
-		vocals.volume = 0;
-		if (SONG.validScore)
-		{
-			#if !switch
-			Highscore.saveScore(SONG.song, songScore, storyDifficulty);
-			#end
-		}
-
-		if (isStoryMode)
-		{
-			campaignScore += songScore;
-
-			storyPlaylist.remove(storyPlaylist[0]);
-
-			if (storyPlaylist.length <= 0)
+		public function resetScore()
 			{
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				//band aid fix becuase lol
+				songMisses = 0;
+				accuracy = 0;
+				sicks = 0;
+				goods = 0;
+				shits = 0;
+				bads = 0;
+				songScore = 0;
+				totalNotesHit = 0;
+				totalPlayed = 0;
+			}
 
-				transIn = FlxTransitionableState.defaultTransIn;
-				transOut = FlxTransitionableState.defaultTransOut;
-				paused = true;
-				//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
-
-				FlxG.switchState(new StoryMenuState());
-				//dix if ()
-				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
-
+		function endSong():Void
+			{
+				trace(totalNotesHit);
+				canPause = false;
+				FlxG.sound.music.volume = 0;
+				vocals.volume = 0;
 				if (SONG.validScore)
 				{
-					NGio.unlockMedal(60961);
-					Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
+					#if !switch
+					Highscore.saveScore(SONG.song, songScore, storyDifficulty);
+					#end
 				}
 
-				FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
-				FlxG.save.flush();
-			}
-			else
-			{
-				var difficulty:String = "";
+				resetScore();
 
-				if (storyDifficulty == 0)
-					difficulty = '-easy';
-
-				if (storyDifficulty == 2)
-					difficulty = '-hard';
-
-				trace('LOADING NEXT SONG');
-				trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
-
-				if (SONG.song.toLowerCase() == 'eggnog')
+		
+				if (isStoryMode)
 				{
-					var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
-						-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-					blackShit.scrollFactor.set();
-					add(blackShit);
-					camHUD.visible = false;
+					campaignScore += songScore;
+		
+					storyPlaylist.remove(storyPlaylist[0]);
+		
+					if (storyPlaylist.length <= 0)
+					{
+						FlxG.sound.playMusic(Paths.music('freakyMenu'));
+		
+						transIn = FlxTransitionableState.defaultTransIn;
+						transOut = FlxTransitionableState.defaultTransOut;
+						
+						openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+						// if ()
+						StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
+		
+						if (SONG.validScore)
+						{
+							NGio.unlockMedal(60961);
+							Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
+						}
+		
+						FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
+						FlxG.save.flush();
+					}
+					else
+					{
+						var difficulty:String = "";
+		
+						if (storyDifficulty == 0)
+							difficulty = '-easy';
+		
+						if (storyDifficulty == 2)
+							difficulty = '-hard';
+		
+						trace('LOADING NEXT SONG');
+						trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
+		
+						if (SONG.song.toLowerCase() == 'eggnog')
+						{
+							var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
+								-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
+							blackShit.scrollFactor.set();
+							add(blackShit);
+							camHUD.visible = false;
+		
+							FlxG.sound.play(Paths.sound('Lights_Shut_off'));
+						}
+		
+						FlxTransitionableState.skipNextTransIn = true;
+						FlxTransitionableState.skipNextTransOut = true;
+						prevCamFollow = camFollow;
+		
+						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
+						FlxG.sound.music.stop();
 
-					FlxG.sound.play(Paths.sound('Lights_Shut_off'));
+						resetScore();
+
+						openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+
+						
+						//LoadingState.loadAndSwitchState(new PlayState());
+					}
 				}
-
-				FlxTransitionableState.skipNextTransIn = true;
-				FlxTransitionableState.skipNextTransOut = true;
-				prevCamFollow = camFollow;
-
-				PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
-				FlxG.sound.music.stop();
-
-				//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-				LoadingState.loadAndSwitchState(new PlayState());
+				else
+				{
+					trace('WENT BACK TO FREEPLAY??');
+					openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				}
 			}
-		}
-		else
-		{
-			trace('WENT BACK TO FREEPLAY??');
-			FlxG.switchState(new FreeplayState());
-		}
-	}
 
 	var endingSong:Bool = false;
 

@@ -58,26 +58,29 @@ var autoplay:Bool = false;
 		ratingsText.alpha = 0;
 		add(ratingsText);
 
-		var sicks = new FlxText(20,50,0,"Sicks: " + sicks, 20);
+		var sicks = new FlxText(20,50,0,"Sicks: " + sicks, 25);
 		sicks.alpha = 0;
 		add(sicks);
 
-		var goods = new FlxText(20,80,0,"Goods: " + goods, 20);
+		var goods = new FlxText(20,80,0,"Goods: " + goods, 25);
 		goods.alpha = 0;
 		add(goods);
 
-		var bads = new FlxText(20,110,0,"Bads: " + bads, 20);
+		var bads = new FlxText(20,110,0,"Bads: " + bads, 25);
 		bads.alpha = 0;
 		add(bads);
 
-		var shits = new FlxText(20,140,0,"Shits: " + worses, 20);
+		var shits = new FlxText(20,140,0,"Shits: " + worses, 25);
 		shits.alpha = 0;
 		add(shits);
 
-		var misses = new FlxText(20,210,0,"Misses: " + misses, 20);
+		var misses = new FlxText(20,210,0,"Misses: " + misses, 25);
 		misses.alpha = 0;
 		add(misses);
 
+		var controls = new FlxText(20,FlxG.width - 18,0,"Press ENTER to continue", 20);
+		controls.alpha = 0;
+		add(controls);
 
 
 
@@ -89,6 +92,8 @@ var autoplay:Bool = false;
 		FlxTween.tween(bads, {alpha: 1}, 2, {ease: FlxEase.quartInOut});
 		FlxTween.tween(shits, {alpha: 1}, 2.5, {ease: FlxEase.quartInOut});
 		FlxTween.tween(misses, {alpha: 1}, 3, {ease: FlxEase.quartInOut});
+		FlxTween.tween(controls, {alpha: 1}, 4, {ease: FlxEase.quartInOut});
+
 
 
 
@@ -103,6 +108,18 @@ var autoplay:Bool = false;
 	{
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
+		if (FlxG.keys.justPressed.ENTER)
+			{
+				if (PlayState.isStoryMode) {
+					if (PlayState.storyPlaylist.length != 1) {
+				LoadingState.loadAndSwitchState(new PlayState());
+					} else {
+						FlxG.switchState(new StoryMenuState());
+					}
+				} else {
+					FlxG.switchState(new FreeplayState());
+				}
+			}
 
 		super.update(elapsed);
 

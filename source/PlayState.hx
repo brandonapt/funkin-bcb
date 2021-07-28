@@ -1465,7 +1465,7 @@ class PlayState extends MusicBeatState
 	{
 		if (FlxG.keys.justPressed.TWO)
 			{
-				endSong();
+				//endSong();
 			}
 		#if !debug
 		perfectMode = false;

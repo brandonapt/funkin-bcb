@@ -117,6 +117,7 @@ class PauseSubState extends MusicBeatSubstate
 					close();
 				case "Restart Song":
 					FlxG.resetState();
+					PlayState.resetScore();
 				case "Skip Song":
 					PlayState.storyPlaylist.remove(PlayState.storyPlaylist[0]);
 	
@@ -135,6 +136,7 @@ class PauseSubState extends MusicBeatSubstate
 	
 					PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
+					PlayState.resetScore();
 					FlxG.switchState(new PlayState());
 
 							/*case "Your Mom":
@@ -147,9 +149,13 @@ class PauseSubState extends MusicBeatSubstate
 					*/
 				case "Exit to menu":
 					if (PlayState.isStoryMode)
+						{
 						FlxG.switchState(new StoryMenuState());
-					else
+						PlayState.resetScore();
+						} else {
 						FlxG.switchState(new FreeplayState());
+						PlayState.resetScore();
+						}
 			}
 		}
 

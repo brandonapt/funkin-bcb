@@ -1465,7 +1465,7 @@ class PlayState extends MusicBeatState
 	{
 		if (FlxG.keys.justPressed.TWO)
 			{
-				songScore = 1000;
+				endSong();
 			}
 		#if !debug
 		perfectMode = false;
@@ -1942,7 +1942,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 	
-		public function resetScore()
+		public static function resetScore()
 			{
 				//band aid fix becuase lol
 				songMisses = 0;
@@ -1961,6 +1961,7 @@ class PlayState extends MusicBeatState
 			{
 				trace(totalNotesHit);
 				canPause = false;
+				paused = true;
 				FlxG.sound.music.volume = 0;
 				vocals.volume = 0;
 				if (SONG.validScore)
@@ -1985,8 +1986,9 @@ class PlayState extends MusicBeatState
 		
 						transIn = FlxTransitionableState.defaultTransIn;
 						transOut = FlxTransitionableState.defaultTransOut;
-						
-						openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+						paused = true;
+						FlxG.switchState(new StoryMenuState());
+						//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 						// if ()
 						StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
 		
@@ -2031,16 +2033,16 @@ class PlayState extends MusicBeatState
 						FlxG.sound.music.stop();
 
 						resetScore();
-
-						openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+						//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
 						
-						//LoadingState.loadAndSwitchState(new PlayState());
+						LoadingState.loadAndSwitchState(new PlayState());
 					}
 				}
 				else
 				{
 					trace('WENT BACK TO FREEPLAY??');
+					resetScore();
 					openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 				}
 			}

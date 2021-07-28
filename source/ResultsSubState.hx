@@ -78,7 +78,7 @@ var autoplay:Bool = false;
 		misses.alpha = 0;
 		add(misses);
 
-		var controls = new FlxText(20,FlxG.width - 18,0,"Press ENTER to continue", 20);
+		var controls = new FlxText(20,1000,0,"Press ENTER to continue", 20);
 		controls.alpha = 0;
 		add(controls);
 
@@ -111,8 +111,17 @@ var autoplay:Bool = false;
 		if (FlxG.keys.justPressed.ENTER)
 			{
 				if (PlayState.isStoryMode) {
-					if (PlayState.storyPlaylist.length != 1) {
-				LoadingState.loadAndSwitchState(new PlayState());
+					if (PlayState.storyPlaylist.length >= 1) {
+						var songFormat = StringTools.replace(PlayState.SONG.song, " ", "-");
+						var poop:String = Highscore.formatSong(songFormat, PlayState.storyDifficulty);
+
+						if (pauseMusic != null)
+							pauseMusic.fadeOut(0.3);
+			
+						PlayState.SONG = Song.loadFromJson(poop, PlayState.SONG.song);
+						PlayState.isStoryMode = false;
+						PlayState.storyDifficulty = PlayState.storyDifficulty;
+						LoadingState.loadAndSwitchState(new PlayState());
 					} else {
 						FlxG.switchState(new StoryMenuState());
 					}

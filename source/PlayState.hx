@@ -50,6 +50,10 @@ class PlayState extends MusicBeatState
 
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
+
+	var trackedAssets:Array<FlxBasic> = [];
+
+
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
@@ -1742,6 +1746,7 @@ class PlayState extends MusicBeatState
 
 			vocals.stop();
 			FlxG.sound.music.stop();
+			new FlxTimer().start(0.7);
 
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
@@ -1986,7 +1991,7 @@ class PlayState extends MusicBeatState
 		
 						transIn = FlxTransitionableState.defaultTransIn;
 						transOut = FlxTransitionableState.defaultTransOut;
-						paused = true;
+						new FlxTimer().start(0.7);
 						FlxG.switchState(new StoryMenuState());
 						//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 						// if ()
@@ -2031,7 +2036,7 @@ class PlayState extends MusicBeatState
 		
 						PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + difficulty, PlayState.storyPlaylist[0]);
 						FlxG.sound.music.stop();
-
+						new FlxTimer().start(0.7);
 						resetScore();
 						//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
@@ -2042,8 +2047,10 @@ class PlayState extends MusicBeatState
 				else
 				{
 					trace('WENT BACK TO FREEPLAY??');
+					new FlxTimer().start(0.7);
 					resetScore();
-					openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+					LoadingState.loadAndSwitchState(new FreeplayState());
+					//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 				}
 			}
 
@@ -2849,6 +2856,20 @@ class PlayState extends MusicBeatState
 			lightningStrikeShit();
 		}
 	}
+
+	override function add(Object:FlxBasic):FlxBasic
+		{
+			trackedAssets.insert(trackedAssets.length, Object);
+			return super.add(Object);
+		}
+	
+		function unloadAssets():Void
+		{
+			for (asset in trackedAssets)
+			{
+				remove(asset);
+			}
+		}
 
 	var curLight:Int = 0;
 }

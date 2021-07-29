@@ -28,7 +28,11 @@ class OutdatedSubState extends MusicBeatState
 	override function create()
 	{
 		super.create();
-
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
 		var magenta:FlxSprite;
 		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.scrollFactor.x = 0;

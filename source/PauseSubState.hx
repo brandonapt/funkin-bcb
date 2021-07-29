@@ -26,7 +26,11 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
-
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
 
 		if (PlayState.isStoryMode) {
 			if (PlayState.storyPlaylist.length != 1) {

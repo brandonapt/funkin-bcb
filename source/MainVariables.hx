@@ -35,6 +35,12 @@ class MainVariables
             FlxG.save.data.missSfx = true;
         if (FlxG.save.data.autoplay == null)
             FlxG.save.data.autoplay = false;
+        if (FlxG.save.data.loadChars == null)
+            FlxG.save.data.loadChars = true;
+        if (FlxG.save.data.loadSongs == null)
+            FlxG.save.data.loadSongs = true;
+        if (FlxG.save.data.loadGraphics == null)
+            FlxG.save.data.loadGraphics = true;
 
 
 	}

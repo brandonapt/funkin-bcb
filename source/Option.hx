@@ -429,3 +429,73 @@ class MissSFX extends Option
 		return  FlxG.save.data.missSfx ? "miss sfx on" : "miss sfx off";
 	}
 }
+
+
+class PreloadMusic extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.loadSongs = !FlxG.save.data.loadSongs;
+
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.loadSongs ? "dont preload songs" : "preload songs";
+	}
+}
+
+class PreloadChars extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.loadChars = !FlxG.save.data.loadChars;
+
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.loadChars ? "dont preload characters" : "preload characters";
+	}
+}
+
+class PreloadGraphics extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.loadGraphics = !FlxG.save.data.loadGraphics;
+
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.loadGraphics ? "dont preload graphics" : "preload graphics";
+	}
+}

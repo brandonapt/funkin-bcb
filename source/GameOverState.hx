@@ -25,7 +25,11 @@ class GameOverState extends FlxTransitionableState
 	{
 
 
-
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
 		var bf:Boyfriend = new Boyfriend(bfX, bfY);
 		// bf.scrollFactor.set();
 		add(bf);

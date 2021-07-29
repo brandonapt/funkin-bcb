@@ -14,6 +14,12 @@ class ChangelogState extends MusicBeatState
     public function new()
         {
             super();
+
+            #if debug
+            var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+            debugMark.alpha = 0.4;
+            add(debugMark);
+            #end
             transIn = FlxTransitionableState.defaultTransIn;
             transOut = FlxTransitionableState.defaultTransOut;
             var gfDance:FlxSprite;

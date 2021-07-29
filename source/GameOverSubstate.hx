@@ -49,6 +49,12 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.target = null;
 
 		bf.playAnim('firstDeath');
+
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
 	}
 
 	override function update(elapsed:Float)

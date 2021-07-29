@@ -1,158 +1,149 @@
-#if desktop
 package;
 
-import haxe.Exception;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import sys.FileSystem;
-import Controls.Control;
-import sys.io.File;
 import flixel.FlxG;
-import flixel.effects.FlxFlicker;
 import flixel.FlxSprite;
-import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.addons.transition.TransitionData;
-import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.math.FlxPoint;
-import flixel.math.FlxRect;
 import flixel.util.FlxColor;
+import sys.FileSystem;
 import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 
 using StringTools;
 
-class PreloadingState extends MusicBeatState
+class Startup extends MusicBeatState
 {
-    var toBeDone = 0;
-    var done = 0;
-    public static var isItDone:Bool = false;
-    var skippedLol:Bool = false;
 
-    var text:FlxText;
-    var pressEnter:FlxText;
-    var logoBl:FlxSprite;
+    //var dummy:FlxSprite;
+    public static var isItDone:Bool = false;
+    var loadingText:FlxText;
+
+    var songsCached:Bool = FlxG.save.data.loadSongs;
+    var music = [];
+                                
+    //List of character graphics and some other stuff.
+    //Just in case it want to do something with it later.
+    var charactersCached:Bool = FlxG.save.data.loadChars;
+    var characters:Array<String> =   ["peoples/BOYFRIEND", "bfCar", "christmas/bfChristmas", "weeb/bfPixel", "weeb/bfPixelsDEAD",
+                                    "peoples/GF_assets", "gfCar", "christmas/gfChristmas", "weeb/gfPixel",
+                                    "peoples/DADDY_DEAREST", "peoples/spooky_kids_assets", "peoples/Monster_Assets",
+                                    "Pico_FNF_assetss", "Mom_Assets", "momCar",
+                                    "christmas/mom_dad_christmas_assets", "christmas/monsterChristmas",
+                                    "weeb/senpai", "weeb/spirit", "weeb/senpaiCrazy"];
+
+    var graphicsCached:Bool = FlxG.save.data.loadGraphics;
+    var graphics:Array<String> =    ["logoBumpin", "gfDanceTitle", "titleEnter",
+                                    "stageback", "stagefront", "stagecurtains",
+                                    "halloween_bg",
+                                    "philly/sky", "philly/city", "philly/behindTrain", "philly/train", "philly/street", "philly/win0", "philly/win1", "philly/win2", "philly/win3", "philly/win4",
+                                    "limo/bgLimo", "limo/fastCarLol", "limo/limoDancer", "limo/limoDrive", "limo/limoSunset",
+                                    "christmas/bgWalls", "christmas/upperBop", "christmas/bgEscalator", "christmas/christmasTree", "christmas/bottomBop", "christmas/fgSnow", "christmas/santa",
+                                    "christmas/evilBG", "christmas/evilTree", "christmas/evilSnow",
+                                    "weeb/weebSky", "weeb/weebSchool", "weeb/weebStreet", "weeb/weebTreesBack", "weeb/weebTrees", "weeb/petals", "weeb/bgFreaks",
+                                    "weeb/animatedEvilSchool"];
+
+    var cacheStart:Bool = false;
 
 	override function create()
 	{
 
 
+        for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs")))
+            {
+                music.push(i);
+            }
+        FlxG.mouse.visible = false;
+        FlxG.sound.muteKeys = null;
 
+        loadingText = new FlxText(5, FlxG.height - 30, 0, "", 24);
+        loadingText.setFormat("assets/fonts/vcr.ttf", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(loadingText);
 
-
-        logoBl = new FlxSprite(-150, -100);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
-		logoBl.antialiasing = true;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
-		logoBl.animation.play('bump');
-		logoBl.screenCenter(X);
-        logoBl.screenCenter(Y);
-
-
-
-        pressEnter = new FlxText(FlxG.width / 2, FlxG.height / 2 + 300,0,"Press Enter to Skip Initialization");
-        pressEnter.size = 20;
-        pressEnter.alpha = 1;
-        pressEnter.y = 95;
-        pressEnter.updateHitbox();
-        pressEnter.screenCenter(X);
-
-        text = new FlxText(-150 / 2, FlxG.height / 2 + 300,0,"Loading Assets...");
-        text.size = 34;
-        text.alpha = 1;
-        text.y = 50;
-        text.x = pressEnter.x - 25;
-
-        add(text);
-        add(pressEnter);
-        add(logoBl);
-        
-        sys.thread.Thread.create(() -> {
-            cache();
+        new FlxTimer().start(1.1, function(tmr:FlxTimer)
+        {
         });
-
-
+        
         super.create();
-    }
 
-    var calledDone = false;
+    }
 
     override function update(elapsed) 
     {
+        
+        if(!cacheStart){
+            preload(); 
+            cacheStart = true;
+        }
+        if(isItDone == true){
+            FlxG.switchState(new TitleState());
 
-        var accepted = controls.ACCEPT;
-
-        if (toBeDone != 0 && done != toBeDone)
-        {
-            text.text = "Preloading Assets - " + done + "/" + toBeDone + "";
+            
         }
 
-        if (accepted)
-        {
-            FlxG.sound.play(Paths.sound('confirmMenu'));
-            FlxFlicker.flicker(pressEnter, 1.5, 0.15, false);
-            FlxFlicker.flicker(text, 1.5, 0.15, false);
-            new FlxTimer().start(2, function(tmr:FlxTimer)
-                {
-                    isItDone = true;
-                    skippedLol = true;
-                    FlxG.switchState(new TitleState());
-                });
+        if(songsCached && charactersCached && graphicsCached) {
+            
 
+            new FlxTimer().start(0.3, function(tmr:FlxTimer)
+            {
+                loadingText.text = "Done!";
+                isItDone = true;
+            });
 
+            //FlxG.sound.play("assets/sounds/loadComplete.ogg");
         }
-
+        
         super.update(elapsed);
+
     }
 
+    function preload(){
 
-    function cache()
-    {
+        loadingText.text = "Preloading Assets...";
 
-        var images = [];
-        var music = [];
-        //CHART PRELOADING IS COMING SOON. SOME OTHER STUFF ASWELL
-        var others = [];
-        var data = [];
-
-
-        for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/peoples")))
-        {
-            if (!i.endsWith(".png"))
-                continue;
-            images.push(i);
+        if(!songsCached){
+            sys.thread.Thread.create(() -> {
+                preloadMusic();
+            });
         }
 
-
-
-        for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/songs")))
-        {
-            music.push(i);
+        if(!charactersCached){
+            sys.thread.Thread.create(() -> {
+                preloadCharacters();
+            });
         }
-        toBeDone = Lambda.count(images) + Lambda.count(music);
 
+        if(!graphicsCached){
+            sys.thread.Thread.create(() -> {
+                preloadGraphics();
+            });
+        }
+
+    }
+
+    function preloadMusic(){
         for (i in music)
             {
                 FlxG.sound.cache(Paths.inst(i));
                 FlxG.sound.cache(Paths.voices(i));
-                done++;
+                trace(i);
             }
+            songsCached = true;
 
-        for (i in images)
-        {
-            var replaced = i.replace(".png","");
-            FlxG.bitmap.add(Paths.image("peoples/" + replaced,"shared"));
-            trace("cached " + replaced);
-            done++;
-        }
+    }
 
-        isItDone = true;
-        if (skippedLol == false) {
-            FlxG.switchState(new TitleState());
+    function preloadCharacters(){
+        for(x in characters){
+            ImageCache.add("assets/images/" + x + ".png");
+            trace("Chached " + x);
         }
+        charactersCached = true;
+    }
+
+    function preloadGraphics(){
+        for(x in graphics){
+            ImageCache.add("assets/images/" + x + ".png");
+            trace("Chached " + x);
+        }
+        graphicsCached = true;
     }
 
 }
-
-#end

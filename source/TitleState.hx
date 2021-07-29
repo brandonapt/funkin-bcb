@@ -4,7 +4,7 @@ import OptionsMenu.OldOptions;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
-import Preload.PreloadingState;
+import Preload.Startup;
 #end
 import flixel.FlxG;
 import Preload;
@@ -52,14 +52,19 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+
+		#if debug
+		var debugMark:Alphabet = new Alphabet(15,15,"DEBUG");
+		add(debugMark);
+		#end
 		#if polymod
 		//polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 
 		#if desktop
-		if (PreloadingState.isItDone == false)
+		if (Startup.isItDone == false)
 		{
-		FlxG.switchState(new PreloadingState());
+		FlxG.switchState(new Startup());
 		}
 		#end
 

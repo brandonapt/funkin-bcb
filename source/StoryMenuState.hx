@@ -101,7 +101,11 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
-
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
 		weekData = getWeeks();
 		weekCharacters = getWeekCharacters();
 		var weekTxt = CoolUtil.coolTextFile(Paths.txt('weekNames'));

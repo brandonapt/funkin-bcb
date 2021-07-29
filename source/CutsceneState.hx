@@ -61,6 +61,12 @@ class CutsceneState extends MusicBeatState
 
     override public function create()
     {
+
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
         PlayState.camHUD.visible = false;
         camGame = new FlxCamera();
 		FlxG.cameras.reset(camGame);

@@ -62,7 +62,10 @@ class PlayState extends MusicBeatState
 	var halloweenLevel:Bool = false;
 
 	public static var carGf:Bool = true;
-
+	private var camFocus:String = "";
+	private var camTween:FlxTween;
+	private var camFollow:FlxObject;
+	private var autoCam:Bool = true;
 	private var vocals:FlxSound;
 
 	var skippedtime:Bool = false;
@@ -79,7 +82,6 @@ class PlayState extends MusicBeatState
 	private var strumLine:FlxSprite;
 	private var curSection:Int = 0;
 
-	private var camFollow:FlxObject;
 	private var autoplayText:FlxText;
 
 	private static var prevCamFollow:FlxObject;
@@ -169,8 +171,11 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-
-
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 

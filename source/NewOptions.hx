@@ -31,8 +31,11 @@ class OptionsMenuSubState extends MusicBeatState
 
 
         var options:Array<OptionCategory> = [
-            new OptionCategory("Menus", [
-                new LogoAnimation('Enables a cool animation on the title screen.')
+            new OptionCategory("Loading", [
+                new PreloadMusic('Toggles the preload of songs.'),
+                new PreloadChars('Toggles the preload of characters.'),
+                new PreloadGraphics('Toggles the preload of graphics.'),
+
             ]),
             new OptionCategory("Gameplay", [
                 new HarderMode('Makes Hard Mode Even HARDER!'),
@@ -50,6 +53,7 @@ class OptionsMenuSubState extends MusicBeatState
             new OptionCategory("Appearance", [
                 new CustomIntro('Toggles a custom intro text set.'),
                 new FpsCounter('Toggles a FPS Counter.'),
+                new LogoAnimation('Enables a cool animation on the title screen.'),
                 new MemCounter('Toggles a Memory Counter.')
             ]),
             new OptionCategory("Other", [
@@ -70,7 +74,11 @@ class OptionsMenuSubState extends MusicBeatState
         override function create()
             {
                 instance = this;
-
+                #if debug
+                var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+                debugMark.alpha = 0.4;
+                add(debugMark);
+                #end
                 magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
                 magenta.scrollFactor.x = 0;
                 magenta.scrollFactor.y = 0.18;
@@ -267,7 +275,7 @@ class OptionsMenuSubState extends MusicBeatState
                             item.targetY = bullShit - curSelected;
                             bullShit++;
                 
-                            item.alpha = 0.6;
+                            item.alpha = 0.64;
                             // item.setGraphicSize(Std.int(item.width * 0.8));
                 
                             if (item.targetY == 0)

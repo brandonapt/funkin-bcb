@@ -7,6 +7,7 @@ import MemCount;
 import openfl.Lib;
 import openfl.display.FPS;
 import flixel.FlxG;
+import Alphabet;
 import openfl.display.Sprite;
 import openfl.events.Event;
 
@@ -86,6 +87,12 @@ class Main extends Sprite
 		webmHandle.webm.name = str1;
 		addChild(webmHandle.webm);
 		GlobalVideo.setWebm(webmHandle);
+
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		//add(debugMark);
+		#end
 
 		#if !mobile
 		MainVariables.initSave();

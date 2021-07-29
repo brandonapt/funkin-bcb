@@ -85,6 +85,12 @@ class ChartingState extends MusicBeatState
 
 	override function create()
 	{
+
+		#if debug
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		debugMark.alpha = 0.4;
+		add(debugMark);
+		#end
 		curSection = lastSection;
 		if (PlayState.SONG != null)
 			_song = PlayState.SONG;

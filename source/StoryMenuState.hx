@@ -84,7 +84,7 @@ class StoryMenuState extends MusicBeatState
 	
 		function getWeekCharacters():Array<Array<String>>
 		{
-			var initList = CoolUtil.coolTextFile(Paths.txt('storyModeCharacters'));
+			var initList = CoolUtil.coolTextFile(Paths.txt('storyMenuCharacters'));
 			var swagGoodArray:Array<Array<String>> = [];
 	
 			for (i in 0...initList.length)
@@ -96,16 +96,6 @@ class StoryMenuState extends MusicBeatState
 			return swagGoodArray;
 		}
 	
-		function unlockWeeks():Array<Bool>
-		{
-			var weeks:Array<Bool> = [true];
-	
-			for(i in 0...FlxG.save.data.weekUnlocked)
-				{
-					weeks.push(true);
-				}
-			return weeks;
-		}
 	
 	
 
@@ -114,7 +104,6 @@ class StoryMenuState extends MusicBeatState
 
 		weekData = getWeeks();
 		weekCharacters = getWeekCharacters();
-		weekUnlocked = unlockWeeks();
 		var weekTxt = CoolUtil.coolTextFile(Paths.txt('weekNames'));
 		weekNames = weekTxt;		
 			

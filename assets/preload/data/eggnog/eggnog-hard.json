@@ -1,6 +1,8 @@
 {
     "song": {
         "song": "Eggnog",
+        "stage":"mall",
+        "gfVersion":"gf-christmas",
         "notes": [
             {
                 "lengthInSteps": 16,

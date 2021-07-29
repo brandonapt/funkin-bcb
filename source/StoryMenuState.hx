@@ -12,6 +12,7 @@ import flixel.group.FlxGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
+import CoolUtil;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
@@ -22,28 +23,17 @@ class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
 	var loltext:FlxText;
-	var weekData:Array<Dynamic> = [
-		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
-		['Satin-Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns']
-	];
+
 	public static var curDifficulty:Int = 1;
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
 
-	var weekCharacters:Array<Dynamic> = [
-		['', 'bf', 'gf'],
-		['dad', 'bf', 'gf'],
-		['spooky', 'bf', 'gf'],
-		['pico', 'bf', 'gf'],
-		['mom', 'bf', 'gf'],
-		['parents-christmas', 'bf', 'gf'],
-		['senpai', 'bf', 'gf']
-	];
+	static var weekData:Array<Array<String>> = [];
+	static var weekCharacters:Array<Array<String>> = [];
+
+
+
+/*
 	var weekNames:Array<String> = [
 		"how to Funk",
 		"Daddy Dearest",
@@ -53,12 +43,17 @@ class StoryMenuState extends MusicBeatState
 		"red snow",
 		"HAtING SIMULATOR ft moawling"
 	];
+	*/
+
+
 
 	var txtWeekTitle:FlxText;
 
 	var curWeek:Int = 0;
 
 	var txtTracklist:FlxText;
+
+	public static var weekNames:Array<String>;
 
 	var grpWeekText:FlxTypedGroup<MenuItem>;
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
@@ -72,8 +67,58 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 
+
+	public static function getWeeks():Array<Array<String>>
+		{
+			var initList = CoolUtil.coolTextFile(Paths.txt('weekData'));
+			var swagGoodArray:Array<Array<String>> = [];
+	
+			for (i in 0...initList.length)
+			{
+				var data:Array<String> = initList[i].split(', ');
+				swagGoodArray.push(data);
+			}
+	
+			return swagGoodArray;
+		}
+	
+		function getWeekCharacters():Array<Array<String>>
+		{
+			var initList = CoolUtil.coolTextFile(Paths.txt('storyModeCharacters'));
+			var swagGoodArray:Array<Array<String>> = [];
+	
+			for (i in 0...initList.length)
+			{
+				var data:Array<String> = initList[i].split(', ');
+				swagGoodArray.push(data);
+			}
+	
+			return swagGoodArray;
+		}
+	
+		function unlockWeeks():Array<Bool>
+		{
+			var weeks:Array<Bool> = [true];
+	
+			for(i in 0...FlxG.save.data.weekUnlocked)
+				{
+					weeks.push(true);
+				}
+			return weeks;
+		}
+	
+	
+
 	override function create()
 	{
+
+		weekData = getWeeks();
+		weekCharacters = getWeekCharacters();
+		weekUnlocked = unlockWeeks();
+		var weekTxt = CoolUtil.coolTextFile(Paths.txt('weekNames'));
+		weekNames = weekTxt;		
+			
+	
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
@@ -340,7 +385,7 @@ class StoryMenuState extends MusicBeatState
 
 				grpWeekText.members[curWeek].startFlashing();
 				new FlxTimer().start(0.7);
-
+ 
 				grpWeekCharacters.members[1].animation.play('bfConfirm');
 				stopspamming = true;
 			}

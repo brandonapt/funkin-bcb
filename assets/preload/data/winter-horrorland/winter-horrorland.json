@@ -1,6 +1,7 @@
 {
     "song": {
         "song": "Winter-Horrorland",
+        "stage":"mallEvil","gfVersion":"gf-christmas",
         "notes": [
             {
                 "lengthInSteps": 16,

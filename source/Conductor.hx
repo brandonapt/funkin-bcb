@@ -1,7 +1,7 @@
 package;
 
 import Song.SwagSong;
-import flixel.FlxG;
+
 /**
  * ...
  * @author
@@ -11,12 +11,12 @@ typedef BPMChangeEvent =
 {
 	var stepTime:Int;
 	var songTime:Float;
-	var bpm:Float;
+	var bpm:Int;
 }
 
 class Conductor
 {
-	public static var bpm:Float = 100;
+	public static var bpm:Int = 100;
 	public static var crochet:Float = ((60 / bpm) * 1000); // beats in milliseconds
 	public static var stepCrochet:Float = crochet / 4; // steps in milliseconds
 	public static var songPosition:Float;
@@ -27,28 +27,16 @@ class Conductor
 	public static var safeZoneOffset:Float = (safeFrames / 60) * 1000; // is calculated in create(), is safeFrames in milliseconds
 
 	public static var bpmChangeMap:Array<BPMChangeEvent> = [];
-	public static var timeScale:Float = Conductor.safeZoneOffset / 166;
 
-	public static var lengthInSteps:Float = 0;
 	public function new()
 	{
 	}
-
-
-	public static function recalculateTimings()
-		{
-			Conductor.safeFrames = FlxG.save.data.frames;
-			Conductor.safeZoneOffset = Math.floor((Conductor.safeFrames / 60) * 1000);
-			Conductor.timeScale = Conductor.safeZoneOffset / 166;
-		}
-	
-	
 
 	public static function mapBPMChanges(song:SwagSong)
 	{
 		bpmChangeMap = [];
 
-		var curBPM:Float = song.bpm;
+		var curBPM:Int = song.bpm;
 		var totalSteps:Int = 0;
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
@@ -71,16 +59,11 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
-	public static function changeBPM(newBpm:Float)
+	public static function changeBPM(newBpm:Int)
 	{
 		bpm = newBpm;
 
 		crochet = ((60 / bpm) * 1000);
 		stepCrochet = crochet / 4;
-
-		
-		lengthInSteps = (FlxG.sound.music.length / stepCrochet);
-
-		trace("\nLength in in steps:  " + lengthInSteps);
 	}
 }

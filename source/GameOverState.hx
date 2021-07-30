@@ -33,7 +33,7 @@ class GameOverState extends FlxTransitionableState
 		var bf:Boyfriend = new Boyfriend(bfX, bfY);
 		// bf.scrollFactor.set();
 		add(bf);
-		bf.playAnim('firstDeath');
+		bf.playAnim('firstDeath'); 
 
 		FlxG.camera.follow(bf, LOCKON, 0.001);
 		/* 
@@ -75,6 +75,7 @@ class GameOverState extends FlxTransitionableState
 			{
 				FlxG.sound.music.stop();
 				LoadingState.loadAndSwitchState(new PlayState());
+				PlayState.resetScore();
 			});
 		}
 		super.update(elapsed);

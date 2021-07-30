@@ -2713,6 +2713,7 @@ class PlayState extends MusicBeatState
 
 		if (startedMoving)
 		{
+			camGame.shake(.0025,.1,null,true,X);
 			phillyTrain.x -= 400;
 
 			if (phillyTrain.x < -2000 && !trainFinishing)

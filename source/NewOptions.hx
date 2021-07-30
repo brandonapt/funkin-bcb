@@ -55,7 +55,8 @@ class OptionsMenuSubState extends MusicBeatState
                 new CustomIntro('Toggles a custom intro text set.'),
                 new FpsCounter('Toggles a FPS Counter.'),
                 new LogoAnimation('Enables a cool animation on the title screen.'),
-                new MemCounter('Toggles a Memory Counter.')
+                new MemCounter('Toggles a Memory Counter.'),
+                new NoteSplash('Toggles note splashes on SICK!'),
             ]),
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),

@@ -43,6 +43,8 @@ class MainVariables
             FlxG.save.data.loadGraphics = true;
         if (FlxG.save.data.newInput == null)
             FlxG.save.data.newInput = false;
+        if (FlxG.save.data.noteSplash == null)
+            FlxG.save.data.noteSplash = false;
 
 
 	}

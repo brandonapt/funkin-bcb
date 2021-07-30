@@ -2125,7 +2125,7 @@ class PlayState extends MusicBeatState
 
 	var endingSong:Bool = false;
 
-	private function popUpScore(strumtime:Float):Void
+	private function popUpScore(strumtime:Float, note:Note):Void
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
 		//boyfriend.playAnim('hey');
@@ -2215,6 +2215,62 @@ class PlayState extends MusicBeatState
 
 		comboSpr.updateHitbox();
 		rating.updateHitbox();
+
+		var sploosh:FlxSprite = new FlxSprite(note.x, playerStrums.members[note.noteData].y);
+		if (FlxG.save.data.noteSplash)
+		{
+			if (!curStage.startsWith('school'))
+			{
+				var tex:FlxAtlasFrames = Paths.getSparrowAtlas('noteSplashes');
+				sploosh.frames = tex;
+				sploosh.animation.addByPrefix('splash 0 0', 'note impact 1 purple', 24, false);
+				sploosh.animation.addByPrefix('splash 0 1', 'note impact 1 blue', 24, false);
+				sploosh.animation.addByPrefix('splash 0 2', 'note impact 1 green', 24, false);
+				sploosh.animation.addByPrefix('splash 0 3', 'note impact 1 red', 24, false);
+				sploosh.animation.addByPrefix('splash 0 4', 'note impact 1 yellow', 24, false);
+				sploosh.animation.addByPrefix('splash 1 0', 'note impact 2 purple', 24, false);
+				sploosh.animation.addByPrefix('splash 1 1', 'note impact 2 blue', 24, false);
+				sploosh.animation.addByPrefix('splash 1 2', 'note impact 2 green', 24, false);
+				sploosh.animation.addByPrefix('splash 1 3', 'note impact 2 red', 24, false);
+				sploosh.animation.addByPrefix('splash 1 4', 'note impact 2 yellow', 24, false);
+				if (daRating == 'sick')
+				{
+					add(sploosh);
+					sploosh.scrollFactor.set();
+					sploosh.animation.play('splash ' + FlxG.random.int(0, 1) + " " + note.noteData);
+					sploosh.alpha = 0.6;
+					sploosh.offset.x += 90;
+					sploosh.offset.y += 80;
+					sploosh.animation.finishCallback = function(name) sploosh.kill();
+				}
+			}
+			else
+			{
+				sploosh.loadGraphic(Paths.image('weeb/pixelUI/noteSplashes-pixels'), true, 50, 50);
+				sploosh.animation.add('splash 0 0', [0, 1, 2, 3], 24, false);
+				sploosh.animation.add('splash 1 0', [4, 5, 6, 7], 24, false);
+				sploosh.animation.add('splash 0 1', [8, 9, 10, 11], 24, false);
+				sploosh.animation.add('splash 1 1', [12, 13, 14, 15], 24, false);
+				sploosh.animation.add('splash 0 2', [16, 17, 18, 19], 24, false);
+				sploosh.animation.add('splash 1 2', [20, 21, 22, 23], 24, false);
+				sploosh.animation.add('splash 0 3', [24, 25, 26, 27], 24, false);
+				sploosh.animation.add('splash 1 3', [28, 29, 30, 31], 24, false);
+				sploosh.animation.add('splash 0 4', [32, 33, 34, 35], 24, false);
+				sploosh.animation.add('splash 1 4', [36, 37, 38, 39], 24, false);
+				if (daRating == 'sick')
+				{
+					sploosh.setGraphicSize(Std.int(sploosh.width * daPixelZoom));
+					sploosh.updateHitbox();
+					sploosh.scrollFactor.set();
+					add(sploosh);
+					sploosh.animation.play('splash ' + FlxG.random.int(0, 1) + " " + note.noteData);
+					sploosh.alpha = 0.6;
+					sploosh.offset.x += 80;
+					sploosh.offset.y += 72;
+					sploosh.animation.finishCallback = function(name) sploosh.kill();
+				}
+			}
+		}
 
 		var seperatedScore:Array<Int> = [];
 		var comboSplit:Array<String> = (combo + "").split('');
@@ -2663,7 +2719,7 @@ class PlayState extends MusicBeatState
 				if (!note.isSustainNote)
 				{
 					if (!FlxG.save.data.autoplay)
-						popUpScore(note.strumTime);
+						popUpScore(note.strumTime, note);
 					combo += 1;
 				} else {
 					totalNotesHit += 1;

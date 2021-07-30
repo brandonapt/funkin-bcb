@@ -823,10 +823,11 @@ class PlayState extends MusicBeatState
 	healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 	// healthBar
 		add(healthBar);
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 630, healthBarBG.y + 40, 0, "", 20);
+		scoreTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
+		scoreTxt.screenCenter(X);
 		add(scoreTxt);
 
 		autoplayText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 40, healthBarBG.y + -100, 0, "AUTOPLAY ON", 20);
@@ -1591,7 +1592,7 @@ class PlayState extends MusicBeatState
 			}
 	
 
-		scoreTxt.text = "Misses: " + songMisses + " | " + "Score: " + songScore + " | " + " Song: " + SONG.song + " (" + storyDifficultyText + ")" + " | " + "Accuracy: " + accuracy + "%";
+		scoreTxt.text = "Misses: " + songMisses + " | " + "Score: " + songScore + " | " + "Accuracy: " + accuracy + "%";
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -1924,6 +1925,8 @@ class PlayState extends MusicBeatState
 						health -= 0.0475;
 						songMisses = songMisses + 1;
 						vocals.volume = 0;
+						if (FlxG.save.data.newInput)
+							noteMiss(daNote.noteData);
 					}
 
 					daNote.active = false;
@@ -2354,7 +2357,7 @@ class PlayState extends MusicBeatState
 									if (controlArray[ignoreList[shit]])
 										inIgnoreList = true;
 								}
-								if (!inIgnoreList)
+								if (!inIgnoreList && !FlxG.save.data.newInput)
 									badNoteCheck();
 							}
 						}
@@ -2406,7 +2409,7 @@ class PlayState extends MusicBeatState
 					}
 				 */
 			}
-			else
+			else if (!FlxG.save.data.newInput)
 			{
 				badNoteCheck();
 			}

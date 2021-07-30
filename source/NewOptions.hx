@@ -43,6 +43,7 @@ class OptionsMenuSubState extends MusicBeatState
                 new GhostTaps('Toggles ghost tapping.'),
                 new Autoplay('Toggles an autoplaying bot for mod showcase.'),
                 new MissSFX('Toggles miss sound effects.'),
+                new Input('Toggles the old and new input.'),
             ]),
             new OptionCategory("Freeplay", [
                 new FreeplayPreviews('Toggles the song previews in freeplay.'),

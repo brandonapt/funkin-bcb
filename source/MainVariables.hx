@@ -41,6 +41,8 @@ class MainVariables
             FlxG.save.data.loadSongs = true;
         if (FlxG.save.data.loadGraphics == null)
             FlxG.save.data.loadGraphics = true;
+        if (FlxG.save.data.newInput == null)
+            FlxG.save.data.newInput = false;
 
 
 	}

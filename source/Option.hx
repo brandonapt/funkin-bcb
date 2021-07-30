@@ -499,3 +499,26 @@ class PreloadGraphics extends Option
 		return  FlxG.save.data.loadGraphics ? "dont preload graphics" : "preload graphics";
 	}
 }
+
+class Input extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.newInput = !FlxG.save.data.newInput;
+
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.newInput ? "new input" : "old input";
+	}
+}

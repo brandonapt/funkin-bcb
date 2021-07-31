@@ -1,6 +1,5 @@
 package;
 
-import OptionsMenu.OldOptions;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -357,8 +356,6 @@ class TitleState extends MusicBeatState
 					{
 						returnedData[0] = data.substring(0, data.indexOf(';'));
 						returnedData[1] = data.substring(data.indexOf('-'), data.length);
-						OldOptions.needVer = returnedData[0];
-						OldOptions.currChanges = returnedData[1];
 						  if (!Application.current.meta.get('version').contains(returnedData[0].trim()))
 						{
 							OutdatedSubState.needVer = returnedData[0];

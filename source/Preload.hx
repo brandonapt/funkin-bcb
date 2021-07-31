@@ -1,3 +1,4 @@
+#if desktop
 package;
 
 import flixel.FlxG;
@@ -147,3 +148,4 @@ class Startup extends MusicBeatState
     }
 
 }
+#end

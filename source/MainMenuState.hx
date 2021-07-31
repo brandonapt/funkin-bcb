@@ -1,7 +1,6 @@
 package;
 
 import flixel.util.FlxTimer;
-import OptionsMenu.OldOptions;
 import NewOptions.OptionsMenuSubState;
 #if desktop
 import Discord.DiscordClient;

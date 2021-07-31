@@ -418,12 +418,13 @@ class TitleState extends MusicBeatState
 	{
 		while (textGroup.members.length > 0)
 		{
-			FlxTween.tween(money,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
-			FlxTween.tween(coolText,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween)
-				{
+
+				
 			credGroup.remove(textGroup.members[0], true);
 			textGroup.remove(textGroup.members[0], true);
-				}}); 
+			FlxTween.tween(money,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
+			FlxTween.tween(coolText,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut});
+
 
 
 		}

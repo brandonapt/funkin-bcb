@@ -9,6 +9,7 @@ import Discord.DiscordClient;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import flixel.input.touch.FlxTouch;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.effects.FlxFlicker;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -29,6 +30,8 @@ class MainMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	public static var doneMoving:Bool = false;
+
+	public static var lmaotext:FlxText;
 
 	public static var bg:FlxSprite;
 	#if !switch
@@ -128,7 +131,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		var lmaotext:FlxText = new FlxText(5, FlxG.height - 45, 0, "Brandon's Custom Build", 12);
+		lmaotext = new FlxText(5, FlxG.height - 45, 0, "Brandon's Custom Build", 12);
 		lmaotext.scrollFactor.set();
 		lmaotext.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(lmaotext);
@@ -154,6 +157,15 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin)
 		{
+			for (touch in FlxG.touches.list)
+				{
+					if (touch.justPressed) {
+						if (touch.x == lmaotext.x)
+							trace('poopddd');
+					}
+					if (touch.pressed) {}
+					if (touch.justReleased) {}
+				}
 			if (controls.UP_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));

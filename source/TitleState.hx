@@ -43,6 +43,9 @@ class TitleState extends MusicBeatState
 	var textGroup:FlxGroup;
 	var FNF:FlxSprite;
 	var ngSpr:FlxSprite;
+
+	public static var money:Alphabet;
+	public static var coolText:Alphabet;
 	var tween1:FlxTween;
 	public static var tween:FlxTween;
 
@@ -222,7 +225,7 @@ class TitleState extends MusicBeatState
 
 		FNF = new FlxSprite(0, FlxG.height * 0.40).loadGraphic(Paths.image('preloaderArt'));
 		add(FNF);
-		FNF.visible = false;
+		FNF.alpha = 0;
 		FNF.setGraphicSize(Std.int(FNF.width * 0.4));
 		FNF.updateHitbox();
 		FNF.screenCenter(X);
@@ -230,7 +233,7 @@ class TitleState extends MusicBeatState
 
 		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
 		add(ngSpr);
-		ngSpr.visible = false;
+		ngSpr.alpha = 0;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
 		ngSpr.updateHitbox();
 		ngSpr.screenCenter(X);
@@ -390,29 +393,39 @@ class TitleState extends MusicBeatState
 	{
 		for (i in 0...textArray.length)
 		{
-			var money:Alphabet = new Alphabet(0, 0, textArray[i], true, false);
+			money = new Alphabet(0, 0, textArray[i], true, false);
+			money.alpha = 0;
 			money.screenCenter(X);
 			money.y += (i * 60) + 200;
 			credGroup.add(money);
 			textGroup.add(money);
+			FlxTween.tween(money,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
 		}
 	}
 
 	function addMoreText(text:String)
 	{
-		var coolText:Alphabet = new Alphabet(0, 0, text, true, false);
+		coolText = new Alphabet(0, 0, text, true, false);
 		coolText.screenCenter(X);
+		coolText.alpha = 0;
 		coolText.y += (textGroup.length * 60) + 200;
 		credGroup.add(coolText);
 		textGroup.add(coolText);
+		FlxTween.tween(coolText,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
 	}
 
 	function deleteCoolText()
 	{
 		while (textGroup.members.length > 0)
 		{
+			FlxTween.tween(money,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
+			FlxTween.tween(coolText,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween)
+				{
 			credGroup.remove(textGroup.members[0], true);
 			textGroup.remove(textGroup.members[0], true);
+				}}); 
+
+
 		}
 	}
 
@@ -449,12 +462,12 @@ if (FlxG.save.data.customIntroText == true)
 				createCoolText(['Newgrounds']);
 			case 7:
 				addMoreText('Forever');
-				FNF.visible = true;
-			// credTextShit.text += '\nNewgrounds';
+				FlxTween.tween(FNF,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
+				// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();
-				FNF.visible = false;
-			// credTextShit.visible = false;
+				FlxTween.tween(FNF,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
+				// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';
 			// credTextShit.screenCenter();
@@ -500,11 +513,11 @@ if (FlxG.save.data.customIntroText == true)
 				createCoolText(['In association', 'with']);
 			case 7:
 				addMoreText('newgrounds');
-				ngSpr.visible = true;
-			// credTextShit.text += '\nNewgrounds';
+			FlxTween.tween(ngSpr,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
 			case 8:
 				deleteCoolText();
-				ngSpr.visible = false;
+				FlxTween.tween(ngSpr,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
+				
 			// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';

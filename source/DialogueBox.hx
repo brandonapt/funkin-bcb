@@ -135,7 +135,7 @@ class DialogueBox extends FlxSpriteGroup
 		handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
 		add(handSelect);
 
-
+    
 		if (!talkingRight)
 		{
 			// box.flipX = true;

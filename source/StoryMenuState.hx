@@ -257,29 +257,8 @@ class StoryMenuState extends MusicBeatState
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 		
-		if (lerpScore == 0)
-			{
-				rank = "Unattempted";
-			}
 
-		if (lerpScore <= 3000)
-		{
-                        if (lerpScore >= 1)
-                        {
-			rank = "Bad";
-                        }
-		}
-		
-		if (lerpScore >= 7500)
-		{
-			rank = "Okay";
-		}
-		if (lerpScore >= 20000)
-		{
-			rank = "Great";
-		}
 
-		loltext.text = "Rank: " + rank;
 
 		if (curWeek != 0)
 		{
@@ -305,6 +284,35 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
 
 				lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
+
+				new FlxTimer().start(0.3, function(tmr:FlxTimer)
+					{
+						if (lerpScore == 0)
+							{
+								rank = "Unattempted";
+							}
+				
+						if (lerpScore <= 3000)
+						{
+										if (lerpScore >= 1)
+										{
+							rank = "Bad";
+										}
+						}
+						
+						if (lerpScore >= 7500)
+						{
+							rank = "Okay";
+						}
+						if (lerpScore >= 20000)
+						{
+							rank = "Great";
+						}
+				
+						loltext.text = "Rank: " + rank;
+					});
+
+
 
 
 		// FlxG.watch.addQuick('font', scoreText.font);
@@ -413,8 +421,11 @@ class StoryMenuState extends MusicBeatState
 				//FlxG.switchState(new VideoState('paint', new PlayState()));
 				//FlxG.switchState(new VideoState('assets/videos/paint.webm', function(){
 				//	trace('lol');
-				//	FlxG.switchState(new PlayState());
-				//}, 1, true));
+				//	new FlxTimer().start(1, function (tmr:FlxTimer)
+				//	{
+				//		FlxG.switchState(new PlayState());
+				//	});
+				//}, 100, true));
 			});
 		}
 	}

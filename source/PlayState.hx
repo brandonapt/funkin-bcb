@@ -118,7 +118,7 @@ class PlayState extends MusicBeatState
 	public static var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
-	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
+	var dialogue:Array<String> = [];
 
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
@@ -172,7 +172,7 @@ class PlayState extends MusicBeatState
 	override public function create()
 	{
 		resetScore();		#if debug
-		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
+		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",true,false,false);
 		debugMark.alpha = 0.4;
 		add(debugMark);
 		#end
@@ -2620,6 +2620,7 @@ class PlayState extends MusicBeatState
 			{
 				if (!note.isSustainNote)
 				{
+					totalNotesHit += 1;
 					if (!FlxG.save.data.autoplay)
 						popUpScore(note.strumTime, note);
 					combo += 1;

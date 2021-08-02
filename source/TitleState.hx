@@ -39,6 +39,7 @@ class TitleState extends MusicBeatState
 	var blackScreen:FlxSprite;
 	var credGroup:FlxGroup;
 	var credTextShit:Alphabet;
+	var logoBl:FlxSprite;
 	var textGroup:FlxGroup;
 	var FNF:FlxSprite;
 	var ngSpr:FlxSprite;
@@ -123,7 +124,6 @@ class TitleState extends MusicBeatState
 		#end
 	}
 
-	var logoBl:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
@@ -430,8 +430,8 @@ class TitleState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
-
-		logoBl.animation.play('bump');
+		if (logoBl.visible = true)
+			logoBl.animation.play('bump');
 		danceLeft = !danceLeft;
 
 		if (danceLeft)
@@ -464,7 +464,7 @@ if (FlxG.save.data.customIntroText == true)
 				// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();
-				FlxTween.tween(FNF,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
+				FNF.alpha = 0;				
 				// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';
@@ -514,8 +514,7 @@ if (FlxG.save.data.customIntroText == true)
 			FlxTween.tween(ngSpr,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
 			case 8:
 				deleteCoolText();
-				FlxTween.tween(ngSpr,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
-				
+				ngSpr.alpha = 0;				
 			// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';

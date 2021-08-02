@@ -6,8 +6,10 @@ import NewOptions.OptionsMenuSubState;
 import Discord.DiscordClient;
 #end
 import flixel.FlxG;
+import CoolUtil;
 import flixel.FlxObject;
 import flixel.FlxSprite;
+import openfl.Assets;
 import flixel.input.touch.FlxTouch;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.effects.FlxFlicker;
@@ -29,6 +31,8 @@ class MainMenuState extends MusicBeatState
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	public static var doneMoving:Bool = false;
+
+	var modName:String = Assets.getText(Paths.txt('introText'));
 
 	public static var lmaotext:FlxText;
 
@@ -56,6 +60,8 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
+
+		
 
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
@@ -130,7 +136,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		lmaotext = new FlxText(5, FlxG.height - 45, 0, "Brandon's Custom Build", 12);
+		lmaotext = new FlxText(5, FlxG.height - 45, 0, modName, 12);
 		lmaotext.scrollFactor.set();
 		lmaotext.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(lmaotext);

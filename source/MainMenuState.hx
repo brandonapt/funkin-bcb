@@ -32,7 +32,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	public static var doneMoving:Bool = false;
 
-	var modName:String = Assets.getText(Paths.txt('introText'));
+	var modName:String = Assets.getText(Paths.txt('modName'));
 
 	public static var lmaotext:FlxText;
 

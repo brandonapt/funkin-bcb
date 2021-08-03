@@ -1,4 +1,5 @@
 package;
+import flixel.addons.plugin.taskManager.FlxTaskManager;
 import Controls.Control;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.FlxG;
@@ -61,6 +62,7 @@ class OptionsMenuSubState extends MusicBeatState
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),
                 new Fullscreen('Toggle fullscreen.'),
+                new ModManager('Open the in-game mode manager.')
             ])
             
         ];

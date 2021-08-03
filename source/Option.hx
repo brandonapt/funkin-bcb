@@ -545,3 +545,25 @@ class NoteSplash extends Option
 		return  FlxG.save.data.noteSplash ? "note splash" : "no note splash";
 	}
 }
+
+
+class ModManager extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.switchState(new ModManagerState());
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.noteSplash ? "OPEN mod manager" : "open mod manager";
+	}
+}

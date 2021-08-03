@@ -360,11 +360,11 @@ class PlayState extends MusicBeatState
 
 		                  var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic(Paths.image('limo/limoOverlay'));
 		                  overlayShit.alpha = 0.5;
-		                  // add(overlayShit);
+		                add(overlayShit);
 
-		                  // var shaderBullshit = new BlendModeEffect(new OverlayShader(), FlxColor.RED);
+		                   //v///ar shaderBullshit = new BlendModeEffect(new OverlayShader(), FlxColor.RED);
 
-		                  // FlxG.camera.setFilters([new ShaderFilter(cast shaderBullshit.shader)]);
+		                   //FlxG.camera.setFilters([new ShaderFilter(cast shaderBullshit.shader)]);
 
 		                  // overlayShit.shader = shaderBullshit;
 
@@ -540,7 +540,7 @@ class PlayState extends MusicBeatState
 		                  bg.scale.set(6, 6);
 		                  add(bg);
 
-		                  /* 
+		                  
 		                           var bg:FlxSprite = new FlxSprite(posX, posY).loadGraphic(Paths.image('weeb/evilSchoolBG'));
 		                           bg.scale.set(6, 6);
 		                           // bg.setGraphicSize(Std.int(bg.width * 6));
@@ -557,12 +557,12 @@ class PlayState extends MusicBeatState
 		                           wiggleShit.waveAmplitude = 0.01;
 		                           wiggleShit.waveFrequency = 60;
 		                           wiggleShit.waveSpeed = 0.8;
-		                    */
+		                    
 
-		                  // bg.shader = wiggleShit.shader;
-		                  // fg.shader = wiggleShit.shader;
+		                   bg.shader = wiggleShit.shader;
+		                   fg.shader = wiggleShit.shader;
 
-		                  /* 
+		                  
 		                            var waveSprite = new FlxEffectSprite(bg, [waveEffectBG]);
 		                            var waveSpriteFG = new FlxEffectSprite(fg, [waveEffectFG]);
 
@@ -582,7 +582,7 @@ class PlayState extends MusicBeatState
 
 		                            add(waveSprite);
 		                            add(waveSpriteFG);
-		                    */
+		                    
 		          }
 				  case 'stage':
 				{
@@ -784,7 +784,7 @@ class PlayState extends MusicBeatState
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.04);
+		FlxG.camera.follow(camFollow, TOPDOWN_TIGHT, 0.2);
 		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow.getPosition());
@@ -2235,8 +2235,8 @@ class PlayState extends MusicBeatState
 					sploosh.scrollFactor.set();
 					sploosh.animation.play('splash ' + FlxG.random.int(0, 1) + " " + note.noteData);
 					sploosh.alpha = 0.6;
-					sploosh.offset.x += 90;
-					sploosh.offset.y += 80;
+					sploosh.offset.x += 100;
+					sploosh.offset.y += 95;
 					sploosh.animation.finishCallback = function(name) sploosh.kill();
 				}
 			}
@@ -2682,6 +2682,7 @@ class PlayState extends MusicBeatState
 
 		fastCar.velocity.x = (FlxG.random.int(170, 220) / FlxG.elapsed) * 3;
 		fastCarCanDrive = false;
+		camGame.shake(.0025,.1,null,true,X);
 		new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
 			resetFastCar();

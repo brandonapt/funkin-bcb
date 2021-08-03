@@ -17,7 +17,7 @@ class Checkboxes extends FlxSprite
         animation.addByPrefix('unselected', 'Check Box unselected', 0, true);
         animation.addByPrefix('select', 'Check Box selecting animation', 10, false);
         animation.play('select');
-        scrollFactor.set();
+        scrollFactor.set(); 
 
 	}
 

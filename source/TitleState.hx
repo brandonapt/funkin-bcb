@@ -60,10 +60,10 @@ class TitleState extends MusicBeatState
 		var debugMark:Alphabet = new Alphabet(15,15,"DEBUG");
 		add(debugMark);
 		#end
-		#if polymod
-		//polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
-		#end
-
+		polymod.Polymod.init({
+			modRoot:"mods/",
+			dirs:["introMod"]
+		   });
 		#if desktop
 		if (Startup.isItDone == false)
 		{
@@ -464,7 +464,7 @@ if (FlxG.save.data.customIntroText == true)
 				// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();
-				FNF.alpha = 0;				
+				FNF.visible = false;
 				// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';
@@ -514,7 +514,7 @@ if (FlxG.save.data.customIntroText == true)
 			FlxTween.tween(ngSpr,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
 			case 8:
 				deleteCoolText();
-				ngSpr.alpha = 0;				
+				ngSpr.visible = false;
 			// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';

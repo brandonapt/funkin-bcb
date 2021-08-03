@@ -273,8 +273,8 @@ class StoryMenuState extends MusicBeatState
 				
 			}
 		}
-
-
+		if (curWeek == 0)
+			FlxTween.color(txtTracklist, 0.1, txtTracklist.color, FlxColor.YELLOW);
 		scoreText.text = "High Score: " + lerpScore;
 
 

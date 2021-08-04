@@ -918,6 +918,8 @@ class PlayState extends MusicBeatState
 			{
 				startCountdown();
 			}
+
+			
 	
 			super.create();
 		}

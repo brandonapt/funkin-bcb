@@ -58,40 +58,40 @@ class MainMenuState extends MusicBeatState
 		switch charNum
 		{
 			case 1:
-				character = new Character(770, 450, 'bf');
+				character = new Character(150, 0, 'bf');
 			case 2:
-				character = new Character(770, 450, 'dad');
+				character = new Character(150, 0, 'dad');
 			case 3:
-				character = new Character(770, 450, 'spooky');
+				character = new Character(150, 0, 'spooky');
 				character.y += 200;
 			case 4:
-				character = new Character(770, 450, 'mom');
+				character = new Character(150, 0, 'mom');
 			case 5:
-				character = new Character(770, 450, 'pico');
+				character = new Character(150, 0, 'pico');
 				character.y += 300;
 			case 6:
-				character = new Character(770, 450, 'parents-christmas');
+				character = new Character(150, 0, 'parents-christmas');
 				character.x -= 500;
 			case 7:
-				character = new Character(770, 450, 'monster-christmas');
+				character = new Character(150, 0, 'monster-christmas');
 				character.y += 130;
 			case 8:
-				character = new Character(770, 450, 'bf-christmas');
+				character = new Character(150, 0, 'bf-christmas');
 			case 9:
-				character = new Character(770, 450, 'monster');
+				character = new Character(150, 0, 'monster');
 				character.y += 100;
 			case 10:
-				character = new Character(770, 450, 'bf-pixel');
+				character = new Character(150, 0, 'bf-pixel');
 			case 11:
-				character = new Character(770, 450, 'senpai');
+				character = new Character(150, 0, 'senpai');
 				character.x += 150;
 				character.y += 360;
 			case 12:
-				character = new Character(770, 450, 'senpai-angry');
+				character = new Character(150, 0, 'senpai-angry');
 				character.x += 150;
 				character.y += 360;
 			case 13:
-				character = new Character(770, 450, 'spirit');
+				character = new Character(150, 0, 'spirit');
 				character.x -= 150;
 				character.y += 100;
 		}

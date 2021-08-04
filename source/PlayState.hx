@@ -105,7 +105,6 @@ class PlayState extends MusicBeatState
 	private var songPositionBar:Float = 0;
 
 
-
 	private var generatedMusic:Bool = false;
 	private var startingSong:Bool = false;
 
@@ -2235,8 +2234,8 @@ class PlayState extends MusicBeatState
 					sploosh.scrollFactor.set();
 					sploosh.animation.play('splash ' + FlxG.random.int(0, 1) + " " + note.noteData);
 					sploosh.alpha = 0.6;
-					sploosh.offset.x += 100;
-					sploosh.offset.y += 95;
+					sploosh.offset.x += 85;
+					sploosh.offset.y += 85;
 					sploosh.animation.finishCallback = function(name) sploosh.kill();
 				}
 			}

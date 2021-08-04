@@ -35,6 +35,8 @@ class MainMenuState extends MusicBeatState
 	var modName:String = Assets.getText(Paths.txt('modName'));
 
 	public static var lmaotext:FlxText;
+	private var character:Character;
+
 
 	public static var bg:FlxSprite;
 	#if !switch
@@ -51,11 +53,49 @@ class MainMenuState extends MusicBeatState
 	override function create()
 	{
 
-		#if debug
-		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
-		debugMark.alpha = 0.4;
-		add(debugMark);
-		#end
+		var charNum = FlxG.random.int(0, 13);
+
+		switch charNum
+		{
+			case 1:
+				character = new Character(770, 450, 'bf');
+			case 2:
+				character = new Character(770, 450, 'dad');
+			case 3:
+				character = new Character(770, 450, 'spooky');
+				character.y += 200;
+			case 4:
+				character = new Character(770, 450, 'mom');
+			case 5:
+				character = new Character(770, 450, 'pico');
+				character.y += 300;
+			case 6:
+				character = new Character(770, 450, 'parents-christmas');
+				character.x -= 500;
+			case 7:
+				character = new Character(770, 450, 'monster-christmas');
+				character.y += 130;
+			case 8:
+				character = new Character(770, 450, 'bf-christmas');
+			case 9:
+				character = new Character(770, 450, 'monster');
+				character.y += 100;
+			case 10:
+				character = new Character(770, 450, 'bf-pixel');
+			case 11:
+				character = new Character(770, 450, 'senpai');
+				character.x += 150;
+				character.y += 360;
+			case 12:
+				character = new Character(770, 450, 'senpai-angry');
+				character.x += 150;
+				character.y += 360;
+			case 13:
+				character = new Character(770, 450, 'spirit');
+				character.x -= 150;
+				character.y += 100;
+		}
+
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);

@@ -67,7 +67,10 @@ class ModManagerState extends MusicBeatState
             var accepted = controls.ACCEPT;
             if (accepted)
                 {
-                    trace(modList[curSelected]);
+                    //trace(modList[curSelected]);
+                    var po:String = modList[curSelected];
+                    if (FlxG.save.data.po == null)
+                        FlxG.save.data.po == true;
                     //FlxG.save.data.modList[curSelected] = !FlxG.save.data.modList[curSelected];
                     
                 }

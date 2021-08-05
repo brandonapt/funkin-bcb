@@ -75,6 +75,12 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
 				box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
 				box.visible = false;
+			case 'bopeebo':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
+				box.visible = false;
 			case 'senpai':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
@@ -112,9 +118,9 @@ class DialogueBox extends FlxSpriteGroup
 		if (!hasDialog)
 			return;
 	
-	switch (PlayState.SONG.stage)
+	switch (PlayState.SONG.song.toLowerCase())
 	{
-		case 'school':
+		case 'senpai':
 			portraitLeft = new FlxSprite(-20, 40);
 			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
 			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
@@ -143,7 +149,7 @@ class DialogueBox extends FlxSpriteGroup
 
 			handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
 			add(handSelect);
-			case 'schoolEvil':
+			case 'roses':
 				portraitLeft = new FlxSprite(-20, 40);
 				portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
@@ -172,20 +178,49 @@ class DialogueBox extends FlxSpriteGroup
 	
 				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
 				add(handSelect);
-		default:
-			portraitLeft = new FlxSprite(-20, 140);
-			portraitLeft.frames = Paths.getSparrowAtlas('port');
-			portraitLeft.animation.addByPrefix('enter', 'port2', 1, false);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
+			case 'thorns':
+				portraitLeft = new FlxSprite(-20, 40);
+				portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
+	
+				portraitRight = new FlxSprite(0, 40);
+				portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
+				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+			
+				box.animation.play('normalOpen');
+				box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+				box.updateHitbox();
+				add(box);
+	
+				box.screenCenter(X);
+				portraitLeft.screenCenter(X);
+	
+				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+				add(handSelect);
+		case 'bopeebo':
+			portraitLeft = new FlxSprite(0, 60);
+			portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
+			//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
 			portraitLeft.updateHitbox();
 			portraitLeft.scrollFactor.set();
 			add(portraitLeft);
 			portraitLeft.visible = false;
 
-			portraitRight = new FlxSprite(0, 140);
-			portraitRight.frames = Paths.getSparrowAtlas('port');
-			portraitRight.animation.addByPrefix('enter', 'port3', 1, false);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
+			portraitRight = new FlxSprite(-500, 40);
+			portraitRight.loadGraphic(Paths.image('dialogue/bf'));
+			//portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
 			portraitRight.updateHitbox();
 			portraitRight.scrollFactor.set();
 			add(portraitRight);
@@ -199,7 +234,35 @@ class DialogueBox extends FlxSpriteGroup
 			add(box);
 
 			box.screenCenter(X);
-			portraitLeft.screenCenter(X);
+		default:
+			portraitLeft = new FlxSprite(-600, 230);
+			portraitLeft.frames = Paths.getSparrowAtlas('bf');
+			portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+
+			portraitRight = new FlxSprite(100, 215);
+			portraitRight.frames = Paths.getSparrowAtlas('gf');
+			portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
+			portraitRight.updateHitbox();
+			portraitRight.scrollFactor.set();
+			add(portraitRight);
+			portraitRight.visible = false;
+			portraitRight.flipX = true;
+
+			box.visible = true;
+			box.animation.play('normalOpen');
+			box.setGraphicSize(Std.int(box.width * 0.9));
+			box.updateHitbox();
+			box.offset.y -= 335;
+			add(box);
+
+			box.screenCenter(X);
+			//portraitLeft.screenCenter(X);
 
 	}
 

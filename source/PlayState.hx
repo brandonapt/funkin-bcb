@@ -204,17 +204,18 @@ class PlayState extends MusicBeatState
 			case 'tutorial':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial/lol'));
 			case 'bopeebo':
-				dialogue = [
-					'HEY!',
-					"You think you can just sing\nwith my daughter like that?",
-					"If you want to date her...",
-					"You're going to have to go \nthrough ME first!"
-				];
+				//dialogue = [
+				//	'HEY!',
+				//	"You think you can just sing\nwith my daughter like that?",
+				//	"If you want to date her...",
+				//	"You're going to have to go \nthrough ME first!"
+				//];
+				dialogue = CoolUtil.coolTextFile(Paths.txt('bopeebo/dia'));
 			case 'fresh':
 				dialogue = ["Not too shabby boy.", ""];
 			case 'dadbattle':
 				dialogue = [
-					"gah you think you're hot stuff?",
+					"gah! you think you're hot stuff?",
 					"If you can beat me here...",
 					"Only then I will even CONSIDER letting you\ndate my daughter!"
 				];
@@ -912,6 +913,8 @@ class PlayState extends MusicBeatState
 							schoolIntro(doof);
 					case 'tutorial':
 							schoolIntro(doof);
+					case 'bopeebo':
+						schoolIntro(doof);
 					default:
 						startCountdown();
 				}
@@ -938,16 +941,17 @@ class PlayState extends MusicBeatState
 		var red:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
 		red.scrollFactor.set();
 
+
 		var senpaiEvil:FlxSprite = new FlxSprite();
-		senpaiEvil.frames = Paths.getSparrowAtlas('weeb/senpaiCrazy');
-		senpaiEvil.animation.addByPrefix('idle', 'Senpai Pre Explosion', 24, false);
-		senpaiEvil.setGraphicSize(Std.int(senpaiEvil.width * 6));
-		senpaiEvil.scrollFactor.set();
-		senpaiEvil.updateHitbox();
-		senpaiEvil.screenCenter();
 
 		if (SONG.song.toLowerCase() == 'roses' || SONG.song.toLowerCase() == 'thorns')
 		{
+			senpaiEvil.frames = Paths.getSparrowAtlas('weeb/senpaiCrazy');
+			senpaiEvil.animation.addByPrefix('idle', 'Senpai Pre Explosion', 24, false);
+			senpaiEvil.setGraphicSize(Std.int(senpaiEvil.width * 6));
+			senpaiEvil.scrollFactor.set();
+			senpaiEvil.updateHitbox();
+			senpaiEvil.screenCenter();
 			remove(black);
 
 			if (SONG.song.toLowerCase() == 'thorns')
@@ -1176,7 +1180,7 @@ class PlayState extends MusicBeatState
 					'songPositionBar', 0, songLength - 1000);
 				songPosBar.numDivisions = 1000;
 				songPosBar.scrollFactor.set();
-				songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.BLUE);
+				songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.WHITE);
 				add(songPosBar);
 	
 				songPosBG.cameras = [camHUD];

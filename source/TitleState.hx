@@ -57,18 +57,20 @@ class TitleState extends MusicBeatState
 	{
 
 		#if debug
-		var debugMark:Alphabet = new Alphabet(15,15,"DEBUG");
+		var debugMark:Alphabet = new Alphabet(15,15,"DEBUG", true);
 		add(debugMark);
 		#end
-		polymod.Polymod.init({
-			modRoot:"mods/",
-			dirs:["introMod"]
-		   });
+		//polymod.Polymod.init({
+			//modRoot:"mods/",
+			//dirs:["introMod"]
+		   //});
 		#if desktop
+		#if !debug
 		if (Startup.isItDone == false)
 		{
 		FlxG.switchState(new Startup());
 		}
+		#end
 		#end
 
 		PlayerSettings.init();

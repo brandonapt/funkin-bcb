@@ -77,6 +77,8 @@ class OptionsMenuSubState extends MusicBeatState
         var blackBorder:FlxSprite;
         override function create()
             {
+
+                FlxG.sound.playMusic(Paths.music('title'));
                 instance = this;
                 #if debug
                 var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);
@@ -90,7 +92,7 @@ class OptionsMenuSubState extends MusicBeatState
                 magenta.updateHitbox();
                 magenta.screenCenter();
                 magenta.antialiasing = true;
-                magenta.color = 0xFFfd719b;
+                magenta.color = 0xFDdF819b;
                 add(magenta);
 
                 grpControls = new FlxTypedGroup<Alphabet>();
@@ -134,7 +136,10 @@ class OptionsMenuSubState extends MusicBeatState
                     if (acceptInput)
                     {
                         if (controls.BACK && !isCatagory)
+                            {
                             FlxG.switchState(new MainMenuState());
+                            FlxG.sound.playMusic(Paths.music('freakyMenu'));
+                            }
                         else if (controls.BACK)
                         {
                             isCatagory = false;

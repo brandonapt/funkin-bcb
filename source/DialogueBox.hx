@@ -69,6 +69,12 @@ class DialogueBox extends FlxSpriteGroup
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
+			case 'tutorial':
+				hasDialog = true;
+				box.frames = Paths.getSparrowAtlas('speech_bubble_talking');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
+				box.visible = false;
 			case 'senpai':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
@@ -105,35 +111,97 @@ class DialogueBox extends FlxSpriteGroup
 		
 		if (!hasDialog)
 			return;
+	
+	switch (PlayState.SONG.stage)
+	{
+		case 'school':
+			portraitLeft = new FlxSprite(-20, 40);
+			portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
+			portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
+
+			portraitRight = new FlxSprite(0, 40);
+			portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
+			portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+			portraitRight.updateHitbox();
+			portraitRight.scrollFactor.set();
+			add(portraitRight);
+			portraitRight.visible = false;
 		
-		portraitLeft = new FlxSprite(-20, 40);
-		portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
-		portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-		portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
-		portraitLeft.updateHitbox();
-		portraitLeft.scrollFactor.set();
-		add(portraitLeft);
-		portraitLeft.visible = false;
+			box.animation.play('normalOpen');
+			box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+			box.updateHitbox();
+			add(box);
 
-		portraitRight = new FlxSprite(0, 40);
-		portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
-		portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-		portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
-		portraitRight.updateHitbox();
-		portraitRight.scrollFactor.set();
-		add(portraitRight);
-		portraitRight.visible = false;
-		
-		box.animation.play('normalOpen');
-		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
-		box.updateHitbox();
-		add(box);
+			box.screenCenter(X);
+			portraitLeft.screenCenter(X);
 
-		box.screenCenter(X);
-		portraitLeft.screenCenter(X);
+			handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+			add(handSelect);
+			case 'schoolEvil':
+				portraitLeft = new FlxSprite(-20, 40);
+				portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
+	
+				portraitRight = new FlxSprite(0, 40);
+				portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
+				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+			
+				box.animation.play('normalOpen');
+				box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+				box.updateHitbox();
+				add(box);
+	
+				box.screenCenter(X);
+				portraitLeft.screenCenter(X);
+	
+				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+				add(handSelect);
+		default:
+			portraitLeft = new FlxSprite(-20, 40);
+			portraitLeft.frames = Paths.getSparrowAtlas('port');
+			portraitLeft.animation.addByPrefix('enter', 'port2', 1, false);
+			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
+			portraitLeft.updateHitbox();
+			portraitLeft.scrollFactor.set();
+			add(portraitLeft);
+			portraitLeft.visible = false;
 
-		handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
-		add(handSelect);
+			portraitRight = new FlxSprite(0, 40);
+			portraitRight.frames = Paths.getSparrowAtlas('port');
+			portraitRight.animation.addByPrefix('enter', 'port3', 1, false);
+			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
+			portraitRight.updateHitbox();
+			portraitRight.scrollFactor.set();
+			add(portraitRight);
+			portraitRight.visible = false;
+
+			box.visible = true;
+			box.animation.play('normalOpen');
+			box.setGraphicSize(Std.int(box.width * 0.9));
+			box.updateHitbox();
+			box.offset.y -= 130;
+			add(box);
+
+			box.screenCenter(X);
+			portraitLeft.screenCenter(X);
+
+	}
 
     
 		if (!talkingRight)

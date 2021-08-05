@@ -202,7 +202,7 @@ class PlayState extends MusicBeatState
 		switch (SONG.song.toLowerCase())
 		{
 			case 'tutorial':
-				dialogue = ["Hey you're pretty cute.", 'Use the arrow keys to keep up \nwith me singing.'];
+				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial/lol'));
 			case 'bopeebo':
 				dialogue = [
 					'HEY!',
@@ -909,6 +909,8 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('ANGRY'));
 							schoolIntro(doof);
 					case 'thorns':
+							schoolIntro(doof);
+					case 'tutorial':
 							schoolIntro(doof);
 					default:
 						startCountdown();

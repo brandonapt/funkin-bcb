@@ -25,6 +25,9 @@ class StoryMenuState extends MusicBeatState
 	var loltext:FlxText;
 
 	public static var curDifficulty:Int = 1;
+	var hasChanged:Bool = false;
+
+
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
 
@@ -205,6 +208,7 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
 		sprDifficulty.animation.play('easy');
 		changeDifficulty();
+		hasChanged = true;
 
 		difficultySelectors.add(sprDifficulty);
 
@@ -466,6 +470,7 @@ class StoryMenuState extends MusicBeatState
 		#end
 
 		FlxTween.tween(sprDifficulty, {alpha: 1}, 0.1);
+		
 	}
 
 	var lerpScore:Int = 0;

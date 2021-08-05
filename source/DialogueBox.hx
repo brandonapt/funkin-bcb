@@ -173,7 +173,7 @@ class DialogueBox extends FlxSpriteGroup
 				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
 				add(handSelect);
 		default:
-			portraitLeft = new FlxSprite(-20, 40);
+			portraitLeft = new FlxSprite(-20, 140);
 			portraitLeft.frames = Paths.getSparrowAtlas('port');
 			portraitLeft.animation.addByPrefix('enter', 'port2', 1, false);
 			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
@@ -182,7 +182,7 @@ class DialogueBox extends FlxSpriteGroup
 			add(portraitLeft);
 			portraitLeft.visible = false;
 
-			portraitRight = new FlxSprite(0, 40);
+			portraitRight = new FlxSprite(0, 140);
 			portraitRight.frames = Paths.getSparrowAtlas('port');
 			portraitRight.animation.addByPrefix('enter', 'port3', 1, false);
 			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
@@ -195,7 +195,7 @@ class DialogueBox extends FlxSpriteGroup
 			box.animation.play('normalOpen');
 			box.setGraphicSize(Std.int(box.width * 0.9));
 			box.updateHitbox();
-			box.offset.y -= 130;
+			box.offset.y -= 335;
 			add(box);
 
 			box.screenCenter(X);
@@ -208,7 +208,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			// box.flipX = true;
 		}
-
+		
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
 		dropText.font = 'Pixel Arial 11 Bold';
 		dropText.color = 0xFFD89494;

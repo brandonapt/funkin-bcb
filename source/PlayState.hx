@@ -204,21 +204,11 @@ class PlayState extends MusicBeatState
 			case 'tutorial':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial/lol'));
 			case 'bopeebo':
-				//dialogue = [
-				//	'HEY!',
-				//	"You think you can just sing\nwith my daughter like that?",
-				//	"If you want to date her...",
-				//	"You're going to have to go \nthrough ME first!"
-				//];
 				dialogue = CoolUtil.coolTextFile(Paths.txt('bopeebo/dia'));
-			case 'fresh':
-				dialogue = ["Not too shabby boy.", ""];
+			case 'south':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('fresh/daa'));
 			case 'dadbattle':
-				dialogue = [
-					"gah! you think you're hot stuff?",
-					"If you can beat me here...",
-					"Only then I will even CONSIDER letting you\ndate my daughter!"
-				];
+				dialogue = CoolUtil.coolTextFile(Paths.txt('dadbattle/poop'));
 			case 'senpai':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
 			case 'roses':
@@ -915,6 +905,10 @@ class PlayState extends MusicBeatState
 							schoolIntro(doof);
 					case 'bopeebo':
 						schoolIntro(doof);
+					case 'south':
+						schoolIntro(doof);
+					case 'dadbattle':
+						//schoolIntro(doof);
 					default:
 						startCountdown();
 				}

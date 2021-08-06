@@ -207,64 +207,118 @@ class DialogueBox extends FlxSpriteGroup
 	
 				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
 				add(handSelect);
-		case 'bopeebo':
-			portraitLeft = new FlxSprite(0, 60);
-			portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
-			//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
-			portraitLeft.updateHitbox();
-			portraitLeft.scrollFactor.set();
-			add(portraitLeft);
-			portraitLeft.visible = false;
+			case 'bopeebo':
+				portraitLeft = new FlxSprite(80, 60);
+				portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
+				//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
 
-			portraitRight = new FlxSprite(-500, 40);
-			portraitRight.loadGraphic(Paths.image('dialogue/bf'));
-			//portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
-			portraitRight.updateHitbox();
-			portraitRight.scrollFactor.set();
-			add(portraitRight);
-			portraitRight.visible = false;
+				portraitRight = new FlxSprite(765, 60);
+				portraitRight.loadGraphic(Paths.image('dialogue/bf'));
+				//portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
 
-			box.visible = true;
-			box.animation.play('normalOpen');
-			box.setGraphicSize(Std.int(box.width * 0.9));
-			box.updateHitbox();
-			box.offset.y -= 335;
-			add(box);
+				box.visible = true;
+				box.animation.play('normalOpen');
+				box.setGraphicSize(Std.int(box.width * 0.9));
+				box.updateHitbox();
+				box.offset.y -= 335;
+				add(box);
 
-			box.screenCenter(X);
-		default:
-			portraitLeft = new FlxSprite(-600, 230);
-			portraitLeft.frames = Paths.getSparrowAtlas('bf');
-			portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
-			portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
-			portraitLeft.updateHitbox();
-			portraitLeft.scrollFactor.set();
-			add(portraitLeft);
-			portraitLeft.visible = false;
+				box.screenCenter(X);
+			case 'fresh':
+				portraitLeft = new FlxSprite(80, 60);
+				portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
+				//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
 
-			portraitRight = new FlxSprite(100, 215);
-			portraitRight.frames = Paths.getSparrowAtlas('gf');
-			portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
-			portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
-			portraitRight.updateHitbox();
-			portraitRight.scrollFactor.set();
-			add(portraitRight);
-			portraitRight.visible = false;
-			portraitRight.flipX = true;
+				portraitRight = new FlxSprite(765, 60);
+				portraitRight.loadGraphic(Paths.image('dialogue/bf'));
+				//portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
 
-			box.visible = true;
-			box.animation.play('normalOpen');
-			box.setGraphicSize(Std.int(box.width * 0.9));
-			box.updateHitbox();
-			box.offset.y -= 335;
-			add(box);
+				box.visible = true;
+				box.animation.play('normalOpen');
+				box.setGraphicSize(Std.int(box.width * 0.9));
+				box.updateHitbox();
+				box.offset.y -= 335;
+				add(box);
 
-			box.screenCenter(X);
-			//portraitLeft.screenCenter(X);
+				box.screenCenter(X);
+			case 'south':
+				portraitLeft = new FlxSprite(80, 60);
+				portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
+				//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
 
-	}
+				portraitRight = new FlxSprite(765, 60);
+				portraitRight.loadGraphic(Paths.image('dialogue/bf'));
+				//portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+
+				box.visible = true;
+				box.animation.play('normalOpen');
+				box.setGraphicSize(Std.int(box.width * 0.9));
+				box.updateHitbox();
+				box.offset.y -= 335;
+				add(box);
+
+				box.screenCenter(X);
+			default:
+				portraitLeft = new FlxSprite(80, 60);
+				portraitLeft.frames = Paths.getSparrowAtlas('bf');
+				portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
+				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				add(portraitLeft);
+				portraitLeft.visible = false;
+
+				portraitRight = new FlxSprite(100, 215);
+				portraitRight.frames = Paths.getSparrowAtlas('gf');
+				portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.9));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				add(portraitRight);
+				portraitRight.visible = false;
+				portraitRight.flipX = true;
+
+				box.visible = true;
+				box.animation.play('normalOpen');
+				box.setGraphicSize(Std.int(box.width * 0.9));
+				box.updateHitbox();
+				box.offset.y -= 335;
+				add(box);
+
+				box.screenCenter(X);
+				//portraitLeft.screenCenter(X);
+
+		}
 
     
 		if (!talkingRight)
@@ -272,15 +326,28 @@ class DialogueBox extends FlxSpriteGroup
 			// box.flipX = true;
 		}
 		
-		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
-		dropText.font = 'Pixel Arial 11 Bold';
+		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "-", 32);
+		if (PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns'|| PlayState.SONG.song.toLowerCase() == 'senpai')
+			{
+				dropText.font = 'Pixel Arial 11 Bold';
+			}else{
+				dropText.setFormat(Paths.font("vcr.ttf"), 24);
+		}
 		dropText.color = 0xFFD89494;
 		add(dropText);
 
-		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
-		swagDialogue.font = 'Pixel Arial 11 Bold';
+		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "-", 32);
+		if (PlayState.SONG.song.toLowerCase() == 'roses' || PlayState.SONG.song.toLowerCase() == 'thorns'|| PlayState.SONG.song.toLowerCase() == 'senpai')
+		{
+			swagDialogue.font = 'Pixel Arial 11 Bold';
+		} else {
+			swagDialogue.setFormat(Paths.font("vcr.ttf"), 24);
+
+	}
+	swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+
 		swagDialogue.color = 0xFF3F2021;
-		swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+
 		add(swagDialogue);
 
 		dialogue = new Alphabet(0, 80, "", false, true);
@@ -303,7 +370,6 @@ class DialogueBox extends FlxSpriteGroup
 			dropText.color = FlxColor.BLACK;
 		}
 
-		dropText.text = swagDialogue.text;
 
 		if (box.animation.curAnim != null)
 		{
@@ -358,7 +424,8 @@ class DialogueBox extends FlxSpriteGroup
 				startDialogue();
 			}
 		}
-		
+		dropText.text = swagDialogue.text;
+
 		super.update(elapsed);
 	}
 

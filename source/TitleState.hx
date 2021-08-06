@@ -60,10 +60,12 @@ class TitleState extends MusicBeatState
 		var debugMark:Alphabet = new Alphabet(15,15,"DEBUG", true);
 		add(debugMark);
 		#end
-		//polymod.Polymod.init({
-			//modRoot:"mods/",
-			//dirs:["introMod"]
-		   //});
+		var modList = CoolUtil.coolTextFile(Paths.txt('modList'));
+
+		polymod.Polymod.init({
+			modRoot:"mods/",
+			dirs:modList
+		   });
 		#if desktop
 		#if !debug
 		if (Startup.isItDone == false)

@@ -1,4 +1,5 @@
 package;
+import polymod.Polymod;
 import haxe.macro.CompilationServer.ModuleCheckPolicy;
 import Controls.Control;
 import flixel.input.gamepad.FlxGamepad;
@@ -30,6 +31,11 @@ class ModManagerState extends MusicBeatState
     var modList = CoolUtil.coolTextFile(Paths.txt('modList'));
     var curSelected:Int = 0;
 
+    public static var versionShit:FlxText;
+    var currentDescription:String = "";
+    var blackBorder:FlxSprite;
+
+
 
 
     override function create()
@@ -57,13 +63,28 @@ class ModManagerState extends MusicBeatState
         
                     // DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
                 }
+                                currentDescription = "none";
+
+                versionShit = new FlxText(5, FlxG.height + 40, 0, currentDescription, 12);
+                versionShit.scrollFactor.set();
+                versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+                
+                blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(versionShit.width + 900)),Std.int(versionShit.height + 600),FlxColor.BLACK);
+                blackBorder.alpha = 0.5;
+        
+                add(blackBorder);
+        
+                add(versionShit);
+        
+                FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.expoInOut});
+                FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.expoInOut});
             changeSelection();
         }
     
     override function update(elapsed:Float)
         {
             super.update(elapsed);
-
+            versionShit.text = currentDescription;
             var accepted = controls.ACCEPT;
             if (accepted)
                 {
@@ -93,6 +114,8 @@ class ModManagerState extends MusicBeatState
                 #end
                 
                 FlxG.sound.play(Paths.sound("scrollMenu"), 0.7);
+
+
         
                 curSelected += change;
         

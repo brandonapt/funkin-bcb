@@ -207,61 +207,8 @@ class DialogueBox extends FlxSpriteGroup
 	
 				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
 				add(handSelect);
+			
 			case 'bopeebo':
-				portraitLeft = new FlxSprite(80, 60);
-				portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
-				//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
-				portraitLeft.updateHitbox();
-				portraitLeft.scrollFactor.set();
-				add(portraitLeft);
-				portraitLeft.visible = false;
-
-				portraitRight = new FlxSprite(765, 60);
-				portraitRight.loadGraphic(Paths.image('dialogue/bf'));
-				//portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
-				portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
-				portraitRight.updateHitbox();
-				portraitRight.scrollFactor.set();
-				add(portraitRight);
-				portraitRight.visible = false;
-
-				box.visible = true;
-				box.animation.play('normalOpen');
-				box.setGraphicSize(Std.int(box.width * 0.9));
-				box.updateHitbox();
-				box.offset.y -= 335;
-				add(box);
-
-				box.screenCenter(X);
-			case 'fresh':
-				portraitLeft = new FlxSprite(80, 60);
-				portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
-				//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * 0.8));
-				portraitLeft.updateHitbox();
-				portraitLeft.scrollFactor.set();
-				add(portraitLeft);
-				portraitLeft.visible = false;
-
-				portraitRight = new FlxSprite(765, 60);
-				portraitRight.loadGraphic(Paths.image('dialogue/bf'));
-				//portraitRight.animation.addByPrefix('enter', 'GF Dancing Beat', 12, true);
-				portraitRight.setGraphicSize(Std.int(portraitRight.width * 0.8));
-				portraitRight.updateHitbox();
-				portraitRight.scrollFactor.set();
-				add(portraitRight);
-				portraitRight.visible = false;
-
-				box.visible = true;
-				box.animation.play('normalOpen');
-				box.setGraphicSize(Std.int(box.width * 0.9));
-				box.updateHitbox();
-				box.offset.y -= 335;
-				add(box);
-
-				box.screenCenter(X);
-			case 'south':
 				portraitLeft = new FlxSprite(80, 60);
 				portraitLeft.loadGraphic(Paths.image('dialogue/dad'));
 				//portraitLeft.animation.addByPrefix('enter', 'BF idle dance', 12, true);

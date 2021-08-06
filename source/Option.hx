@@ -567,3 +567,72 @@ class ModManager extends Option
 		return  FlxG.save.data.noteSplash ? "OPEN mod manager" : "open mod manager";
 	}
 }
+
+class EnableStoryMode extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.storymode = !FlxG.save.data.storymode;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.storymode ? "Story Mode Enabled" : "Story Mode Disabled";
+	}
+}
+
+class EnableFreeplay extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.freeplay = !FlxG.save.data.freeplay;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.freeplay ? "Freeplay Enabled" : "Freeplay Disabled";
+	}
+}
+
+class Watermarks extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.watermarks = !FlxG.save.data.watermarks;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.watermarks ? "Watermarks" : "No Watermarks";
+	}
+}

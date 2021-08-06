@@ -40,7 +40,7 @@ class MainMenuState extends MusicBeatState
 
 	public static var bg:FlxSprite;
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'options'];
+	var optionShit:Array<String> = [];
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -52,6 +52,12 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+
+		if (FlxG.save.data.storymode == true)
+			optionShit.push('story mode');
+		if (FlxG.save.data.freeplay == true)
+			optionShit.push('freeplay');
+		optionShit.push('options');
 
 		var charNum = FlxG.random.int(0, 13);
 
@@ -175,11 +181,15 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
+		if (FlxG.save.data.watermarks == false)
+			versionShit.text = '0.2.7.1';
 
 		lmaotext = new FlxText(5, FlxG.height - 45, 0, modName, 12);
 		lmaotext.scrollFactor.set();
 		lmaotext.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(lmaotext);
+		if (FlxG.save.data.watermarks == false)
+			lmaotext.visible = false;
 
 
 

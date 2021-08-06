@@ -32,11 +32,10 @@ class OptionsMenuSubState extends MusicBeatState
 
 
         var options:Array<OptionCategory> = [
-            new OptionCategory("Loading", [
-                new PreloadMusic('Toggles the preload of songs.'),
-                new PreloadChars('Toggles the preload of characters.'),
-                new PreloadGraphics('Toggles the preload of graphics.'),
-
+            new OptionCategory("Main Menu", [
+                new EnableStoryMode('Toggles the story mode button.'),
+                new EnableFreeplay('Toggles the freeplay button.'),
+                new Watermarks('Toggles watermarks.')
             ]),
             new OptionCategory("Gameplay", [
                 new HarderMode('Makes Hard Mode Even HARDER!'),
@@ -49,13 +48,13 @@ class OptionsMenuSubState extends MusicBeatState
             new OptionCategory("Freeplay", [
                 new FreeplayPreviews('Toggles the song previews in freeplay.'),
                 new FreeplayDialogue('Dialogue in Freeplay.'),
-                new FreeplayIcons('Toggles the freepelay Icons.'),
+                new FreeplayIcons('Toggles the freeplay Icons.'),
                 new FPBG('Toggles Freeplay Background Changes.')
             ]),
             new OptionCategory("Appearance", [
                 new CustomIntro('Toggles a custom intro text set.'),
                 new FpsCounter('Toggles a FPS Counter.'),
-                new LogoAnimation('Enables a cool animation on the title screen.'),
+                new LogoAnimation('Toggles a cool animation on the title screen.'),
                 new MemCounter('Toggles a Memory Counter.'),
                 new NoteSplash('Toggles note splashes on SICK!'),
             ]),

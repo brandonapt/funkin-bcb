@@ -906,7 +906,7 @@ class PlayState extends MusicBeatState
 					case 'bopeebo':
 						schoolIntro(doof);
 					case 'south':
-						schoolIntro(doof);
+						//schoolIntro(doof);
 					case 'dadbattle':
 						//schoolIntro(doof);
 					default:

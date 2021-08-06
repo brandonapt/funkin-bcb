@@ -45,6 +45,12 @@ class MainVariables
             FlxG.save.data.newInput = false;
         if (FlxG.save.data.noteSplash == null)
             FlxG.save.data.noteSplash = false;
+        if (FlxG.save.data.storymode == null)
+            FlxG.save.data.storymode = true;
+        if (FlxG.save.data.freeplay == null)
+            FlxG.save.data.freeplay = true;
+        if (FlxG.save.data.watermarks == null)
+            FlxG.save.data.watermarks = false;
 
 
 	}

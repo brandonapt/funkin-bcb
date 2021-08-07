@@ -8,7 +8,7 @@ and on Microsoft Windows (lol u dont need link)
 This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
 Brandon's Custom Build is a build made by me, (Brandon) and (zero) contributers :(.  
   
-This mod was made entirely for fun. I'm aware zero people have downloaded it and I don't care. This is for me to learn.
+This mod was made entirely for fun. I'm aware zero people have downloaded it and I don't care. This is all for me to learn.
 
 
 Play online demo: https://www.fused.fans/funkin
@@ -30,7 +30,7 @@ Download the latest stable release here: https://github.com/brandoge91/funkin-bc
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art  
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician  
 - [brandon(me!)](https://www.fused.fans) - BCB Programmer  
-- [KadeDev/KE](https://github.com/kadedev/) - Options Menu 
+- [KadeDev/KE](https://github.com/kadedev/) - Kade Engine input
 
 
 ## Build instructions
@@ -68,8 +68,6 @@ You'll also need to install a couple things that involve Gits. To do this, you n
 5. Run `haxelib git extension-webm https://github.com/GrowtopiaFli/extension-webm` to install extension-webm and run `lime rebuild extension-webm windows`. This is required to run webm videos in-game.
 You should have everything ready for compiling the game! Follow the guide below to continue!
 
-ViDEOS ARE VERy Very BORKEN RN DONT TRY TO USE IT LOL
-
 At the moment, you can optionally fix the transition bug in songs with zoomed out cameras.
 - Run `haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons` in the terminal/command-prompt.
 
@@ -102,4 +100,4 @@ As for Mac, 'lime test mac -debug' should work, if not the internet surely has a
 ### Additional guides
 
 - [Command line basics](https://ninjamuffin99.newgrounds.com/news/post/1090480)
-Happy funking!
+Happy funkin!

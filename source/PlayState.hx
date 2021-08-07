@@ -205,10 +205,6 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial/lol'));
 			case 'bopeebo':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('bopeebo/dia'));
-			case 'south':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('fresh/daa'));
-			case 'dadbattle':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('dadbattle/poop'));
 			case 'senpai':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
 			case 'roses':
@@ -905,9 +901,6 @@ class PlayState extends MusicBeatState
 							schoolIntro(doof);
 					case 'bopeebo':
 						schoolIntro(doof);
-					case 'south':
-						//schoolIntro(doof);
-					case 'dadbattle':
 						//schoolIntro(doof);
 					default:
 						startCountdown();
@@ -1624,8 +1617,8 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, 150, 0.09 / (60 / 60))));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(iconP2.width, 150, 0.09 / (60 / 60))));
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, FlxG.save.data.iconZoom, 0.09 / (60 / 60))));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(iconP2.width, FlxG.save.data.iconZoom, 0.09 / (60 / 60))));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
@@ -1897,8 +1890,11 @@ class PlayState extends MusicBeatState
 										health -= 0.0175;
 									}
 								}
+								if (FlxG.save.data.player2Strums)
+									{
 								spr.animation.play('confirm', true);
 								sustain2(spr.ID, daNote);
+									}
 							}
 						});
 
@@ -2506,20 +2502,24 @@ class PlayState extends MusicBeatState
 				{
 					case 0:
 						if (strums2[0][1])
-							spr.animation.play('static');
+							if (FlxG.save.data.player2Strums)
+								spr.animation.play('static');
 							strums2[0][1] = false;
 					case 1:
 						if (strums2[1][1])
-							spr.animation.play('static');
+							if (FlxG.save.data.player2Strums)
+								spr.animation.play('static');
 							strums2[1][1] = false;
 	
 					case 2:
 						if (strums2[2][1])
-							spr.animation.play('static');
+							if (FlxG.save.data.player2Strums)
+								spr.animation.play('static');
 							strums2[2][1] = false;
 					case 3:
 						if (strums2[3][1])
-							spr.animation.play('static');
+							if (FlxG.save.data.player2Strums)
+								spr.animation.play('static');
 							strums2[3][1] = false;
 	
 				}
@@ -2541,7 +2541,7 @@ class PlayState extends MusicBeatState
 			if (!boyfriend.stunned)
 			{
 				health -= 0.04;
-				if (combo > 5 && gf.animOffsets.exists('sad'))
+				if (combo > 5 && gf.animOffsets.exists('sad') || FlxG.save.data.missCry)
 				{
 					gf.playAnim('sad');
 				}
@@ -2556,7 +2556,10 @@ class PlayState extends MusicBeatState
 						// FlxG.log.add('played imss note');
 					}				// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 				// FlxG.log.add('played imss note');
-	
+				if (FlxG.save.data.missShake)
+					{
+						camGame.shake(.0025,.1,null,true,X);
+					}
 				boyfriend.stunned = true;
 				songMisses += 1;
 					

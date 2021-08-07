@@ -44,6 +44,8 @@ class OptionsMenuSubState extends MusicBeatState
                // new Autoplay('Toggles an autoplaying bot for mod showcase.'),
                 new MissSFX('Toggles miss sound effects.'),
                 new Input('Toggles the old and new input.'),
+                new MissShake('Toggles screen shake on miss.'),
+                new MissCry('Toggles GF\'s tears on miss.')
             ]),
             new OptionCategory("Freeplay", [
                 new FreeplayPreviews('Toggles the song previews in freeplay.'),
@@ -57,6 +59,8 @@ class OptionsMenuSubState extends MusicBeatState
                 new LogoAnimation('Toggles a cool animation on the title screen.'),
                 new MemCounter('Toggles a Memory Counter.'),
                 new NoteSplash('Toggles note splashes on SICK!'),
+                new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
+                new P2Strums('Toggles the opponents notes lighting up.')
             ]),
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),
@@ -188,14 +192,14 @@ class OptionsMenuSubState extends MusicBeatState
                                 if (FlxG.keys.pressed.SHIFT)
                                 {
                                     if (FlxG.keys.justPressed.RIGHT)
-                                        FlxG.save.data.offset += 0.1;
+                                        currentSelectedCat.getOptions()[curSelected].right();
                                     else if (FlxG.keys.justPressed.LEFT)
-                                        FlxG.save.data.offset -= 0.1;
+                                        currentSelectedCat.getOptions()[curSelected].left();
                                 }
                                 else if (FlxG.keys.pressed.RIGHT)
-                                    FlxG.save.data.offset += 0.1;
+                                    currentSelectedCat.getOptions()[curSelected].right();
                                 else if (FlxG.keys.pressed.LEFT)
-                                    FlxG.save.data.offset -= 0.1;
+                                    currentSelectedCat.getOptions()[curSelected].left();
                                 
                                 versionShit.text = currentDescription;
                             }

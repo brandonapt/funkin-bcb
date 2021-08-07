@@ -30,6 +30,9 @@ class ModManagerState extends MusicBeatState
     private var grpControls:FlxTypedGroup<Alphabet>;
     var modList = CoolUtil.coolTextFile(Paths.txt('modList'));
     var curSelected:Int = 0;
+    public static var enabledMods:Array<String>;
+
+
 
     public static var versionShit:FlxText;
     var currentDescription:String = "";
@@ -50,6 +53,9 @@ class ModManagerState extends MusicBeatState
             magenta.color = 0xFFdf718b;
             add(magenta);
 
+            if (FlxG.save.data.EnabledMods != null)
+               enabledMods = FlxG.save.data.EnabledMods;
+
             grpControls = new FlxTypedGroup<Alphabet>();
             add(grpControls);
 
@@ -59,46 +65,63 @@ class ModManagerState extends MusicBeatState
                     controlLabel.isMenuItem = true;
                     controlLabel.targetY = i;
                     grpControls.add(controlLabel);
-
         
                     // DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
                 }
-                                currentDescription = "none";
+            enabledMods = modList;
 
-                versionShit = new FlxText(5, FlxG.height + 40, 0, currentDescription, 12);
-                versionShit.scrollFactor.set();
-                versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+            currentDescription = "none";
+
+            versionShit = new FlxText(5, FlxG.height + 40, 0, currentDescription, 12);
+            versionShit.scrollFactor.set();
+            versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                 
-                blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(versionShit.width + 900)),Std.int(versionShit.height + 600),FlxColor.BLACK);
-                blackBorder.alpha = 0.5;
+            blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(versionShit.width + 900)),Std.int(versionShit.height + 600),FlxColor.BLACK);
+            blackBorder.alpha = 0.5;
         
-                add(blackBorder);
+            add(blackBorder);
         
-                add(versionShit);
+            add(versionShit);
         
-                FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.expoInOut});
-                FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.expoInOut});
+            FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.expoInOut});
+            FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.expoInOut});
             changeSelection();
         }
     
     override function update(elapsed:Float)
         {
             super.update(elapsed);
+            FlxG.save.data.EnabledMods = enabledMods;
+            enabledMods = FlxG.save.data.EnabledMods;
             versionShit.text = currentDescription;
             var accepted = controls.ACCEPT;
             if (accepted)
                 {
                     //trace(modList[curSelected]);
-                    var po:String = modList[curSelected];
-                    if (FlxG.save.data.po == null)
-                        FlxG.save.data.po == true;
+                    if (grpControls.members[curSelected].text == modList[curSelected])
+                    {
+                        trace(modList[curSelected]);
+                        enabledMods.remove(modList[curSelected]);
+                        grpControls.members[curSelected].reType(modList[curSelected] + "- DISABLED");
+                    } else {
+                        trace(modList[curSelected]);
+                        enabledMods.push(modList[curSelected]);
+                        grpControls.members[curSelected].reType(modList[curSelected]);
+
+                    }
                     //FlxG.save.data.modList[curSelected] = !FlxG.save.data.modList[curSelected];
                     
                 }
 
             if (controls.BACK)
+            {
                 FlxG.switchState(new OptionsMenuSubState());
+                polymod.Polymod.init({
+                    modRoot:"mods/",
+                    dirs:enabledMods
+                });
                 FlxG.save.flush();
+            }
 
 
             if (FlxG.keys.justPressed.UP)
@@ -113,9 +136,7 @@ class ModManagerState extends MusicBeatState
                 // NGio.logEvent("Fresh");
                 #end
                 
-                FlxG.sound.play(Paths.sound("scrollMenu"), 0.7);
-
-
+                FlxG.sound.play(Paths.sound("scrollMenu"), 0.4);
         
                 curSelected += change;
         
@@ -123,6 +144,9 @@ class ModManagerState extends MusicBeatState
                     curSelected = grpControls.length - 1;
                 if (curSelected >= grpControls.length)
                     curSelected = 0;
+        
+
+              
                 // selector.y = (70 * curSelected) + 30;
         
                 var bullShit:Int = 0;

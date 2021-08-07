@@ -16,6 +16,7 @@ class Main extends Sprite
 	#if desktop	
 	public var webmHandle:WebmHandler;
 	#end
+	public static var hasLoadedPolymod:Bool = false;
 
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 720;

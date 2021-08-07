@@ -61,11 +61,15 @@ class TitleState extends MusicBeatState
 		add(debugMark);
 		#end
 		var modList = CoolUtil.coolTextFile(Paths.txt('modList'));
+		if (Main.hasLoadedPolymod == false)
+			{
+				polymod.Polymod.init({
+					modRoot:"mods/",
+					dirs:modList
+				   });
+				   Main.hasLoadedPolymod = true;
+			}
 
-		polymod.Polymod.init({
-			modRoot:"mods/",
-			dirs:modList
-		   });
 		#if desktop
 		#if !debug
 		if (Startup.isItDone == false)

@@ -51,6 +51,14 @@ class MainVariables
             FlxG.save.data.freeplay = true;
         if (FlxG.save.data.watermarks == null)
             FlxG.save.data.watermarks = false;
+        if (FlxG.save.data.missShake == null)
+            FlxG.save.data.missShake = false;
+        if (FlxG.save.data.missCry == null)
+            FlxG.save.data.missCry = false;
+        if (FlxG.save.data.iconZoom == null)
+            FlxG.save.data.iconZoom = 150;
+        if (FlxG.save.data.player2Strums == null)
+            FlxG.save.data.player2Strums = false;
 
 
 	}

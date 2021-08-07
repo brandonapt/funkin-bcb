@@ -636,3 +636,106 @@ class Watermarks extends Option
 		return  FlxG.save.data.watermarks ? "Watermarks" : "No Watermarks";
 	}
 }
+
+class MissShake extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.missShake = !FlxG.save.data.missShake;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.missShake ? "Miss shake" : "No miss shake";
+	}
+}
+
+class MissCry extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.missCry = !FlxG.save.data.missCry;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.missCry ? "GF cries on miss" : "gf stays chill on miss";
+	}
+}
+
+class IconZoom extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function right():Bool
+		{
+			FlxG.save.data.iconZoom = FlxG.save.data.iconZoom + 1;
+			display = updateDisplay();
+			return false;
+		}
+		public override function left():Bool
+			{
+				FlxG.save.data.iconZoom = FlxG.save.data.iconZoom - 1;
+				display = updateDisplay();
+				return false;
+			}
+	public override function press():Bool
+		{
+			FlxG.save.data.iconZoom = 150;
+			return true;
+		}
+
+	private override function updateDisplay():String
+	{
+		
+		var poopp:String = "Icon Zoom - " + FlxG.save.data.iconZoom;
+		return poopp;
+	}
+}
+
+class P2Strums extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.player2Strums = !FlxG.save.data.player2Strums;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.player2Strums ? "opponent notes light up" : "opponent notes stay static";
+	}
+}

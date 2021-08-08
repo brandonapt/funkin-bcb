@@ -404,7 +404,7 @@ class TitleState extends MusicBeatState
 			money.y += (i * 60) + 200;
 			credGroup.add(money);
 			textGroup.add(money);
-			FlxTween.tween(money,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
+			money.alpha = 1;
 		}
 	}
 
@@ -416,7 +416,7 @@ class TitleState extends MusicBeatState
 		coolText.y += (textGroup.length * 60) + 200;
 		credGroup.add(coolText);
 		textGroup.add(coolText);
-		FlxTween.tween(coolText,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
+		coolText.alpha = 1;
 	}
 
 	function deleteCoolText()
@@ -427,8 +427,7 @@ class TitleState extends MusicBeatState
 				
 			credGroup.remove(textGroup.members[0], true);
 			textGroup.remove(textGroup.members[0], true);
-			FlxTween.tween(money,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut}); 
-			FlxTween.tween(coolText,{alpha: 0} ,0.3,{ease: FlxEase.expoInOut});
+			
 
 
 
@@ -438,6 +437,8 @@ class TitleState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
+
+		FlxTween.tween(FlxG.camera, {zoom:1.05}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 		if (logoBl.visible = true)
 			logoBl.animation.play('bump');
 		danceLeft = !danceLeft;
@@ -468,7 +469,7 @@ if (FlxG.save.data.customIntroText == true)
 				createCoolText(['Newgrounds']);
 			case 7:
 				addMoreText('Forever');
-				FlxTween.tween(FNF,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
+				FNF.alpha = 1;
 				// credTextShit.text += '\nNewgrounds';
 			case 8:
 				deleteCoolText();
@@ -519,7 +520,7 @@ if (FlxG.save.data.customIntroText == true)
 				createCoolText(['In association', 'with']);
 			case 7:
 				addMoreText('newgrounds');
-			FlxTween.tween(ngSpr,{alpha: 1} ,0.4,{ease: FlxEase.expoInOut}); 
+				ngSpr.alpha = 1;
 			case 8:
 				deleteCoolText();
 				ngSpr.visible = false;

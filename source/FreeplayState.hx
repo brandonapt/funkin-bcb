@@ -232,9 +232,8 @@ class FreeplayState extends MusicBeatState
 		{
 		
 			var yourMom = new FlxSound().loadEmbedded(Paths.sound('confirmMenu'), false, true);
-			yourMom.volume = 0;
-			yourMom.play(false, FlxG.random.int(0, Std.int(yourMom.length / 2)));
 			yourMom.volume = 1.5;
+			yourMom.play(false, FlxG.random.int(0, Std.int(yourMom.length / 2)));
 			FlxG.sound.list.add(yourMom);
 			
 			

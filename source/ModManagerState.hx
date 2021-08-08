@@ -125,9 +125,9 @@ class ModManagerState extends MusicBeatState
 
 
             if (FlxG.keys.justPressed.UP)
-                changeSelection(-1);
+                changeSelection(1); 
             if (FlxG.keys.justPressed.DOWN)
-                changeSelection(1);
+                changeSelection(-1);
         }
 
         function changeSelection(change:Int = 0)

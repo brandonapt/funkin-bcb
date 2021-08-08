@@ -26,6 +26,7 @@ class StoryMenuState extends MusicBeatState
 
 	public static var curDifficulty:Int = 1;
 	var hasChanged:Bool = false;
+	var fade:FlxSprite;
 
 
 
@@ -223,6 +224,13 @@ class StoryMenuState extends MusicBeatState
 
 		add(yellowBG);
 		add(grpWeekCharacters);
+
+		fade = new FlxSprite(0).loadGraphic(Paths.image('fade_yellow'));
+		fade.screenCenter(Y);
+
+		//add(fade);
+
+
 
 		txtTracklist = new FlxText(FlxG.width * 0.05, yellowBG.x + yellowBG.height + 100, 0, "Tracks", 32);
 		txtTracklist.alignment = CENTER;

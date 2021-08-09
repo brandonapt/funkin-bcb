@@ -41,7 +41,7 @@ class OptionsMenuSubState extends MusicBeatState
                 new HarderMode('Makes Hard Mode Even HARDER!'),
                 new SongBar('Toggles a bar with the song progress.'),
                 new GhostTaps('Toggles ghost tapping.'),
-               // new Autoplay('Toggles an autoplaying bot for mod showcase.'),
+                new Autoplay('Toggles a autoplaying bot.'),
                 new MissSFX('Toggles miss sound effects.'),
                 new Input('Toggles the old and new input.'),
                 new MissShake('Toggles screen shake on miss.'),
@@ -60,7 +60,8 @@ class OptionsMenuSubState extends MusicBeatState
                 new MemCounter('Toggles a Memory Counter.'),
                 new NoteSplash('Toggles note splashes on SICK!'),
                 new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
-                new P2Strums('Toggles the opponents notes lighting up.')
+                new P2Strums('Toggles the opponents notes lighting up.'),
+                new FpsCap('Change your FPS Cap.')
             ]),
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),

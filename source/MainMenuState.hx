@@ -121,8 +121,8 @@ class MainMenuState extends MusicBeatState
 
 		bg = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
 		bg.scrollFactor.x = 0;
-		bg.scrollFactor.y = 0.18;
-		bg.setGraphicSize(Std.int(bg.width * 1.2));
+		bg.scrollFactor.y = 0.10;
+		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = true;
@@ -133,8 +133,8 @@ class MainMenuState extends MusicBeatState
 
 		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
 		magenta.scrollFactor.x = 0;
-		magenta.scrollFactor.y = 0.18;
-		magenta.setGraphicSize(Std.int(magenta.width * 1.2));
+		magenta.scrollFactor.y = 0.10;
+		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
 		magenta.updateHitbox();
 		magenta.screenCenter();
 		magenta.visible = false;
@@ -271,73 +271,38 @@ class MainMenuState extends MusicBeatState
 					
 
 					menuItems.forEach(function(spr:FlxSprite)
-					{
-						if (curSelected != spr.ID)
 						{
-									changeItem();
-
-								menuItems.forEach(function(spr:FlxSprite)
-									{
-										//FlxTween.tween(FlxG.camera, {zoom: 5}, 0.8, {ease: FlxEase.expoIn});
-										//FlxTween.tween(bg, {angle: 45}, 0.8, {ease: FlxEase.expoIn});
-										FlxTween.tween(spr, {x: -600}, 0.6, {
-											ease: FlxEase.backIn,
-											onComplete: function(twn:FlxTween)
-											{
-												spr.kill();
-											}
-										});
-									});
-
-							FlxTween.tween(spr, {alpha: 0}, 0.2, {
-								ease: FlxEase.quadOut,
-								onComplete: function(twn:FlxTween)
-								{
-									spr.kill();
-								}
-							});
-							
-						};
-						else
-						{
-							FlxTween.tween(spr,{y: -400},2 ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
-								{ 
-									changeItem();
-								}});
-
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+							if (curSelected != spr.ID)
 							{
-								var daChoice:String = optionShit[curSelected];
-								new FlxTimer().start(0.7);
-
-								switch (daChoice)
-								{
-									case 'story mode':
-										FlxG.switchState(new StoryMenuState());
-										trace("Story Menu Selected");
-									case 'freeplay':
-										FlxG.switchState(new FreeplayState());
-
-										trace("Freeplay Menu Selected");
-									case 'donate':
-										#if linux
-										Sys.command('/usr/bin/xdg-open', ["https://ninja-muffin24.itch.io/funkin", "&"]);
-										#else
-										FlxG.openURL('https://ninja-muffin24.itch.io/funkin');
-										#end
-									case 'options':
-										FlxG.switchState(new OptionsMenuSubState());
-										MainVariables.initSave();
-
-									
-								}
-
-							});
+								FlxTween.tween(spr, {alpha: 0}, 1.3, {
+									ease: FlxEase.quadOut,
+									onComplete: function(twn:FlxTween)
+									{
+										spr.kill();
+									}
+								});
+							}
+							else
+							{
+								
+									FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+									{
+										goToState();
+									});
+								
+								
+								
+								
+								
+								
+								
+							}
+						});
 						}
-					});
+			
 				}
 			}
-		}
+		
 
 		super.update(elapsed);
 
@@ -391,4 +356,29 @@ class MainMenuState extends MusicBeatState
 				remove(asset);
 			}
 		}
+
+		function goToState()
+			{									
+				FlxTween.tween(menuItems.members[0],{y:-5000+menuItems.members[0].y},1,{ease:FlxEase.circIn});
+				FlxTween.tween(menuItems.members[1],{y:-5000+menuItems.members[1].y},1,{ease:FlxEase.circIn});
+				FlxTween.tween(menuItems.members[2],{y:-5000+menuItems.members[2].y},1,{ease:FlxEase.circIn,onComplete:function(e:FlxTween){
+				var daChoice:String = optionShit[curSelected];
+		
+				switch (daChoice)
+				{
+					case 'story mode':
+						FlxG.switchState(new StoryMenuState());
+						trace("Story Menu Selected");
+					case 'freeplay':
+						FlxG.switchState(new FreeplayState());
+		
+						trace("Freeplay Menu Selected");
+		
+					case 'options':
+						FlxG.switchState(new OptionsMenuSubState());
+				}
+				
+				
+				}});
+			}
 }

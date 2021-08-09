@@ -403,7 +403,7 @@ class Autoplay extends Option
 
 	private override function updateDisplay():String
 	{
-		return  FlxG.save.data.autoplay ? "Autoplay on" : "Autoplay off";
+		return  FlxG.save.data.autoplay ? "autoplay on" : "autoplay off";
 	}
 }
 
@@ -694,14 +694,15 @@ class IconZoom extends Option
 	public override function right():Bool
 		{
 			FlxG.save.data.iconZoom = FlxG.save.data.iconZoom + 1;
-			display = updateDisplay();
-			return false;
+			//display = updateDisplay();
+			description = "Change the zoom on icons. (PRESS TO RESET) - " + FlxG.save.data.iconZoom;
+			return true;
 		}
 		public override function left():Bool
 			{
 				FlxG.save.data.iconZoom = FlxG.save.data.iconZoom - 1;
-				display = updateDisplay();
-				return false;
+				description = "Change the zoom on icons. (PRESS TO RESET) - " + FlxG.save.data.iconZoom;
+				return true;
 			}
 	public override function press():Bool
 		{
@@ -737,5 +738,55 @@ class P2Strums extends Option
 	private override function updateDisplay():String
 	{
 		return  FlxG.save.data.player2Strums ? "opponent notes light up" : "opponent notes stay static";
+	}
+}
+
+class FpsCap extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+		acceptValues = true;
+	}
+
+	public override function press():Bool
+	{
+		return false;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "FPS Cap";
+	}
+	
+	override function right():Bool {
+		if (FlxG.save.data.fpsCap >= 290)
+		{
+			FlxG.save.data.fpsCap = 290;
+			(cast (Lib.current.getChildAt(0), Main)).setFPSCap(290);
+		}
+		else
+			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
+		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
+
+		return true;
+	}
+
+	override function left():Bool {
+		if (FlxG.save.data.fpsCap > 290)
+			FlxG.save.data.fpsCap = 290;
+		else if (FlxG.save.data.fpsCap < 60)
+			FlxG.save.data.fpsCap = Application.current.window.displayMode.refreshRate;
+		else
+			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap - 10;
+		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
+		return true;
+	}
+
+	override function getValue():String
+	{
+		return "Current FPS Cap: " + FlxG.save.data.fpsCap + 
+		(FlxG.save.data.fpsCap == Application.current.window.displayMode.refreshRate ? "Hz (Refresh Rate)" : "");
 	}
 }

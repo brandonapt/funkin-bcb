@@ -123,4 +123,9 @@ class Main extends Sprite
 	{
 		fpsCounter.visible = fpsEnabled;
 	}
+
+	public function setFPSCap(cap:Float)
+		{
+			openfl.Lib.current.stage.frameRate = cap;
+		}
 }

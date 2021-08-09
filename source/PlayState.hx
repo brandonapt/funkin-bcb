@@ -1935,8 +1935,10 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (!inCutscene)
+		if (!inCutscene && !autoplayText.visible)
 			keyShit();
+		else if (autoplayText.visible)
+			autoShit();
 
 		#if debug
 		if (FlxG.keys.justPressed.ONE)
@@ -2344,6 +2346,86 @@ class PlayState extends MusicBeatState
 		curSection += 1;
 	}
 
+	private function autoShit():Void
+		{
+			var mania = 4;
+
+	
+			playerStrums.forEach(function(spr:FlxSprite)
+			{
+				if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+				{
+					spr.centerOffsets();
+					spr.offset.x -= 13;
+					spr.offset.y -= 13;
+	
+
+				}
+				else
+					spr.centerOffsets();
+	
+				//if (spr.animation.curAnim.name == 'confirm' && spr.animation.curAnim.finished)
+				//{
+				//	spr.animation.play('static');
+			//		spr.centerOffsets();
+			//	}
+			});
+	
+			player2Strums.forEach(function(spr:FlxSprite)
+			{
+				switch (spr.ID)
+				{
+					case 0:
+						if (strums2[0][1])
+							spr.animation.play('static');
+						strums2[0][1] = false;
+					case 1:
+						if (strums2[1][1])
+							spr.animation.play('static');
+						strums2[1][1] = false;
+	
+					case 2:
+						if (strums2[2][1])
+							spr.animation.play('static');
+						strums2[2][1] = false;
+					case 3:
+						if (strums2[3][1])
+							spr.animation.play('static');
+						strums2[3][1] = false;
+					case 4:
+						if (strums2[4][1])
+							spr.animation.play('static');
+						strums2[4][1] = false;
+				}
+	
+				if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+				{
+					spr.centerOffsets();
+					spr.offset.x -= 13;
+					spr.offset.y -= 13;
+				}
+				else
+					spr.centerOffsets();
+			});
+	
+			notes.forEachAlive(function(daNote:Note)
+			{
+				if (daNote.y < strumLineNotes.members[daNote.noteData % mania].y)
+				{
+					// Force good note hit regardless if it's too late to hit it or not as a fail safe
+					if (daNote.canBeHit && daNote.mustPress || daNote.tooLate && daNote.mustPress)
+					{
+							goodNoteHit(daNote);
+							//boyfriend.holdTimer = 0;
+							// manager2.clear();
+							songMisses = 0;
+							accuracy = 100.00;
+						
+					}
+				}
+			});
+		}
+
 
 
 		private function keyShit():Void // I've invested in emma stocks
@@ -2628,7 +2710,7 @@ class PlayState extends MusicBeatState
 				if (!note.isSustainNote)
 				{
 					totalNotesHit += 1;
-					if (!FlxG.save.data.autoplay)
+					//if (!FlxG.save.data.autoplay)
 						popUpScore(note.strumTime, note);
 					combo += 1;
 				} else {
@@ -2656,7 +2738,8 @@ class PlayState extends MusicBeatState
 				{
 					if (Math.abs(note.noteData) == spr.ID)
 					{
-						spr.animation.play('confirm', true);
+						if (!FlxG.save.data.autoplay)
+							spr.animation.play('confirm', true);
 					}
 				});
 	

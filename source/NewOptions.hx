@@ -59,9 +59,9 @@ class OptionsMenuSubState extends MusicBeatState
                 new LogoAnimation('Toggles a cool animation on the title screen.'),
                 new MemCounter('Toggles a Memory Counter.'),
                 new NoteSplash('Toggles note splashes on SICK!'),
-                new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
+                //new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
                 new P2Strums('Toggles the opponents notes lighting up.'),
-                new FpsCap('Change your FPS Cap.')
+              //  new FpsCap('Change your FPS Cap.')
             ]),
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),
@@ -188,6 +188,8 @@ class OptionsMenuSubState extends MusicBeatState
                                         currentSelectedCat.getOptions()[curSelected].left();
                                 }
                             }
+                            if (currentSelectedCat.getOptions()[curSelected].getAccept())
+                                versionShit.text =  currentSelectedCat.getOptions()[curSelected].getValue() + " - Description - " + currentDescription;
                             else
                             {
                                 if (FlxG.keys.pressed.SHIFT)

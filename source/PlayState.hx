@@ -822,7 +822,7 @@ class PlayState extends MusicBeatState
 		autoplayText.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		autoplayText.scrollFactor.set();
 
-		//if(FlxG.save.data.autoplay) add(autoplayText);
+		if(FlxG.save.data.autoplay) add(autoplayText);
 
 		// changes health icon if old bf is toggled 
 		if (isBfOld)
@@ -1935,9 +1935,9 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (!inCutscene && !autoplayText.visible)
+		if (!inCutscene && !FlxG.save.data.autoplay)
 			keyShit();
-		else if (autoplayText.visible)
+		else if (FlxG.save.data.autoplay)
 			autoShit();
 
 		#if debug
@@ -2416,7 +2416,9 @@ class PlayState extends MusicBeatState
 					if (daNote.canBeHit && daNote.mustPress || daNote.tooLate && daNote.mustPress)
 					{
 							goodNoteHit(daNote);
+
 							//boyfriend.holdTimer = 0;
+							boyfriend.holdTimer = 0;
 							// manager2.clear();
 							songMisses = 0;
 							accuracy = 100.00;
@@ -2518,15 +2520,15 @@ class PlayState extends MusicBeatState
 				}
 				if (perfectMode)
 					goodNoteHit(possibleNotes[0]);
-				else if (possibleNotes.length > 0 && !dontCheck)
+				else if (possibleNotes.length > 0 && !dontCheck || possibleNotes.length > 0)
 						{
 							if (!FlxG.save.data.ghosttaps)
 								{
 									for (shit in 0...pressArray.length)
-									{ // if a direction is hit that shouldn't be
-										if (pressArray[shit] && !directionList.contains(shit))
-											noteMiss(shit);
-									}
+										{ // if a direction is hit that shouldn't be
+											if (pressArray[shit] && !directionList.contains(shit))
+												noteMiss(shit);
+										}
 								}
 							for (coolNote in possibleNotes)
 								{
@@ -2539,6 +2541,13 @@ class PlayState extends MusicBeatState
 									}
 				
 						}
+						else if (!FlxG.save.data.ghosttaps)
+							{
+								for (shit in 0...pressArray.length)
+									if (pressArray[shit])
+										noteMiss(shit);
+							}
+			
 
 			if(dontCheck && possibleNotes.length > 0)
 			{
@@ -2548,7 +2557,7 @@ class PlayState extends MusicBeatState
 
 
 	}
-	
+
 				if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && (!holdArray.contains(true)))
 				{
 					//spr.centerOffsets();
@@ -2557,12 +2566,6 @@ class PlayState extends MusicBeatState
 					if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
 						boyfriend.playAnim('idle');
 				}
-				else if (!FlxG.save.data.ghosttaps)
-					{
-						for (shit in 0...pressArray.length)
-							if (pressArray[shit])
-								noteMiss(shit);
-					}
 				playerStrums.forEach(function(spr:FlxSprite)
 					{
 						if (pressArray[spr.ID] && spr.animation.curAnim.name != 'confirm')
@@ -2710,7 +2713,7 @@ class PlayState extends MusicBeatState
 				if (!note.isSustainNote)
 				{
 					totalNotesHit += 1;
-					//if (!FlxG.save.data.autoplay)
+					if (!FlxG.save.data.autoplay)
 						popUpScore(note.strumTime, note);
 					combo += 1;
 				} else {

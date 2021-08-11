@@ -230,7 +230,8 @@ class SndTV {
 	function fastPow3(n:Float):Float {
 		return n*n*n;
 	}
-
+	
+	// bezier tween because it looks pretty
 	public static inline 
 	function bezier(t:Float, p0:Float, p1:Float,p2:Float, p3:Float) {
 		return
@@ -239,7 +240,7 @@ class SndTV {
 			fastPow3(t)*p3;
 	}
 	
-	// suppression du tween sans aucun appel aux callbacks onUpdate, onUpdateT et onEnd (!)
+	// suppress the tweens then kill them so they dont return a callback. (2-10-2021)
 	public function killWithoutCallbacks(parent:Snd) {
 		for (t in tlist.backWardIterator())
 			if (t.parent==parent ){

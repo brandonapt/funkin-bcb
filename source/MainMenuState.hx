@@ -59,48 +59,7 @@ class MainMenuState extends MusicBeatState
 			optionShit.push('freeplay');
 		optionShit.push('options');
 
-		var charNum = FlxG.random.int(0, 13);
 
-		switch charNum
-		{
-			case 1:
-				character = new Character(150, 0, 'bf');
-			case 2:
-				character = new Character(150, 0, 'dad');
-			case 3:
-				character = new Character(150, 0, 'spooky');
-				character.y += 200;
-			case 4:
-				character = new Character(150, 0, 'mom');
-			case 5:
-				character = new Character(150, 0, 'pico');
-				character.y += 300;
-			case 6:
-				character = new Character(150, 0, 'parents-christmas');
-				character.x -= 500;
-			case 7:
-				character = new Character(150, 0, 'monster-christmas');
-				character.y += 130;
-			case 8:
-				character = new Character(150, 0, 'bf-christmas');
-			case 9:
-				character = new Character(150, 0, 'monster');
-				character.y += 100;
-			case 10:
-				character = new Character(150, 0, 'bf-pixel');
-			case 11:
-				character = new Character(150, 0, 'senpai');
-				character.x += 150;
-				character.y += 360;
-			case 12:
-				character = new Character(150, 0, 'senpai-angry');
-				character.x += 150;
-				character.y += 360;
-			case 13:
-				character = new Character(150, 0, 'spirit');
-				character.x -= 150;
-				character.y += 100;
-		}
 
 		#if desktop
 		// Updating Discord Rich Presence

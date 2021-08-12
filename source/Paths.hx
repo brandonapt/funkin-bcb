@@ -71,7 +71,7 @@ class Paths
 		return getPath('data/$key.xml', TEXT, library);
 	}
 
-	inline static public function video(key:String, ?library:String)
+	inline static public function wevideo(key:String, ?library:String)
 	{
 		return getPath('videos/$key.webm', TEXT, library);
 	}
@@ -90,7 +90,7 @@ class Paths
 	{
 		return sound(key + FlxG.random.int(min, max), library);
 	}
-	inline static public function mp4Video(key:String, ?library:String)
+	inline static public function video(key:String, ?library:String)
 		{
 			trace('assets/videos/$key.mp4');
 			return getPath('videos/$key.mp4', BINARY, library);

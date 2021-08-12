@@ -107,7 +107,7 @@ class MP4Handler
 
 		if (finishCallback != null)
 		{
-			FlxG.switchState(finishCallback);
+			LoadingState.loadAndSwitchState(finishCallback);
 		}
 	}
 	#end

@@ -410,7 +410,32 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 				flipX = true;
-
+				case 'bfGf':
+					var tex = Paths.getSparrowAtlas('tank/bfAndGF');
+					frames = tex;
+					animation.addByPrefix('idle', 'BF idle dance w gf', 24, false);
+					animation.addByPrefix('singUP', 'BF NOTE UP', 24, false);
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT', 24, false);
+					animation.addByPrefix('singDOWN', 'BF NOTE DOWN', 24, false);
+					animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+					animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+	
+					addOffset('idle', -5);
+					addOffset("singUP", -29, 27);
+					addOffset("singRIGHT", -38, -7);
+					addOffset("singLEFT", 12, -6);
+					addOffset("singDOWN", -10, -50);
+					addOffset("singUPmiss", -29, 27);
+					addOffset("singRIGHTmiss", -30, 21);
+					addOffset("singLEFTmiss", 12, 24);
+					addOffset("singDOWNmiss", -11, -19);
+	
+					playAnim('idle');
+	
+					flipX = true;
 			case 'senpai':
 				frames = Paths.getSparrowAtlas('weeb/senpai');
 				animation.addByPrefix('idle', 'Senpai Idle', 18, false);

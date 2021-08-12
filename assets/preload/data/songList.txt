@@ -17,3 +17,6 @@ spookeez
 thorns
 tutorial
 winter-horrorland
+ugh
+guns
+stress

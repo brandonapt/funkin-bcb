@@ -1938,7 +1938,7 @@ class PlayState extends MusicBeatState
 		if (!inCutscene && !FlxG.save.data.autoplay)
 			keyShit();
 		else if (FlxG.save.data.autoplay)
-			autoShit();
+			autoplayItLol();
 
 		#if debug
 		if (FlxG.keys.justPressed.ONE)
@@ -2346,7 +2346,7 @@ class PlayState extends MusicBeatState
 		curSection += 1;
 	}
 
-	private function autoShit():Void
+	private function autoplayItLol():Void
 		{
 			var mania = 4;
 
@@ -2355,20 +2355,20 @@ class PlayState extends MusicBeatState
 			{
 				if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
 				{
-					spr.centerOffsets();
 					spr.offset.x -= 13;
 					spr.offset.y -= 13;
+					spr.centerOffsets();
 	
 
 				}
 				else
 					spr.centerOffsets();
 	
-				//if (spr.animation.curAnim.name == 'confirm' && spr.animation.curAnim.finished)
-				//{
-				//	spr.animation.play('static');
-			//		spr.centerOffsets();
-			//	}
+				if (spr.animation.curAnim.name == 'confirm' && spr.animation.curAnim.finished)
+				{
+					spr.animation.play('static');
+					spr.centerOffsets();
+				}
 			});
 	
 			player2Strums.forEach(function(spr:FlxSprite)
@@ -2741,7 +2741,6 @@ class PlayState extends MusicBeatState
 				{
 					if (Math.abs(note.noteData) == spr.ID)
 					{
-						if (!FlxG.save.data.autoplay)
 							spr.animation.play('confirm', true);
 					}
 				});

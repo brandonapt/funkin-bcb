@@ -267,7 +267,7 @@ class Fullscreen extends Option
 	{
 		function toggleFullscreen() {
 
-            if(Lib.current.stage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE){
+            if(FlxG.save.data.Fullscreen == true){
         
                 Lib.current.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
         

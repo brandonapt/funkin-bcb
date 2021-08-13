@@ -41,7 +41,7 @@ class OptionsMenuSubState extends MusicBeatState
                 new HarderMode('Makes Hard Mode Even HARDER!'),
                 new SongBar('Toggles a bar with the song progress.'),
                 new GhostTaps('Toggles ghost tapping.'),
-                new Autoplay('Toggles a autoplaying bot.'),
+                new Autoplay('Toggles an autoplaying bot.'),
                 new MissSFX('Toggles miss sound effects.'),
                 new Input('Toggles the old and new input.'),
                 new MissShake('Toggles screen shake on miss.'),
@@ -66,7 +66,7 @@ class OptionsMenuSubState extends MusicBeatState
             new OptionCategory("Other", [
                 new Changelog('View the latest Changelog.'),
                 new Fullscreen('Toggle fullscreen.'),
-                new ModManager('Open the in-game mode manager.')
+                new ModManager('Open the in-game mod manager.')
             ])
             
         ];

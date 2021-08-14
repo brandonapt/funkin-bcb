@@ -41,6 +41,7 @@ class OptionsMenuSubState extends MusicBeatState
                 new HarderMode('Makes Hard Mode Even HARDER!'),
                 new SongBar('Toggles a bar with the song progress.'),
                 new GhostTaps('Toggles ghost tapping.'),
+                new InstantRespawn('Toggles the death screen.'),
                 new Autoplay('Toggles a autoplaying bot.'),
                 new MissSFX('Toggles miss sound effects.'),
                 new Input('Toggles the old and new input.'),

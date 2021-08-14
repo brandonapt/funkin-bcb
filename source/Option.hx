@@ -813,3 +813,25 @@ class Downscroll extends Option
 		return  FlxG.save.data.downscroll ? "downscroll" : "upscroll";
 	}
 }
+
+class InstantRespawn extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.noDeathScreen = !FlxG.save.data.noDeathScreen;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "death screen " + (FlxG.save.data.noDeathScreen ? "off" : "on");
+	}
+}
+

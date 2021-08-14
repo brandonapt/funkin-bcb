@@ -1,27 +1,19 @@
-1.0;
+1.1;
 
-okok i added so much stuff with some help from some friends when i got stuck because i suck
+me me big boy
 
-added:
-GHOST TAPPING!!!!!!!!!!! (you can disable this in options)
-ACCURACY COUNTERRRRR
-NEW MAIN MENU!!!!!!!!!!
-AUTOPLAY!! SHOW OFF UR CHARTS N MODS
-NEW LOGO
-MEMORY COUNTER
-NEW OPTIONS MENUUUUUUU WITH CATAGORIES(credit: ke)
-NEW OPTIONS:
--GHOST TAPPING
--TOGGLeS FOR FPS AND MEMORY COUNTERS
--TOGGLE FOR FREEPLAY ICONS AND BG CHANGES
--AUTOPLAY TOGGLE
--MISS SFX TOGGLE
-
-bugs i squashed:
-an auto win bug if you had the old autoplay on
-if u had logo tween on the animation would bug out
-
-changed:
-lots of transitions
-input  
-
+Unhardcoded Freeplay Songs, GF version, stage, story mode menu chars, modname, notestyle, weeknames, and weekdata.
+Made the preloader more efficient and kinda stole FPS+'s image cacher.
+Added Kade Engine Input lolzzzzz
+Camera Shakes in Week 3
+Funny Fades (of course)
+MP4 Support and Fixed WEBM.
+Fix Accuracy
+Fixed Autoplay
+New options:
+mod manager (wip)
+death screen
+note splash
+fps counter
+mem counter
+i dont wanna list it all but check commits for them all

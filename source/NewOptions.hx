@@ -45,7 +45,8 @@ class OptionsMenuSubState extends MusicBeatState
                 new MissSFX('Toggles miss sound effects.'),
                 new Input('Toggles the old and new input.'),
                 new MissShake('Toggles screen shake on miss.'),
-                new MissCry('Toggles GF\'s tears on miss.')
+                new MissCry('Toggles GF\'s tears on miss.'),
+                //new Downscroll('downscroll test1')
             ]),
             new OptionCategory("Freeplay", [
                 new FreeplayPreviews('Toggles the song previews in freeplay.'),

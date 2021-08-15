@@ -900,10 +900,10 @@ class PlayState extends MusicBeatState
 							schoolIntro(doof);
 					case 'thorns':
 							schoolIntro(doof);
-					case 'tutorial':
-							schoolIntro(doof);
-					case 'bopeebo':
-						schoolIntro(doof);
+				//	case 'tutorial':
+						//	schoolIntro(doof);
+					//case 'bopeebo':
+						//schoolIntro(doof);
 						//schoolIntro(doof);
 					//case 'fresh':
 					//	schoolIntro(doof);

@@ -20,6 +20,7 @@ import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import flixel.system.FlxSound;
+import polymod.Polymod;
 import flixel.system.ui.FlxSoundTray;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -62,14 +63,14 @@ class TitleState extends MusicBeatState
 		add(debugMark);
 		#end
 		var modList = CoolUtil.coolTextFile(Paths.txt('modList'));
-		if (Main.hasLoadedPolymod == false)
-		{
-			polymod.Polymod.init({
-				modRoot: "mods/",
-				dirs: modList
-			});
-			Main.hasLoadedPolymod = true;
-		}
+		//if (Main.hasLoadedPolymod == false)
+		//{
+		//	polymod.Polymod.init({
+		//		modRoot: "mods/",
+		//		dirs: modList
+		//	});
+		//	Main.hasLoadedPolymod = true;
+	//	}
 
 		#if desktop
 		#if !debug

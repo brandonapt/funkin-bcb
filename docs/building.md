@@ -31,7 +31,7 @@ haxelib install newgrounds
 haxelib install actuate
 haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons
 haxelib git systools https://github.com/polybiusproxy/systools.git
-haxelib git polymod https://github.com/larsiusprime/polymod.git funkinfixes
+haxelib git polymod https://github.com/larsiusprime/polymod.git
 haxelib git extension-webm https://github.com/GrowtopiaFli/extension-webm
 haxelib run lime rebuild systools windows
 lime rebuild extension-webm <windows, macos, linux>

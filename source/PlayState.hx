@@ -1835,6 +1835,10 @@ class PlayState extends MusicBeatState
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
+				if (FlxG.save.data.middlescroll && !daNote.mustPress)
+					{
+						daNote.visible = false;
+					}
 				if (daNote.y > FlxG.height)
 				{
 					daNote.active = false;
@@ -2065,11 +2069,7 @@ class PlayState extends MusicBeatState
 						// if ()
 						StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
 		
-						if (SONG.validScore)
-						{
-							NGio.unlockMedal(60961);
-							Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
-						}
+
 		
 						FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
 						FlxG.save.flush();

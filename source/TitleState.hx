@@ -29,6 +29,13 @@ import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
+#if desktop
+import Sys;
+import openfl.display.BitmapData;
+import polymod.Polymod.Framework;
+import polymod.Polymod.PolymodError;
+import sys.FileSystem;
+#end
 
 using StringTools;
 
@@ -60,13 +67,35 @@ class TitleState extends MusicBeatState
 		var debugMark:Alphabet = new Alphabet(15,15,"DEBUG", true);
 		add(debugMark);
 		#end
-		var modList = CoolUtil.coolTextFile(Paths.txt('modList'));
+
+				// Get all directories in the mod folder
+		var modDirectory:Array<String> = [];
+		var mods = sys.FileSystem.readDirectory("mods");
+	
 		if (Main.hasLoadedPolymod == false)
 			{
-				polymod.Polymod.init({
-					modRoot:"mods/",
-					dirs:modList
-				   });
+				for (fileText in mods)
+					{
+						if (sys.FileSystem.isDirectory("mods/" + fileText))
+						{
+							modDirectory.push(fileText);
+						}
+					}
+					trace(modDirectory);
+			
+					// Handle mod errors
+					var errors = (error:PolymodError) ->
+					{
+						trace(error.severity + ": " + error.code + " - " + error.message + " - ORIGIN: " + error.origin);
+					};	
+
+					var modMetadata = polymod.Polymod.init({
+						modRoot: "mods",
+						dirs: modDirectory,
+						errorCallback: errors,
+						framework: OPENFL,
+						ignoredFiles: polymod.Polymod.getDefaultIgnoreList(),
+					});
 				   Main.hasLoadedPolymod = true;
 			}
 

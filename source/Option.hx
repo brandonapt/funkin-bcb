@@ -835,3 +835,24 @@ class InstantRespawn extends Option
 	}
 }
 
+class Middlescroll extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "middlescroll " + (FlxG.save.data.middlescroll ? "on" : "off");
+	}
+}
+

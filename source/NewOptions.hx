@@ -47,6 +47,7 @@ class OptionsMenuSubState extends MusicBeatState
                 new Input('Toggles the old and new input.'),
                 new MissShake('Toggles screen shake on miss.'),
                 new MissCry('Toggles GF\'s tears on miss.'),
+                //new Middlescroll('Toggles middlescroll.'),
                 //new Downscroll('downscroll test1')
             ]),
             new OptionCategory("Freeplay", [

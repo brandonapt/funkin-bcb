@@ -34,7 +34,7 @@ class ModManagerState extends MusicBeatState
 
 
 
-    public static var versionShit:FlxText;
+    public static var version:FlxText;
     var currentDescription:String = "";
     var blackBorder:FlxSprite;
 
@@ -72,18 +72,18 @@ class ModManagerState extends MusicBeatState
 
             currentDescription = "none";
 
-            versionShit = new FlxText(5, FlxG.height + 40, 0, currentDescription, 12);
-            versionShit.scrollFactor.set();
-            versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+            version = new FlxText(5, FlxG.height + 40, 0, currentDescription, 12);
+            version.scrollFactor.set();
+            version.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
                 
-            blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(versionShit.width + 900)),Std.int(versionShit.height + 600),FlxColor.BLACK);
+            blackBorder = new FlxSprite(-30,FlxG.height + 40).makeGraphic((Std.int(version.width + 900)),Std.int(version.height + 600),FlxColor.BLACK);
             blackBorder.alpha = 0.5;
         
             add(blackBorder);
         
-            add(versionShit);
+            add(version);
         
-            FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.expoInOut});
+            FlxTween.tween(version,{y: FlxG.height - 18},2,{ease: FlxEase.expoInOut});
             FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.expoInOut});
             changeSelection();
         }
@@ -91,9 +91,9 @@ class ModManagerState extends MusicBeatState
     override function update(elapsed:Float)
         {
             super.update(elapsed);
-            FlxG.save.data.EnabledMods = enabledMods;
-            enabledMods = FlxG.save.data.EnabledMods;
-            versionShit.text = currentDescription;
+            //FlxG.save.data.EnabledMods = enabledMods;
+           // enabledMods = FlxG.save.data.EnabledMods;
+            version.text = currentDescription;
             var accepted = controls.ACCEPT;
             if (accepted)
                 {
@@ -101,13 +101,15 @@ class ModManagerState extends MusicBeatState
                     if (grpControls.members[curSelected].text == modList[curSelected])
                     {
                         trace(modList[curSelected]);
+                        grpControls.members[curSelected].reType(modList[curSelected].toString() + "- DISABLED");
                         enabledMods.remove(modList[curSelected]);
-                        grpControls.members[curSelected].reType(modList[curSelected] + "- DISABLED");
-                    } else {
-                        trace(modList[curSelected]);
-                        enabledMods.push(modList[curSelected]);
-                        grpControls.members[curSelected].reType(modList[curSelected]);
+                        trace(enabledMods);
 
+                    } else {
+                        enabledMods.insert(curSelected, modList[curSelected]);
+                        trace(enabledMods);
+                        trace(modList[curSelected]);
+                        grpControls.members[curSelected].reType(modList[curSelected].toString());
                     }
                     //FlxG.save.data.modList[curSelected] = !FlxG.save.data.modList[curSelected];
                     
@@ -149,12 +151,12 @@ class ModManagerState extends MusicBeatState
               
                 // selector.y = (70 * curSelected) + 30;
         
-                var bullShit:Int = 0;
+                var sure:Int = 0;
         
                 for (item in grpControls.members)
                 {
-                    item.targetY = bullShit - curSelected;
-                    bullShit++;
+                    item.targetY = sure - curSelected;
+                    sure++;
         
                     item.alpha = 0.64;
                     // item.setGraphicSize(Std.int(item.width * 0.8));

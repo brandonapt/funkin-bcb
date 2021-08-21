@@ -59,6 +59,8 @@ class MainVariables
             FlxG.save.data.iconZoom = 150;
         if (FlxG.save.data.player2Strums == null)
             FlxG.save.data.player2Strums = false;
+        if (FlxG.save.data.noDeathScreen == null)
+            FlxG.save.data.noDeathScreen = false;
 
 
 	}

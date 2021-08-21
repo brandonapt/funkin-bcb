@@ -816,7 +816,8 @@ class PlayState extends MusicBeatState
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.screenCenter(X);
-		add(scoreTxt);
+		if (!FlxG.save.data.autoplay)
+			add(scoreTxt);
 
 		autoplayText = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 40, healthBarBG.y + -100, 0, "AUTOPLAY ON", 20);
 		autoplayText.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
@@ -899,10 +900,10 @@ class PlayState extends MusicBeatState
 							schoolIntro(doof);
 					case 'thorns':
 							schoolIntro(doof);
-					case 'tutorial':
-							schoolIntro(doof);
-					case 'bopeebo':
-						schoolIntro(doof);
+				//	case 'tutorial':
+						//	schoolIntro(doof);
+					//case 'bopeebo':
+						//schoolIntro(doof);
 						//schoolIntro(doof);
 					//case 'fresh':
 					//	schoolIntro(doof);
@@ -2418,7 +2419,6 @@ class PlayState extends MusicBeatState
 							goodNoteHit(daNote);
 
 							//boyfriend.holdTimer = 0;
-							boyfriend.holdTimer = 0;
 							// manager2.clear();
 							songMisses = 0;
 							accuracy = 100.00;
@@ -2753,6 +2753,7 @@ class PlayState extends MusicBeatState
 					note.kill();
 					notes.remove(note, true);
 					note.destroy();
+					boyfriend.holdTimer = 0;
 				}
 			}
 		}

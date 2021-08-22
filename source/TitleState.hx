@@ -30,8 +30,6 @@ import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
-import openfl.Lib;
-import openfl.display.StageDisplayState;
 
 using StringTools;
 
@@ -259,20 +257,7 @@ class TitleState extends MusicBeatState
 		else
 			initialized = true;
 
-<<<<<<< HEAD
 		// credGroup.add(credTextShit);
-=======
-		//credGroup.add(credTextShit);
-
-		Main.toggleFPS(FlxG.save.data.fpsCounter);
-		Main.toggleMem(FlxG.save.data.memCounter);
-
-		if (FlxG.save.data.Fullscreen == true)
-			Lib.current.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
-		else
-			Lib.current.stage.displayState = StageDisplayState.NORMAL;
-
->>>>>>> 77d548890c237c0d8f025f1867f34c5471b02e0f
 	}
 
 	function getIntroTextShit():Array<Array<String>>

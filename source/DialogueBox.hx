@@ -185,11 +185,14 @@ class DialogueBox extends FlxSpriteGroup
 		add(christmas);
 		christmas.visible = false;
 
-		spirit = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
-		spirit.setGraphicSize(Std.int(spirit.width * 6));
+		spirit = new FlxSprite(320, 170);
+		spirit.loadGraphic(Paths.image('spiritFaceForward'));
+		spirit.setGraphicSize(Std.int(spirit.width * PlayState.daPixelZoom * 0.9));
+		spirit.updateHitbox();
 		spirit.scrollFactor.set();
 		add(spirit);
 		spirit.visible = false;
+		spirit.screenCenter(X);
 
 		pico = new FlxSprite(80, 60);
 		pico.loadGraphic(Paths.image('dialogue/pico'));

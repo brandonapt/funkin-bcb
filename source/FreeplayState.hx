@@ -222,10 +222,7 @@ class FreeplayState extends MusicBeatState
 		{
 			if (FlxG.save.data.playSongs == true)
 				{
-					if (FlxG.save.data.sussyBakka)
-						FlxG.sound.playMusic(Paths.music('MenuMusicAlt'));
-					else
-						FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					FlxG.sound.playMusic(Paths.music('freakyMenu')); 
 				}
 			FlxG.switchState(new MainMenuState());
 				

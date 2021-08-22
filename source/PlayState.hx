@@ -2113,8 +2113,10 @@ class PlayState extends MusicBeatState
 		
 					if (storyPlaylist.length <= 0)
 					{
-						FlxG.sound.playMusic(Paths.music('freakyMenu'));
-		
+						if (FlxG.save.data.sussyBakka)
+							FlxG.sound.playMusic(Paths.music('MenuMusicAlt'));
+						else
+							FlxG.sound.playMusic(Paths.music('freakyMenu'));		
 						transIn = FlxTransitionableState.defaultTransIn;
 						transOut = FlxTransitionableState.defaultTransOut;
 						new FlxTimer().start(0.7);

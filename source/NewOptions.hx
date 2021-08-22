@@ -28,50 +28,11 @@ class OptionsMenuSubState extends MusicBeatState
     var magenta:FlxSprite;
     var curSelected:Int = 0;
     public static var instance:OptionsMenuSubState;
+
+    var options:Array<OptionCategory>;
         
 
-
-        var options:Array<OptionCategory> = [
-            new OptionCategory("Main Menu", [
-                new EnableStoryMode('Toggles the story mode button.'),
-                new EnableFreeplay('Toggles the freeplay button.'),
-                new Watermarks('Toggles watermarks.')
-            ]),
-            new OptionCategory("Gameplay", [
-                new HarderMode('Makes Hard Mode Even HARDER!'),
-                new SongBar('Toggles a bar with the song progress.'),
-                new GhostTaps('Toggles ghost tapping.'),
-                new Autoplay('Toggles an autoplaying bot.'),
-                new MissSFX('Toggles miss sound effects.'),
-                new Input('Toggles the old and new input.'),
-                new MissShake('Toggles screen shake on miss.'),
-                new MissCry('Toggles GF\'s tears on miss.'),
-                new MiddleScroll('middlescroll lol'),
-                new Downscroll('DOWNSCROLL BABYEEEEE'),
-            ]),
-            new OptionCategory("Freeplay", [
-                new FreeplayPreviews('Toggles the song previews in freeplay.'),
-                new FreeplayDialogue('Dialogue in Freeplay.'),
-                new FreeplayIcons('Toggles the freeplay Icons.'),
-                new FPBG('Toggles Freeplay Background Changes.')
-            ]),
-            new OptionCategory("Appearance", [
-                new CustomIntro('Toggles a custom intro text set.'),
-                new FpsCounter('Toggles a FPS Counter.'),
-                new LogoAnimation('Toggles a cool animation on the title screen.'),
-                new MemCounter('Toggles a Memory Counter.'),
-                new NoteSplash('Toggles note splashes on SICK!'),
-                //new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
-                new P2Strums('Toggles the opponents notes lighting up.'),
-              //  new FpsCap('Change your FPS Cap.')
-            ]),
-            new OptionCategory("Other", [
-                new Changelog('View the latest Changelog.'),
-                new Fullscreen('Toggle fullscreen.'),
-                new ModManager('Open the in-game mod manager.')
-            ])
-            
-        ];
+   
 
         public var acceptInput:Bool = true;
 
@@ -83,6 +44,96 @@ class OptionsMenuSubState extends MusicBeatState
         var blackBorder:FlxSprite;
         override function create()
             {
+
+                if (FlxG.save.data.sussyOption)
+                    {
+                     options = [
+                        new OptionCategory("Main Menu", [
+                            new EnableStoryMode('Toggles the story mode button.'),
+                            new EnableFreeplay('Toggles the freeplay button.'),
+                            new Watermarks('Toggles watermarks.')
+                        ]),
+                        new OptionCategory("Gameplay", [
+                            new HarderMode('Makes Hard Mode Even HARDER!'),
+                            new SongBar('Toggles a bar with the song progress.'),
+                            new GhostTaps('Toggles ghost tapping.'),
+                            new Autoplay('Toggles an autoplaying bot.'),
+                            new MissSFX('Toggles miss sound effects.'),
+                            new Input('Toggles the old and new input.'),
+                            new MissShake('Toggles screen shake on miss.'),
+                            new MissCry('Toggles GF\'s tears on miss.'),
+                            new MiddleScroll('middlescroll lol'),
+                            new Downscroll('DOWNSCROLL BABYEEEEE'),
+                        ]),
+                        new OptionCategory("Freeplay", [
+                            new FreeplayPreviews('Toggles the song previews in freeplay.'),
+                            new FreeplayDialogue('Dialogue in Freeplay.'),
+                            new FreeplayIcons('Toggles the freeplay Icons.'),
+                            new FPBG('Toggles Freeplay Background Changes.')
+                        ]),
+                        new OptionCategory("Appearance", [
+                            new CustomIntro('Toggles a custom intro text set.'),
+                            new FpsCounter('Toggles a FPS Counter.'),
+                            new LogoAnimation('Toggles a cool animation on the title screen.'),
+                            new MemCounter('Toggles a Memory Counter.'),
+                            new NoteSplash('Toggles note splashes on SICK!'),
+                            //new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
+                            new P2Strums('Toggles the opponents notes lighting up.'),
+                          //  new FpsCap('Change your FPS Cap.')
+                        ]),
+                        new OptionCategory("Other", [
+                            new Changelog('View the latest Changelog.'),
+                            new Fullscreen('Toggle fullscreen.'),
+                            new ModManager('Open the in-game mod manager.'),
+                            new AMONGUS('SUSSY BAKA AMONGUS FORTNITE BALLS')
+                        ])
+                        
+                    ];
+                } else
+                {
+                    options = [
+                        new OptionCategory("Main Menu", [
+                            new EnableStoryMode('Toggles the story mode button.'),
+                            new EnableFreeplay('Toggles the freeplay button.'),
+                            new Watermarks('Toggles watermarks.')
+                        ]),
+                        new OptionCategory("Gameplay", [
+                            new HarderMode('Makes Hard Mode Even HARDER!'),
+                            new SongBar('Toggles a bar with the song progress.'),
+                            new GhostTaps('Toggles ghost tapping.'),
+                            new Autoplay('Toggles an autoplaying bot.'),
+                            new MissSFX('Toggles miss sound effects.'),
+                            new Input('Toggles the old and new input.'),
+                            new MissShake('Toggles screen shake on miss.'),
+                            new MissCry('Toggles GF\'s tears on miss.'),
+                            new MiddleScroll('middlescroll lol'),
+                            new Downscroll('DOWNSCROLL BABYEEEEE'),
+                        ]),
+                        new OptionCategory("Freeplay", [
+                            new FreeplayPreviews('Toggles the song previews in freeplay.'),
+                            new FreeplayDialogue('Dialogue in Freeplay.'),
+                            new FreeplayIcons('Toggles the freeplay Icons.'),
+                            new FPBG('Toggles Freeplay Background Changes.')
+                        ]),
+                        new OptionCategory("Appearance", [
+                            new CustomIntro('Toggles a custom intro text set.'),
+                            new FpsCounter('Toggles a FPS Counter.'),
+                            new LogoAnimation('Toggles a cool animation on the title screen.'),
+                            new MemCounter('Toggles a Memory Counter.'),
+                            new NoteSplash('Toggles note splashes on SICK!'),
+                            //new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
+                            new P2Strums('Toggles the opponents notes lighting up.'),
+                          //  new FpsCap('Change your FPS Cap.')
+                        ]),
+                        new OptionCategory("Other", [
+                            new Changelog('View the latest Changelog.'),
+                            new Fullscreen('Toggle fullscreen.'),
+                            new ModManager('Open the in-game mod manager.'),
+                            new AMONGUS('SUSSY BAKA AMONGUS FORTNITE BALLS')
+                        ])
+                        
+                    ];
+                }
 
                 FlxG.sound.playMusic(Paths.music('title'));
                 instance = this;
@@ -144,8 +195,10 @@ class OptionsMenuSubState extends MusicBeatState
                         if (controls.BACK && !isCatagory)
                             {
                             FlxG.switchState(new MainMenuState());
-                            FlxG.sound.playMusic(Paths.music('freakyMenu'));
-                            }
+                            if (FlxG.save.data.sussyBakka)
+                                FlxG.sound.playMusic(Paths.music('MenuMusicAlt'));
+                            else
+                                FlxG.sound.playMusic(Paths.music('freakyMenu'));                            }
                         else if (controls.BACK)
                         {
                             isCatagory = false;

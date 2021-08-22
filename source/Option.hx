@@ -858,3 +858,25 @@ class InstantRespawn extends Option
 	}
 }
 
+class AMONGUS extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.sussyBakka = !FlxG.save.data.sussyBakka;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "" + (FlxG.save.data.sussyBakka ? "sussy" : "bakka");
+	}
+}
+
+

@@ -73,7 +73,11 @@ class MainMenuState extends MusicBeatState
 
 		if (!FlxG.sound.music.playing)
 		{
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			if (FlxG.save.data.sussyBakka)
+				FlxG.sound.playMusic(Paths.music('MenuMusicAlt'));
+			else
+				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+
 		}
 
 		persistentUpdate = persistentDraw = true;
@@ -101,6 +105,9 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 		//magenta.scrollFactor.set();
+
+		if (FlxG.save.data.sussyOption == null)
+			FlxG.save.data.sussyOption = false;
 
 
 
@@ -164,6 +171,14 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+
+		if (FlxG.keys.justPressed.P)
+			{
+				if (FlxG.save.data.sussyOption != null)
+					FlxG.save.data.sussyOption = !FlxG.save.data.sussyOption;
+				else
+					FlxG.save.data.sussyOption = true;
+			}
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
@@ -189,14 +204,14 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(new TitleState());
 			}
 
-			if (FlxG.keys.justPressed.P)
-				{
-					#if linux
-					Sys.command('/usr/bin/xdg-open', ["https://raw.githubusercontent.com/brandoge91/funkin-bcb/main/news.downloadMe", "&"]);
-					#else
-					FlxG.openURL('https://raw.githubusercontent.com/brandoge91/funkin-bcb/main/news.downloadMen');
-					#end
-				}
+			//if (FlxG.keys.justPressed.P)
+			//	{
+			//		#if linux
+			///		Sys.command('/usr/bin/xdg-open', ["https://raw.githubusercontent.com/brandoge91/funkin-bcb/main/news.downloadMe", "&"]);
+				//	#else
+				//	FlxG.openURL('https://raw.githubusercontent.com/brandoge91/funkin-bcb/main/news.downloadMen');
+				//	#end
+				//}
 
 			if (controls.ACCEPT)
 			{

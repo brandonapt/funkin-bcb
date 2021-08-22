@@ -267,7 +267,7 @@ class Fullscreen extends Option
 	{
 		function toggleFullscreen() {
 
-            if(Lib.current.stage.displayState != StageDisplayState.FULL_SCREEN_INTERACTIVE){
+            if(FlxG.save.data.Fullscreen == true){
         
                 Lib.current.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
         
@@ -718,6 +718,29 @@ class IconZoom extends Option
 	}
 }
 
+class Downscroll extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.downscroll ? "downscroll" : "upscroll";
+	}
+}
+
 class P2Strums extends Option
 {
 	public function new(desc:String)
@@ -791,7 +814,7 @@ class FpsCap extends Option
 	}
 }
 
-class Downscroll extends Option
+class MiddleScroll extends Option
 {
 	public function new(desc:String)
 	{
@@ -802,7 +825,7 @@ class Downscroll extends Option
 	public override function press():Bool
 	{
 
-		FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
+		FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
 		display = updateDisplay();
 
 		return true;
@@ -810,7 +833,7 @@ class Downscroll extends Option
 
 	private override function updateDisplay():String
 	{
-		return  FlxG.save.data.downscroll ? "downscroll" : "upscroll";
+		return  FlxG.save.data.middlescroll ? "middlescroll" : "not middlescroll";
 	}
 }
 
@@ -835,7 +858,11 @@ class InstantRespawn extends Option
 	}
 }
 
+<<<<<<< HEAD
 class Middlescroll extends Option
+=======
+class AMONGUS extends Option
+>>>>>>> 77d548890c237c0d8f025f1867f34c5471b02e0f
 {
 	public function new(desc:String)
 	{
@@ -845,14 +872,26 @@ class Middlescroll extends Option
 
 	public override function press():Bool
 	{
+<<<<<<< HEAD
 		FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
+=======
+		FlxG.save.data.sussyBakka = !FlxG.save.data.sussyBakka;
+>>>>>>> 77d548890c237c0d8f025f1867f34c5471b02e0f
 		display = updateDisplay();
 		return true;
 	}
 
 	private override function updateDisplay():String
 	{
+<<<<<<< HEAD
 		return "middlescroll " + (FlxG.save.data.middlescroll ? "on" : "off");
 	}
 }
 
+=======
+		return "" + (FlxG.save.data.sussyBakka ? "sussy" : "bakka");
+	}
+}
+
+
+>>>>>>> 77d548890c237c0d8f025f1867f34c5471b02e0f

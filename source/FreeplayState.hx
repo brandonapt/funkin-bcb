@@ -1,5 +1,6 @@
 package;
 
+import DebugOptions.DebugMenu;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -217,6 +218,8 @@ class FreeplayState extends MusicBeatState
 			changeDiff(-1);
 		if (controls.RIGHT_P)
 			changeDiff(1);
+		//if (FlxG.keys.justPressed.TWO)
+			//FlxG.switchState(new DebugMenu());
 
 		if (controls.BACK)
 		{

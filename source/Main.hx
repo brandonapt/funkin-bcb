@@ -4,6 +4,7 @@ import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Assets;
 import MemCount;
+import djFlixel.D;
 import openfl.Lib;
 import openfl.display.FPS;
 import flixel.FlxG;
@@ -47,6 +48,12 @@ class Main extends Sprite
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
+
+		D.init({
+			name:"FunkinBCB",
+			debug_keys:false, // Automatic asset reload on [F12]
+			smoothing:true
+		});
 	}
 
 	private function init(?E:Event):Void

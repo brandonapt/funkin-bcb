@@ -1,5 +1,6 @@
 package;
 
+import EndScreenState.EndScreenSubstate;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -1601,9 +1602,48 @@ class PlayState extends MusicBeatState
 			{
 				accuracy = 100;
 			}
+
+			var rating = "??"; // incase it doesnt load or start idk
+				if (accuracy == 100)
+				{
+					rating = "SFC";
+				}
+				else if (accuracy > 90)
+				{
+					rating = "S";
+				}
+				else if (accuracy > 80)
+				{
+					rating = "A";
+				}
+				else if (accuracy > 70)
+				{
+					rating = "B";
+				}
+				else if (accuracy > 60)
+				{
+					rating = "C";
+				}
+				else if (accuracy > 50)
+				{
+					rating = "D";
+				}
+				else if (accuracy > 30)
+				{
+					rating = "E";
+				}
+				else
+				{
+					rating = "F";
+				}
+
+				
+				if (songMisses == 0) {
+					rating = rating + " (FC)";
+				}
 	
 
-		scoreTxt.text = "Misses: " + songMisses + " | " + "Score: " + songScore + " | " + "Accuracy: " + accuracy + "%";
+		scoreTxt.text = "Misses: " + songMisses + " | " + "Score: " + songScore + " | " + "Accuracy: " + accuracy + "% | " + rating;
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -2090,6 +2130,8 @@ class PlayState extends MusicBeatState
 
 		function endSong():Void
 			{
+
+				//openSubState(new EndScreenSubstate(accuracy, totalNotesHit, songMisses, songMisses, shits, bads, goods, sicks, songScore, camHUD));
 				trace(totalNotesHit);
 				canPause = false;
 				paused = true;

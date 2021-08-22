@@ -64,6 +64,11 @@ class Paths
 		{
 			return getPath('videos/vid/$key.txt', TEXT, library);
 		}
+
+		inline static public function lua(key:String,?library:String)
+			{
+				return getPath('data/$key.lua', TEXT, library);
+			}
 	
 
 	inline static public function xml(key:String, ?library:String)

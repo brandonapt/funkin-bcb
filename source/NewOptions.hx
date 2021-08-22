@@ -64,6 +64,7 @@ class OptionsMenuSubState extends MusicBeatState
                             new MissCry('Toggles GF\'s tears on miss.'),
                             new MiddleScroll('middlescroll lol'),
                             new Downscroll('DOWNSCROLL BABYEEEEE'),
+                            
                         ]),
                         new OptionCategory("Freeplay", [
                             new FreeplayPreviews('Toggles the song previews in freeplay.'),
@@ -80,6 +81,7 @@ class OptionsMenuSubState extends MusicBeatState
                             //new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
                             new P2Strums('Toggles the opponents notes lighting up.'),
                           //  new FpsCap('Change your FPS Cap.')
+                          new CameraPulse('Toggles the Camera Pulsing to the beat.')
                         ]),
                         new OptionCategory("Other", [
                             new Changelog('View the latest Changelog.'),
@@ -124,6 +126,7 @@ class OptionsMenuSubState extends MusicBeatState
                             //new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
                             new P2Strums('Toggles the opponents notes lighting up.'),
                           //  new FpsCap('Change your FPS Cap.')
+                          new CameraPulse('Toggles the Camera Pulsing to the beat.')
                         ]),
                         new OptionCategory("Other", [
                             new Changelog('View the latest Changelog.'),

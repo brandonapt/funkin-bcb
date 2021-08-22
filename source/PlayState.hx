@@ -28,6 +28,7 @@ import lime.app.Application;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
+import sys.FileSystem;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -67,6 +68,8 @@ class PlayState extends MusicBeatState
 	private var camTween:FlxTween;
 	private var camFollow:FlxObject;
 	private var autoCam:Bool = true;
+
+	private var didChart = false;
 	private var vocals:FlxSound;
 
 	var skippedtime:Bool = false;
@@ -225,6 +228,8 @@ class PlayState extends MusicBeatState
 			case 2:
 				storyDifficultyText = "Hard";
 		}
+
+		didChart = FileSystem.exists(Paths.lua(SONG.song.toLowerCase() + "/modchart"));
 		#if desktop
 		// Making difficulty text for Discord Rich Presence.
 
@@ -821,7 +826,10 @@ class PlayState extends MusicBeatState
 	healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 	// healthBar
 		add(healthBar);
-		scoreTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
+		if (FlxG.save.data.middlescroll)
+			scoreTxt = new FlxText(healthBarBG.x - 105, (FlxG.height * 0.9) + 36, 800, "", 22);
+		else
+			scoreTxt = new FlxText(healthBarBG.x - 105, healthBarBG.y + 50, 800, "", 22);
 		//scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -1023,6 +1031,8 @@ class PlayState extends MusicBeatState
 
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
+
+	public static var luaModchart:LuaState = null;
 	
 
 	function startCountdown():Void
@@ -1031,6 +1041,12 @@ class PlayState extends MusicBeatState
 
 		generateStaticArrows(0);
 		generateStaticArrows(1);
+
+		if (didChart)
+			{
+				luaModchart = LuaState.createModchartState();
+				luaModchart.executeState('start', [SONG.song.toLowerCase()]);
+			}
 
 		talking = false;
 		startedCountdown = true;
@@ -1673,6 +1689,12 @@ class PlayState extends MusicBeatState
 			#if desktop
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
+
+			if (luaModchart != null)
+				{
+					luaModchart.die();
+					luaModchart = null;
+				}
 		}
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
@@ -2131,6 +2153,12 @@ class PlayState extends MusicBeatState
 		function endSong():Void
 			{
 
+
+				if (luaModchart != null)
+					{
+						luaModchart.die();
+						luaModchart = null;
+					}
 				//openSubState(new EndScreenSubstate(accuracy, totalNotesHit, songMisses, songMisses, shits, bads, goods, sicks, songScore, camHUD));
 				trace(totalNotesHit);
 				canPause = false;
@@ -2996,7 +3024,13 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)
+		if (FlxG.save.data.cameraPulse)
+			{
+				FlxG.camera.zoom += 0.015;
+				camHUD.zoom += 0.03;
+			}
+
+		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0 && !FlxG.save.data.cameraPulse)
 		{
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;

@@ -72,7 +72,7 @@ class CutsceneState extends MusicBeatState
 		FlxG.cameras.reset(camGame);
 		FlxCamera.defaultCameras = [camGame];
 
-        switch (PlayState.curStage)
+        switch (PlayState.Stage.curStage)
         {
             case 'stage':
                 defaultCamZoom = 0.9;
@@ -147,7 +147,7 @@ class CutsceneState extends MusicBeatState
 
 		boyfriend = new Boyfriend(770, 450, PlayState.SONG.player1);
 
-        switch (PlayState.curStage)
+        switch (PlayState.Stage.curStage)
 		{
 			case 'limo':
 				boyfriend.y -= 220;

@@ -51,8 +51,7 @@ class Note extends FlxSprite
 
 		this.noteData = noteData;
 
-		var daStage:String = PlayState.curStage;
-
+		var daStage:String = PlayState.Stage.curStage;
 		switch (PlayState.SONG.noteStyle)
 		{
 			case 'pixel':
@@ -172,7 +171,7 @@ class Note extends FlxSprite
 
 			x -= width / 2;
 
-			if (PlayState.curStage.startsWith('school'))
+			if (PlayState.Stage.curStage.startsWith('school'))
 				x += 30;
 
 			if (prevNote.isSustainNote)

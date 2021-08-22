@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
+import flixel.graphics.FlxGraphic;
 
 class Paths
 {
@@ -87,9 +88,10 @@ class Paths
 	}
 
 	static public function sound(key:String, ?library:String)
-	{
-		return getPath('sounds/$key.$SOUND_EXT', SOUND, library);
-	}
+		{
+			return getPath('sounds/$key.$SOUND_EXT', SOUND, library);
+		}
+	
 
 	inline static public function soundRandom(key:String, min:Int, max:Int, ?library:String)
 	{
@@ -116,20 +118,41 @@ class Paths
 	}
 
 	inline static public function image(key:String, ?library:String)
-	{
-		return getPath('images/$key.png', IMAGE, library);
-	}
+		{
+			return getPath('images/$key.png', IMAGE, library);
+		}
 
 	inline static public function font(key:String)
 	{
 		return 'assets/fonts/$key';
 	}
 
-	inline static public function getSparrowAtlas(key:String, ?library:String)
-	{
-		return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
-	}
-
+	inline static public function getSparrowAtlas(key:String, ?library:String, ?isCharacter:Bool = false)
+		{
+			var usecahce;
+			#if debug
+			usecahce = false;
+			#end
+			if (isCharacter)
+				if (usecahce)
+					#if cpp
+					return FlxAtlasFrames.fromSparrow(imageCached(key), file('images/peoples/$key.xml', library));
+					#else
+					return null;
+					#end
+				else
+					return FlxAtlasFrames.fromSparrow(image('characters/$key', library), file('images/peoples/$key.xml', library));
+			return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
+		}
+	
+		#if cpp
+		inline static public function imageCached(key:String):FlxGraphic
+		{
+			var data = ImageCache.cache.get(key);
+			trace('finding ${key} - ${data.bitmap}');
+			return data;
+		}
+		#end
 	inline static public function getPackerAtlas(key:String, ?library:String)
 	{
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library));

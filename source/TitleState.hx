@@ -259,9 +259,6 @@ class TitleState extends MusicBeatState
 		else
 			initialized = true;
 
-<<<<<<< HEAD
-		// credGroup.add(credTextShit);
-=======
 		//credGroup.add(credTextShit);
 
 		Main.toggleFPS(FlxG.save.data.fpsCounter);
@@ -272,7 +269,6 @@ class TitleState extends MusicBeatState
 		else
 			Lib.current.stage.displayState = StageDisplayState.NORMAL;
 
->>>>>>> 77d548890c237c0d8f025f1867f34c5471b02e0f
 	}
 
 	function getIntroTextShit():Array<Array<String>>

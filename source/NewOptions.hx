@@ -32,52 +32,7 @@ class OptionsMenuSubState extends MusicBeatState
     var options:Array<OptionCategory>;
         
 
-<<<<<<< HEAD
-        var options:Array<OptionCategory> = [
-            new OptionCategory("Main Menu", [
-                new EnableStoryMode('Toggles the story mode button.'),
-                new EnableFreeplay('Toggles the freeplay button.'),
-                new Watermarks('Toggles watermarks.')
-            ]),
-            new OptionCategory("Gameplay", [
-                new HarderMode('Makes Hard Mode Even HARDER!'),
-                new SongBar('Toggles a bar with the song progress.'),
-                new GhostTaps('Toggles ghost tapping.'),
-                new InstantRespawn('Toggles the death screen.'),
-                new Autoplay('Toggles a autoplaying bot.'),
-                new MissSFX('Toggles miss sound effects.'),
-                new Input('Toggles the old and new input.'),
-                new MissShake('Toggles screen shake on miss.'),
-                new MissCry('Toggles GF\'s tears on miss.'),
-                //new Middlescroll('Toggles middlescroll.'),
-                //new Downscroll('downscroll test1')
-            ]),
-            new OptionCategory("Freeplay", [
-                new FreeplayPreviews('Toggles the song previews in freeplay.'),
-                new FreeplayDialogue('Dialogue in Freeplay.'),
-                new FreeplayIcons('Toggles the freeplay Icons.'),
-                new FPBG('Toggles Freeplay Background Changes.')
-            ]),
-            new OptionCategory("Appearance", [
-                new CustomIntro('Toggles a custom intro text set.'),
-                new FpsCounter('Toggles a FPS Counter.'),
-                new LogoAnimation('Toggles a cool animation on the title screen.'),
-                new MemCounter('Toggles a Memory Counter.'),
-                new NoteSplash('Toggles note splashes on SICK!'),
-                //new IconZoom('Change the zoom on icons. (PRESS TO RESET)'),
-                new P2Strums('Toggles the opponents notes lighting up.'),
-              //  new FpsCap('Change your FPS Cap.')
-            ]),
-            new OptionCategory("Other", [
-                new Changelog('View the latest Changelog.'),
-                new Fullscreen('Toggle fullscreen.'),
-                new ModManager('Open the in-game mode manager.')
-            ])
-            
-        ];
-=======
    
->>>>>>> 77d548890c237c0d8f025f1867f34c5471b02e0f
 
         public var acceptInput:Bool = true;
 

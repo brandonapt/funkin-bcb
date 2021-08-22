@@ -1892,22 +1892,6 @@ class PlayState extends MusicBeatState
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
-<<<<<<< HEAD
-				if (FlxG.save.data.middlescroll && !daNote.mustPress)
-					{
-						daNote.visible = false;
-					}
-				if (daNote.y > FlxG.height)
-				{
-					daNote.active = false;
-					daNote.visible = false;
-				}
-				else
-				{
-					daNote.visible = true;
-					daNote.active = true;
-				}
-=======
 				if (FlxG.save.data.downscroll)
 					{
 						if (daNote.mustPress)
@@ -1919,7 +1903,6 @@ class PlayState extends MusicBeatState
 							// Remember = minus makes notes go up, plus makes them go down
 							if(daNote.animation.curAnim.name.endsWith('end') && daNote.prevNote != null)
 								daNote.y += daNote.prevNote.height;
->>>>>>> 77d548890c237c0d8f025f1867f34c5471b02e0f
 
 								if((!daNote.mustPress || daNote.wasGoodHit || daNote.prevNote.wasGoodHit && !daNote.canBeHit) && daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= (strumLine.y + Note.swagWidth / 2))
 								{

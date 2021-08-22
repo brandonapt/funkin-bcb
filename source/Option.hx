@@ -718,6 +718,29 @@ class IconZoom extends Option
 	}
 }
 
+class Downscroll extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+
+		FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
+		display = updateDisplay();
+
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.downscroll ? "downscroll" : "upscroll";
+	}
+}
+
 class P2Strums extends Option
 {
 	public function new(desc:String)
@@ -791,7 +814,7 @@ class FpsCap extends Option
 	}
 }
 
-class Downscroll extends Option
+class MiddleScroll extends Option
 {
 	public function new(desc:String)
 	{
@@ -802,7 +825,7 @@ class Downscroll extends Option
 	public override function press():Bool
 	{
 
-		FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
+		FlxG.save.data.middlescroll = !FlxG.save.data.middlescroll;
 		display = updateDisplay();
 
 		return true;
@@ -810,7 +833,7 @@ class Downscroll extends Option
 
 	private override function updateDisplay():String
 	{
-		return  FlxG.save.data.downscroll ? "downscroll" : "upscroll";
+		return  FlxG.save.data.middlescroll ? "middlescroll" : "not middlescroll";
 	}
 }
 

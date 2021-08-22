@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import flixel.FlxG;
 import PlayState;
 #if polymod
 import polymod.format.ParseRules.TargetSignatureElement;
@@ -143,6 +144,10 @@ class Note extends FlxSprite
 		}
 
 		// trace(prevNote);
+
+		if (FlxG.save.data.downscroll && sustainNote) {
+			flipY = true;
+		}
 
 		if (isSustainNote && prevNote != null)
 		{

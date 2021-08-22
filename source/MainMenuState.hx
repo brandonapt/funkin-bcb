@@ -186,6 +186,15 @@ class MainMenuState extends MusicBeatState
 
 		if (!selectedSomethin)
 		{
+			for (touch in FlxG.touches.list)
+				{
+					if (touch.justPressed) {
+						if (touch.x == lmaotext.x)
+							trace('poopddd');
+					}
+					if (touch.pressed) {}
+					if (touch.justReleased) {}
+				}
 			if (controls.UP_P)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));

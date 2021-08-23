@@ -24,6 +24,8 @@ class DialogueBox extends FlxSpriteGroup
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
 
+	var skipText:FlxText;
+
 	// SECOND DIALOGUE FOR THE PIXEL SHIT INSTEAD???
 	var swagDialogue:FlxTypeText;
 
@@ -67,6 +69,12 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade.alpha = 0;
 		add(bgFade);
 
+		
+		skipText = new FlxText(5, FlxG.height - 18, Std.int(FlxG.width * 0.6), "", 15);
+		skipText.font = 'VCR';
+		skipText.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		skipText.text = 'PRESS SPACE TO SKIP DIALOGUE';
+		add(skipText);
 	
 			FlxTween.tween(bgFade, {alpha: 0.7}, 0.8, {
 				ease: FlxEase.quadOut,
@@ -235,7 +243,11 @@ class DialogueBox extends FlxSpriteGroup
 			box.updateHitbox();
 			add(box);
 			box.screenCenter(X);
-			handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+			handSelect = new FlxSprite(1240, 680).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+			handSelect.setGraphicSize(Std.int(100));
+			handSelect.updateHitbox();
+			handSelect.x -= handSelect.width;
+			handSelect.y -= handSelect.height;
 			add(handSelect);
 			case 'roses':
 				box.animation.play('normalOpen');
@@ -243,7 +255,12 @@ class DialogueBox extends FlxSpriteGroup
 				box.updateHitbox();
 				add(box);
 				box.screenCenter(X);
-				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+
+				handSelect = new FlxSprite(1240, 680).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+				handSelect.setGraphicSize(Std.int(100));
+				handSelect.updateHitbox();
+				handSelect.x -= handSelect.width;
+				handSelect.y -= handSelect.height;
 				add(handSelect);
 			case 'thorns':
 				box.animation.play('normalOpen');
@@ -251,7 +268,11 @@ class DialogueBox extends FlxSpriteGroup
 				box.updateHitbox();
 				add(box);
 				box.screenCenter(X);
-				handSelect = new FlxSprite(FlxG.width * 1, FlxG.height * 1).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+				handSelect = new FlxSprite(1240, 680).loadGraphic(Paths.image('weeb/pixelUI/hand_textbox'));
+				handSelect.setGraphicSize(Std.int(100));
+				handSelect.updateHitbox();
+				handSelect.x -= handSelect.width;
+				handSelect.y -= handSelect.height;
 				add(handSelect);
 			case 'bopeebo':
 				box.visible = true;
@@ -340,6 +361,37 @@ class DialogueBox extends FlxSpriteGroup
 			startDialogue();
 			dialogueStarted = true;
 		}
+
+		if (FlxG.keys.justPressed.SPACE)
+			{
+				remove(dialogue);
+				isEnding = true;
+				FlxG.sound.music.fadeOut(0.1, 0);
+				new FlxTimer().start(0.2, function(tmr:FlxTimer)
+				{
+					box.alpha -= 1 / 5;
+					bgFade.alpha -= 1 / 5 * 0.7;
+					handSelect.alpha -= 1 / 5;
+					pico.visible = false;
+					bf.visible = false;
+					bfPixel.visible = false;
+					senpai.visible = false;
+					spirit.visible = false;
+					spooky.visible = false;
+					christmas.visible = false;
+					dad.visible = false;
+					monster.visible = false;
+					gf.visible = false;
+					swagDialogue.alpha -= 1 / 5;
+					dropText.alpha = swagDialogue.alpha;
+				}, 5);
+	
+				new FlxTimer().start(1.2, function(tmr:FlxTimer)
+				{
+					finishThing();
+					kill();
+				});
+			}
 
 		if (FlxG.keys.justPressed.ENTER  && dialogueStarted == true)
 		{

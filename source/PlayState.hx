@@ -2136,17 +2136,15 @@ class PlayState extends MusicBeatState
 	private function autoplayItLol():Void
 		{
 			var mania = 4;
-
 	
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
 				if (spr.animation.curAnim.name == 'confirm' && !Stage.curStage.startsWith('school'))
 				{
+					spr.centerOffsets();
 					spr.offset.x -= 13;
 					spr.offset.y -= 13;
-					spr.centerOffsets();
 	
-
 				}
 				else
 					spr.centerOffsets();
@@ -2203,8 +2201,7 @@ class PlayState extends MusicBeatState
 					if (daNote.canBeHit && daNote.mustPress || daNote.tooLate && daNote.mustPress)
 					{
 							goodNoteHit(daNote);
-
-							//boyfriend.holdTimer = 0;
+							boyfriend.holdTimer = 0;
 							// manager2.clear();
 							songMisses = 0;
 							accuracy = 100.00;
@@ -2526,6 +2523,7 @@ class PlayState extends MusicBeatState
 				{
 					if (Math.abs(note.noteData) == spr.ID)
 					{
+						if (!FlxG.save.data.autoplay)
 							spr.animation.play('confirm', true);
 					}
 				});

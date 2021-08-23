@@ -59,19 +59,6 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if debug
-		var debugMark:Alphabet = new Alphabet(15, 15, "DEBUG", true);
-		add(debugMark);
-		#end
-		var modList = CoolUtil.coolTextFile(Paths.txt('modList'));
-		//if (Main.hasLoadedPolymod == false)
-		//{
-		//	polymod.Polymod.init({
-		//		modRoot: "mods/",
-		//		dirs: modList
-		//	});
-		//	Main.hasLoadedPolymod = true;
-	//	}
 
 		#if desktop
 		#if !debug
@@ -92,7 +79,7 @@ class TitleState extends MusicBeatState
 
 
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
+		FlxG.save.bind('bcb', 'brandoge91');
 		MainVariables.initSave();
 		Highscore.load();
 

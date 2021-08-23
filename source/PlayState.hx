@@ -1249,10 +1249,6 @@ class PlayState extends MusicBeatState
 
 		}
 		#if debug
-		if (FlxG.keys.justPressed.FOUR)
-			{
-				LoadingState.loadAndSwitchState(new CutsceneState(), true);
-			}
 		if (FlxG.keys.justPressed.V)
 			{
 				//FlxG.switchState(new VideoState('assets/videos/vid.webm', new TitleState(), -1, true));

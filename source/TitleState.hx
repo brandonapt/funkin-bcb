@@ -1,5 +1,6 @@
 package;
 
+import openfl.system.System;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -10,6 +11,7 @@ import Preload;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.display.FlxGridOverlay;
+import flixel.FlxSubState;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
@@ -279,6 +281,9 @@ class TitleState extends MusicBeatState
 		{
 			FlxG.fullscreen = !FlxG.fullscreen;
 		}
+
+		if (FlxG.keys.justPressed.ESCAPE)
+			System.exit(0);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
 
@@ -576,4 +581,9 @@ class TitleState extends MusicBeatState
 			}
 		}
 	}
+
+	override function openSubState(SubState:FlxSubState)
+        {
+            super.openSubState(SubState);
+        }
 }

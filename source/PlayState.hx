@@ -288,6 +288,16 @@ class PlayState extends MusicBeatState
 				#end
 				dad = new Character(100, 100, 'dad');
 			}
+
+			boyfriend = new Boyfriend(770, 450, SONG.player1);
+
+			if (boyfriend.frames == null)
+			{
+				#if debug
+				FlxG.log.warn(["Couldn't load boyfriend: " + SONG.player1 + ". Loading default boyfriend"]);
+				#end
+				boyfriend = new Boyfriend(770, 450, 'bf');
+			}
 	
 				
 			Stage = new Stage(SONG.stage);
@@ -359,15 +369,7 @@ class PlayState extends MusicBeatState
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 		}
 
-		boyfriend = new Boyfriend(770, 450, SONG.player1);
 
-		if (boyfriend.frames == null)
-		{
-			#if debug
-			FlxG.log.warn(["Couldn't load boyfriend: " + SONG.player1 + ". Loading default boyfriend"]);
-			#end
-			boyfriend = new Boyfriend(770, 450, 'bf');
-		}
 		// REPOSITIONING PER STAGE
 		switch (Stage.curStage)
 		{

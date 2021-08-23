@@ -8,6 +8,7 @@ import flixel.graphics.FlxGraphic;
 
 class Paths
 {
+
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 
 	static var currentLevel:String;
@@ -129,20 +130,11 @@ class Paths
 
 	inline static public function getSparrowAtlas(key:String, ?library:String, ?isCharacter:Bool = false)
 		{
-			var usecahce;
-			#if debug
-			usecahce = false;
-			#end
+
 			if (isCharacter)
-				if (usecahce)
-					#if cpp
-					return FlxAtlasFrames.fromSparrow(imageCached(key), file('images/peoples/$key.xml', library));
-					#else
-					return null;
-					#end
-				else
-					return FlxAtlasFrames.fromSparrow(image('characters/$key', library), file('images/peoples/$key.xml', library));
-			return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
+				return FlxAtlasFrames.fromSparrow(image('peoples/$key', library), file('images/peoples/$key.xml', library));
+			else
+				return FlxAtlasFrames.fromSparrow(image(key, library), file('images/$key.xml', library));
 		}
 	
 		#if cpp

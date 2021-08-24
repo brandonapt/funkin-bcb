@@ -11,6 +11,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
+import DialogueFunctions;
 import flixel.tweens.FlxTween;
 
 using StringTools;
@@ -18,6 +19,7 @@ using StringTools;
 class DialogueBox extends FlxSpriteGroup
 {
 	var box:FlxSprite;
+	var curFunction:String;
 
 	var curCharacter:String = '';
 
@@ -540,11 +542,16 @@ class DialogueBox extends FlxSpriteGroup
 					spirit.visible = true;
 						//bf.animation.play('enter');
 				}
+			
 		}
 	}
 
 	function cleanDialog():Void
 	{
+		var splitParams:Array<String> = dialogueList[0].split(';');
+		curFunction = splitParams[1];
+		
+
 		var splitName:Array<String> = dialogueList[0].split(":");
 		curCharacter = splitName[1];
 		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();

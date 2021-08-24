@@ -119,7 +119,7 @@ class PlayState extends MusicBeatState
 	public static var shits:Int;
 	public static var bads:Int;
 	public static var camHUD:FlxCamera;
-	private var camGame:FlxCamera;
+	public static var camGame:FlxCamera;
 
 	var dialogue:Array<String> = [];
 

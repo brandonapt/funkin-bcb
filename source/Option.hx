@@ -96,6 +96,26 @@ class Changelog extends Option
 	}
 }
 
+class Keybinds extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.switchState(new KeybindMenu());
+		return false;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Edit Keybinds";
+	}
+}
+
 class HarderMode extends Option
 {
 	public function new(desc:String)

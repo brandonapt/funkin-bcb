@@ -52,6 +52,7 @@ class OptionsMenuSubState extends MusicBeatState
                         ]),
                         new OptionCategory("Gameplay", [
                             new HarderMode('Makes Hard Mode Even HARDER!'),
+                            new Keybinds('Edit your keybinds.'),
                             new SongBar('Toggles a bar with the song progress.'),
                             new GhostTaps('Toggles ghost tapping.'),
                             new Autoplay('Toggles an autoplaying bot.'),

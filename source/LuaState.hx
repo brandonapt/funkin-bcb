@@ -248,6 +248,9 @@ class LuaState
                         // get some fukin globals up in here bois
             
                         setVar("difficulty", PlayState.storyDifficulty);
+                        setVar("song", PlayState.SONG.song.toLowerCase());
+                        setVar('currentStage', PlayState.Stage.curStage);
+                        
  
                         }
             }

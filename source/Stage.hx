@@ -86,7 +86,7 @@ class Stage
                             toAdd.push(phillyTrain);
 
 
-						PlayState.trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes', 'week3'));
+						PlayState.trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
 						FlxG.sound.list.add(PlayState.trainSound);
 
 						// var cityLights:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.win0.png);

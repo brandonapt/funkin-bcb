@@ -48,9 +48,8 @@ class Alphabet extends FlxSpriteGroup
 	var pastX:Float = 0;
 	var pastY:Float  = 0;
 
-	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, space:Bool = true, typed:Bool = false, shouldMove:Bool = false)
+	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, shouldMove:Bool = false)
 	{
-		spaces = space;
 		pastX = x;
 		pastY = y;
 
@@ -108,7 +107,7 @@ class Alphabet extends FlxSpriteGroup
 					lastWasSpace = true;
 			}
 
-			if (character == "-" && spaces)
+			if (character == "-")
 				lastWasSpace = true;
 
 

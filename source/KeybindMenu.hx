@@ -23,8 +23,7 @@ class KeybindMenu extends MusicBeatState
 
 	var control:Array<String> = [];
 	var whytho:Array<String> = [
-		"UP", "DOWN", "LEFT", "RIGHT", "UP (ALTERNATE)", "DOWN (ALTERNATE)", "LEFT (ALTERNATE)", "RIGHT (ALTERNATE)", "ACCEPT", "RESET", "BACK", "CHEAT",
-		"ACCEPT (ALTERNATE)", "RESET (ALTERNATE)", "BACK (ALTERNATE)", "CHEAT (ALTERNATE)"
+		"UP", "DOWN", "LEFT", "RIGHT", "ACCEPT", "RESET", "BACK", "CHEAT"
 	];
 
 	private var grpControls:FlxTypedGroup<Alphabet>;

@@ -35,6 +35,7 @@ class Alphabet extends FlxSpriteGroup
 	// custom shit
 	// amp, backslash, question mark, apostrophy, comma, angry faic, period
 	var lastSprite:AlphaCharacter;
+	var spaces:Bool;
 	var xPosResetted:Bool = false;
 	var lastWasSpace:Bool = false;
 
@@ -47,8 +48,9 @@ class Alphabet extends FlxSpriteGroup
 	var pastX:Float = 0;
 	var pastY:Float  = 0;
 
-	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false, shouldMove:Bool = false)
+	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, space:Bool = true, typed:Bool = false, shouldMove:Bool = false)
 	{
+		spaces = space;
 		pastX = x;
 		pastY = y;
 
@@ -101,10 +103,14 @@ class Alphabet extends FlxSpriteGroup
 			// {
 			// }
 
-			if (character == " " || character == "-")
+			if (character == " ")
 			{
-				lastWasSpace = true;
+					lastWasSpace = true;
 			}
+
+			if (character == "-" && spaces)
+				lastWasSpace = true;
+
 
 			if (AlphaCharacter.alphabet.indexOf(character.toLowerCase()) != -1)
 				// if (AlphaCharacter.alphabet.contains(character.toLowerCase()))

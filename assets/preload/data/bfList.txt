@@ -1,4 +1,0 @@
-bf
-bfCar
-bfChristmas
-bfPixel

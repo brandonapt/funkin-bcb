@@ -535,7 +535,6 @@ class Controls extends FlxActionSet
 
 		keyboardScheme = scheme;
 
-		FlxG.save.bind('funkin', 'ninjamuffin99');
 		loadControls();
 		#if (haxe >= "4.0.0")
 		switch (scheme)

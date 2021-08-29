@@ -16,6 +16,7 @@ Play the Original Game: https://www.newgrounds.com/portal/view/770371
 Some features include:
 - New options Menu
 - Note rework
+- Sick MP4 and WEBM video suppoer :)
 - More modding capabilities
 - Asset optimization
 - and some quality of life improvements.

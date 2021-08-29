@@ -187,6 +187,7 @@ class StoryMenuState extends MusicBeatState
 		trace("Line 96");
 
 		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
+		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
 		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
 
 		difficultySelectors = new FlxGroup();
@@ -293,35 +294,35 @@ class StoryMenuState extends MusicBeatState
 
 		txtWeekTitle.text = weekNames[curWeek].toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
-			{
-				if (lerpScore == 0)
-					{
-						rank = "Unattempted";
-					}
-		
-				if (lerpScore <= 3000)
-				{
-								if (lerpScore >= 1)
-								{
-					rank = "Bad";
-								}
-				}
-				
-				if (lerpScore >= 7500)
-				{
-					rank = "Okay";
-				}
-				if (lerpScore >= 20000)
-				{
-					rank = "Great";
-				}
-		
-				loltext.text = "Rank: " + rank;
-			});
+
 				lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
+				new FlxTimer().start(0.3, function(tmr:FlxTimer)
+					{
+						if (lerpScore == 0)
+							{
+								rank = "Unattempted";
+							}
 				
+						if (lerpScore <= 3000)
+						{
+										if (lerpScore >= 1)
+										{
+							rank = "Bad";
+										}
+						}
+						
+						if (lerpScore >= 7500)
+						{
+							rank = "Okay";
+						}
+						if (lerpScore >= 20000)
+						{
+							rank = "Great";
+						}
+				
+						loltext.text = "Rank: " + rank;
+					});
 
 
 
@@ -526,6 +527,7 @@ class StoryMenuState extends MusicBeatState
 
 		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
 		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
+		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 		txtTracklist.text = "Tracks\n";
 		var stringThing:Array<String> = weekData[curWeek];
 
@@ -558,4 +560,3 @@ class StoryMenuState extends MusicBeatState
 			}
 		}
 }
-

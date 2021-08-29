@@ -299,24 +299,24 @@ class StoryMenuState extends MusicBeatState
 
 				new FlxTimer().start(0.3, function(tmr:FlxTimer)
 					{
-						if (lerpScore == 0)
+						if (intendedScore == 0)
 							{
 								rank = "Unattempted";
 							}
 				
-						if (lerpScore <= 3000)
+						if (intendedScore <= 3000)
 						{
-										if (lerpScore >= 1)
+										if (intendedScore >= 1)
 										{
 							rank = "Bad";
 										}
 						}
 						
-						if (lerpScore >= 7500)
+						if (intendedScore >= 7500)
 						{
 							rank = "Okay";
 						}
-						if (lerpScore >= 20000)
+						if (intendedScore >= 20000)
 						{
 							rank = "Great";
 						}

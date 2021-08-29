@@ -19,8 +19,7 @@ class Highscore
 
 
 
-		if(!FlxG.save.data.autoplay)
-		{
+
 			if (songScores.exists(daSong))
 			{
 				if (songScores.get(daSong) < score)
@@ -28,7 +27,7 @@ class Highscore
 			}
 			else
 				setScore(daSong, score);
-		}
+		
 	}
 
 	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0):Void
@@ -36,8 +35,7 @@ class Highscore
 
 
 
-		if(!FlxG.save.data.autoplay)
-		{
+
 			var daWeek:String = formatSong('week' + week, diff);
 
 			if (songScores.exists(daWeek))
@@ -47,7 +45,6 @@ class Highscore
 			}
 			else
 				setScore(daWeek, score);
-		}else trace('BotPlay detected. Score saving is disabled.');
 	}
 
 	/**

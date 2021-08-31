@@ -169,7 +169,6 @@ class TitleState extends MusicBeatState
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
-		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
@@ -283,8 +282,7 @@ class TitleState extends MusicBeatState
 		}
 
 		if (FlxG.keys.justPressed.ESCAPE)
-			System.exit(0);
-
+			openSubState(new LeaveSubState());
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
 
 		#if mobile
@@ -581,9 +579,4 @@ class TitleState extends MusicBeatState
 			}
 		}
 	}
-
-	override function openSubState(SubState:FlxSubState)
-        {
-            super.openSubState(SubState);
-        }
 }

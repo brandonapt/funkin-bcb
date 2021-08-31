@@ -1230,6 +1230,7 @@ class PlayState extends MusicBeatState
 			{
 				//endSong();
 			}
+
 		#if !debug
 		perfectMode = false;
 		#end

@@ -926,6 +926,7 @@ class PlayState extends MusicBeatState
 
 
 				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+				swagNote.death = songNotes[3];
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 
@@ -1697,23 +1698,29 @@ class PlayState extends MusicBeatState
 
 				if ((daNote.mustPress && daNote.tooLate && !FlxG.save.data.downscroll || daNote.mustPress && daNote.tooLate && FlxG.save.data.downscroll) && daNote.mustPress)
 					{
-					if (daNote.tooLate || !daNote.wasGoodHit)
-					{
-						health -= 0.0475;
-						songMisses = songMisses + 1;
-						vocals.volume = 0;
-						if (FlxG.save.data.newInput)
-							noteMiss(daNote.noteData);
-					}
+							if (daNote.isSustainNote && daNote.wasGoodHit)
+							{
+								daNote.kill();
+								notes.remove(daNote, true);
+							}
+							else
+							{
+								if (daNote.death == false) {
+									health -= 0.075;
 
-					daNote.active = false;
-					daNote.visible = false;
+									if (!daNote.isSustainNote) {
+										songMisses++;
+									}
+									trace(daNote.death);
+									vocals.volume = 0;
+									noteMiss(daNote.noteData);
+								}
+							}
 
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-				}
-			
+							daNote.visible = false;
+							daNote.kill();
+							notes.remove(daNote, true);
+						}
 			});
 		}
 
@@ -2477,20 +2484,23 @@ class PlayState extends MusicBeatState
 		}
 	
 		function noteCheck(keyP:Bool, note:Note):Void
-		{
-			if (keyP)
-				goodNoteHit(note);
-			else
 			{
-				badNoteCheck();
+					if (keyP)
+						goodNoteHit(note);
+					else
+					{
+						badNoteCheck();
+					}
+					if (note.death == false && !note.isSustainNote) {
+						totalNotesHit += 1;
+					}
 			}
-			if (!note.isSustainNote) {
-				totalNotesHit += 1;
-			}
-		}
 	
 		function goodNoteHit(note:Note):Void
 		{
+			if (note.death == true) {
+				health -= 1;
+			}
 			if (!note.wasGoodHit)
 			{
 				if (!note.isSustainNote)

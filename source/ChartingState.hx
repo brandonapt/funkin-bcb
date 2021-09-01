@@ -481,6 +481,11 @@ class ChartingState extends MusicBeatState
 
 		var applyLength:FlxButton = new FlxButton(10, 100, 'Apply Data');
 
+		var deathnote:FlxUICheckBox = new FlxUICheckBox(10, 400, null, null, "Death Note?", 100);
+		deathnote.name = 'deathnote';
+
+		tab_group_note.add(deathnote);
+
 		tab_group_note.add(stepperSusLength);
 		tab_group_note.add(stepperSusLengthLabel);
 		tab_group_note.add(applyLength);
@@ -557,6 +562,7 @@ class ChartingState extends MusicBeatState
 					FlxG.log.add('changed bpm shit');
 				case "Alternate Animation":
 					_song.notes[curSection].altAnim = check.checked;
+				
 			}
 		}
 		else if (id == FlxUINumericStepper.CHANGE_EVENT && (sender is FlxUINumericStepper))
@@ -1211,8 +1217,10 @@ class ChartingState extends MusicBeatState
 			var daNoteInfo = i[1];
 			var daStrumTime = i[0];
 			var daSus = i[2];
+			var isDeath = i[4];
 
 			var note:Note = new Note(daStrumTime, daNoteInfo % 4);
+			note.death = i[3];
 			note.sustainLength = daSus;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();

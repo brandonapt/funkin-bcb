@@ -23,7 +23,8 @@ class Note extends FlxSkewedSprite
 	public var prevNote:Note;
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
-	public var nType:Int = 0;
+	public var death:Bool;
+	
 	public var noteScore:Float = 1;
 
 	public static var swagWidth:Float = 160 * 0.7;
@@ -32,11 +33,12 @@ class Note extends FlxSkewedSprite
 	public static var BLUE_NOTE:Int = 1;
 	public static var RED_NOTE:Int = 3;
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)	{
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?isDeath:Bool = false)	{
 		super();
 		
 		if (prevNote == null)
 			prevNote = this;
+		death = isDeath;
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
@@ -51,6 +53,18 @@ class Note extends FlxSkewedSprite
 		var daStage:String = PlayState.Stage.curStage;
 
 	//	trace("Type == " + type);
+	if (death)
+		{
+			frames = Paths.getSparrowAtlas('deaths');
+			animation.addByPrefix('blueScroll', 'blue fire');
+			animation.addByPrefix('greenScroll', 'green fire');
+			animation.addByPrefix('redScroll', 'red fire');
+			animation.addByPrefix('purpleScroll', 'purple fire');
+			setGraphicSize(Std.int(width * 0.6));
+			updateHitbox();
+			antialiasing = true;
+		}
+		else {
 	switch (PlayState.SONG.noteStyle)
 	{
 		case 'pixel':
@@ -123,7 +137,8 @@ class Note extends FlxSkewedSprite
 			setGraphicSize(Std.int(width * 0.7));
 			updateHitbox();
 			antialiasing = true;
-	}
+		}
+	}	
 
 		
 		

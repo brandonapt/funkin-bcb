@@ -67,5 +67,7 @@ class MainVariables
 			FlxG.save.data.downscroll = false;
 		if (FlxG.save.data.cameraPulse == null)
 			FlxG.save.data.cameraPulse = false;
+		if (FlxG.save.data.keysthing == null)
+			FlxG.save.data.keysthing = true;
 	}
 }

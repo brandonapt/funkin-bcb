@@ -81,7 +81,7 @@ class Main extends Sprite
 
 
 		var ourSource:String = "assets/videos/dontDelete.webm";
-
+		#if sys
 		var str1:String = "WEBM SHIT";
 		webmHandle = new WebmHandler();
 		webmHandle.source(ourSource);
@@ -89,6 +89,7 @@ class Main extends Sprite
 		webmHandle.webm.name = str1;
 		addChild(webmHandle.webm);
 		GlobalVideo.setWebm(webmHandle);
+		#end
 
 		#if debug
 		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);

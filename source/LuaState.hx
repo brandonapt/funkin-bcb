@@ -1,3 +1,4 @@
+#if sys
 import openfl.display3D.textures.VideoTexture;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -257,3 +258,4 @@ class LuaState
 
 
 
+#end

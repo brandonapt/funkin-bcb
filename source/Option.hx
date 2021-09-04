@@ -95,7 +95,7 @@ class Changelog extends Option
 		return "View the Changelog";
 	}
 }
-
+#if sys
 class Keybinds extends Option
 {
 	public function new(desc:String)
@@ -115,6 +115,7 @@ class Keybinds extends Option
 		return "Edit Keybinds";
 	}
 }
+#end
 
 class HarderMode extends Option
 {
@@ -138,6 +139,31 @@ class HarderMode extends Option
 	}
 
 }
+
+#if html5
+class Keybinds extends Option
+{
+	public function new(desc:String)
+	{
+		FlxG.save.data.keysthing = !FlxG.save.data.keysthing;
+
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.keysthing ? "Edit Keybinds" : "This feature is desktop only!";
+	}
+
+}
+#end
 
 class LogoAnimation extends Option
 {

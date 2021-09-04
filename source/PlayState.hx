@@ -28,7 +28,9 @@ import lime.app.Application;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
+#if sys
 import sys.FileSystem;
+#end
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -221,8 +223,11 @@ class PlayState extends MusicBeatState
 			case 2:
 				storyDifficultyText = "Hard";
 		}
-
+		#if html5
+		didChart = false;
+		#else
 		didChart = FileSystem.exists(Paths.lua(SONG.song.toLowerCase() + "/modchart"));
+		#end
 		#if desktop
 		// Making difficulty text for Discord Rich Presence.
 
@@ -693,8 +698,9 @@ class PlayState extends MusicBeatState
 
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
-
+	#if sys
 	public static var luaModchart:LuaState = null;
+	#end
 	
 
 	function startCountdown():Void
@@ -703,12 +709,13 @@ class PlayState extends MusicBeatState
 
 		generateStaticArrows(0);
 		generateStaticArrows(1);
-
+		#if sys
 		if (didChart)
 			{
 				luaModchart = LuaState.createModchartState();
 				luaModchart.executeState('start', [SONG.song.toLowerCase()]);
 			}
+		#end
 
 		talking = false;
 		startedCountdown = true;
@@ -1350,13 +1357,14 @@ class PlayState extends MusicBeatState
 
 			#if desktop
 			DiscordClient.changePresence("Chart Editor", null, null, true);
-			#end
-
 			if (luaModchart != null)
 				{
 					luaModchart.die();
 					luaModchart = null;
 				}
+			#end
+
+
 		}
 
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
@@ -1821,12 +1829,13 @@ class PlayState extends MusicBeatState
 		function endSong():Void
 			{
 
-
+				#if sys
 				if (luaModchart != null)
 					{
 						luaModchart.die();
 						luaModchart = null;
 					}
+					#end
 				//openSubState(new EndScreenSubstate(accuracy, totalNotesHit, songMisses, songMisses, shits, bads, goods, sicks, songScore, camHUD));
 				trace(totalNotesHit);
 				canPause = false;

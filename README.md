@@ -11,12 +11,11 @@ Brandon's Custom Build is a build made by me, (Brandon) and (zero) contributers 
 This mod was made entirely for fun. I'm aware zero people have downloaded it and I don't care. This is all for me to learn.
 
 
-Play online demo: https://www.fused.fans/funkin
 Play the Original Game: https://www.newgrounds.com/portal/view/770371
 Some features include:
 - New options Menu
 - Note rework
-- Sick MP4 and WEBM video suppoer :)
+- Sick MP4 and WEBM video support :)
 - More modding capabilities
 - Asset optimization
 - and some quality of life improvements.
@@ -27,7 +26,7 @@ Download the latest stable release here: https://github.com/brandoge91/funkin-bc
 
 ## Credits / shoutouts  
 
-- [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer  
+- [ninjamuffin99](https://twitter.com/ninja_muffin99) - FNF Programmer  
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art  
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician  
 - [brandon(me!)](https://www.fused.fans) - BCB Programmer  

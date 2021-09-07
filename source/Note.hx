@@ -24,6 +24,7 @@ class Note extends FlxSkewedSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 	public var death:Bool;
+	public var sustainActive:Bool = true;
 	
 	public var noteScore:Float = 1;
 
@@ -225,6 +226,10 @@ class Note extends FlxSkewedSprite
 	override function update(elapsed:Float)
 		{
 			super.update(elapsed);
+			if (!sustainActive)
+				{
+					alpha = 0.3;
+				}
 	
 			if (mustPress)
 			{

@@ -1717,7 +1717,7 @@ class PlayState extends MusicBeatState
 									health -= 0.075;
 
 									if (!daNote.isSustainNote) {
-										songMisses++;
+										//songMisses++;
 									}
 									trace(daNote.death);
 									vocals.volume = 0;

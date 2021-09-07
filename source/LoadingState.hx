@@ -5,7 +5,6 @@ import lime.app.Future;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.FlxSprite;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxTimer;
 
 import openfl.utils.Assets;
@@ -87,10 +86,10 @@ class LoadingState extends MusicBeatState
 		{
 			var library = Assets.getLibrary("songs");
 			final symbolPath = path.split(":").pop();
-			// @:privateAccess
-			// library.types.set(symbolPath, SOUND);
-			// @:privateAccess
-			// library.pathGroups.set(symbolPath, [library.__cacheBreak(symbolPath)]);
+			 @:privateAccess
+			 library.types.set(symbolPath, SOUND);
+			 @:privateAccess
+			 library.pathGroups.set(symbolPath, [library.__cacheBreak(symbolPath)]);
 			var callback = callbacks.add("song:" + path);
 			Assets.loadSound(path).onComplete(function (_) { callback(); });
 		}
@@ -158,21 +157,20 @@ class LoadingState extends MusicBeatState
 	static function getNextState(target:FlxState, stopMusic = false):FlxState
 	{
 		Paths.setCurrentLevel("week" + PlayState.storyWeek);
-		#if NO_PRELOAD_ALL
+		
 		var loaded = isSoundLoaded(getSongPath())
 			&& (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath()))
 			&& isLibraryLoaded("shared");
 		
 		if (!loaded)
 			return new LoadingState(target, stopMusic);
-		#end
+		
 		if (stopMusic && FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 		
 		return target;
 	}
 	
-	#if NO_PRELOAD_ALL
 	static function isSoundLoaded(path:String):Bool
 	{
 		return Assets.cache.hasSound(path);
@@ -182,7 +180,6 @@ class LoadingState extends MusicBeatState
 	{
 		return Assets.getLibrary(library) != null;
 	}
-	#end
 	
 	override function destroy()
 	{

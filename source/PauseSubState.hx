@@ -1,5 +1,7 @@
 package;
 
+import flixel.effects.FlxFlicker;
+import flixel.util.FlxTimer;
 import Controls.Control;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -19,9 +21,14 @@ class PauseSubState extends MusicBeatSubstate
 
 	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
 	var curSelected:Int = 0;
+	var leaving:Bool = false;
+
 
 	var pauseMusic:FlxSound;
 	var yourMom:FlxSound;
+	public var bg:FlxSprite;
+	public var levelInfo:FlxText;
+	public var levelDifficulty:FlxText;
 
 	public function new(x:Float, y:Float)
 	{
@@ -44,12 +51,12 @@ class PauseSubState extends MusicBeatSubstate
 
 		FlxG.sound.list.add(pauseMusic);
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		add(bg);
 
-		var levelInfo:FlxText = new FlxText(20, 15, 0, "", 32);
+		levelInfo = new FlxText(20, 15, 0, "", 32);
 		levelInfo.text += PlayState.SONG.song;
 		levelInfo.scrollFactor.set();
 		levelInfo.setFormat(Paths.font("vcr.ttf"), 32);
@@ -57,7 +64,7 @@ class PauseSubState extends MusicBeatSubstate
 		add(levelInfo);
 
 
-		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
+		levelDifficulty = new FlxText(20, 15 + 32, 0, "", 32);
 		levelDifficulty.text += CoolUtil.difficultyString();
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
@@ -92,6 +99,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
+		
 		if (pauseMusic.volume < 0.5)
 			pauseMusic.volume += 0.01 * elapsed;
 
@@ -118,7 +126,12 @@ class PauseSubState extends MusicBeatSubstate
 			switch (daSelected)
 			{
 				case "Resume":
-					close();
+					if (!leaving)
+						{
+							FlxG.sound.play(Paths.sound('confirmMenu'));
+							destroy();
+							leaving = true;
+						}
 				case "Restart Song":
 					FlxG.resetState();
 					PlayState.resetScore();
@@ -173,13 +186,30 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function destroy()
 	{
-		pauseMusic.destroy();
-
-		super.destroy();
+		FlxTween.tween(bg, {alpha: 0}, 0.5);
+		for (i in 0...grpMenuShit.members.length)
+		{
+			if (i == curSelected)
+			{
+				FlxFlicker.flicker(grpMenuShit.members[i], 1, 0.06, false, false);
+			}
+			else
+			{
+				FlxTween.tween(grpMenuShit.members[i], {alpha: 0.0}, 0.4, {ease: FlxEase.quadIn});
+			}
+		}
+		FlxTween.tween(levelInfo, {alpha: 0, y: 15}, 0.5, {ease: FlxEase.quartInOut});
+		FlxTween.tween(levelDifficulty, {alpha: 0, y: 15}, 0.5, {ease: FlxEase.quartInOut});
+		new FlxTimer().start(0.5, function(tmr:FlxTimer)
+		{
+			close();
+		});
 	}
 
 	function changeSelection(change:Int = 0):Void
 	{
+		if (!leaving)
+			{
 		curSelected += change;
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
@@ -204,5 +234,6 @@ class PauseSubState extends MusicBeatSubstate
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}
+	}
 	}
 }

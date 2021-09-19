@@ -568,6 +568,8 @@ class TitleState extends MusicBeatState
 			// tween1 = FlxTween.tween(logoBl,{y: -100}, 1.4, {ease: FlxEase.expoInOut});
 
 			skippedIntro = true;
+
+			FlxG.sound.music.time = 9400; // 9.4 seconds
 			if (FlxG.save.data.movingLogo == true)
 			{
 				new FlxTimer().start(1.5);

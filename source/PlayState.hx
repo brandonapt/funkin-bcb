@@ -78,7 +78,6 @@ class PlayState extends MusicBeatState
 	public static var gf:Character;
 	public static var boyfriend:Boyfriend;
 
-
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
 

@@ -541,6 +541,9 @@ class DialogueBox extends FlxSpriteGroup
 					spirit.visible = true;
 						//bf.animation.play('enter');
 				}
+				case 'screenShake':
+					DialogueFunctions.screenShake(10,10);
+					
 			
 		}
 	}

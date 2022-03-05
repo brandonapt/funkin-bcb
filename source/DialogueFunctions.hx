@@ -16,7 +16,7 @@ class DialogueFunctions
             FlxG.camera.flash(color, duration);
         }
 
-    public function screenShake(intensity:Int, duration:Float)
+    public static function screenShake(intensity:Int, duration:Float)
         {
             PlayState.camGame.shake(intensity,duration,null,true);
         }

@@ -111,6 +111,28 @@ class Main extends Sprite
 		#end
 	}
 
+	public static function dumpCache()
+		{
+		// THIS IS FROM KADE ENGINE. THIS IS ALSO VERY POG
+			@:privateAccess
+			for (key in FlxG.bitmap._cache.keys())
+			{
+				var obj = FlxG.bitmap._cache.get(key);
+				if (obj != null)
+				{
+					Assets.cache.removeBitmapData(key);
+					FlxG.bitmap._cache.remove(key);
+					obj.destroy();
+				}
+			}
+			Assets.cache.clear("songs");
+			
+		}
+	
+	public function getFPS():Float
+		{
+			return fpsCounter.currentFPS;
+		}
 	public static var memoryCounter:MemoryCounter;
 
 	public static function toggleMem(memEnabled:Bool):Void

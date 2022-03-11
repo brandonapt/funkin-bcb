@@ -334,7 +334,7 @@ class MainMenuState extends MusicBeatState
 			{									
 				FlxTween.tween(menuItems.members[0],{y:-5000+menuItems.members[0].y},1,{ease:FlxEase.circIn});
 				FlxTween.tween(menuItems.members[1],{y:-5000+menuItems.members[1].y},1,{ease:FlxEase.circIn});
-				FlxTween.tween(menuItems.members[2],{y:-5000+menuItems.members[2].y},1,{ease:FlxEase.circIn,onComplete:function(e:FlxTween){
+				FlxTween.tween(menuItems.members[1],{y:-5000+menuItems.members[2].y},1,{ease:FlxEase.circIn,onComplete:function(e:FlxTween){
 				var daChoice:String = optionShit[curSelected];
 		
 				switch (daChoice)
@@ -352,6 +352,6 @@ class MainMenuState extends MusicBeatState
 				}
 				
 				
-				}});
+			}});
 			}
 }

@@ -1,4 +1,6 @@
 package;
+import openfl.utils.Timer;
+import flixel.effects.FlxFlicker;
 import flixel.addons.plugin.taskManager.FlxTaskManager;
 import Controls.Control;
 import flixel.input.gamepad.FlxGamepad;
@@ -233,8 +235,16 @@ class OptionsMenuSubState extends MusicBeatState
                             if (isCatagory)
                             {
                                 if (currentSelectedCat.getOptions()[curSelected].press()) {
-                                    grpControls.members[curSelected].reType(currentSelectedCat.getOptions()[curSelected].getDisplay());
-                                    trace(currentSelectedCat.getOptions()[curSelected].getDisplay());
+                                    var len = FlxG.sound.play(Paths.sound('confirmMenu')).length;
+                                    function go():Void {
+                                        grpControls.members[curSelected].reType(currentSelectedCat.getOptions()[curSelected].getDisplay());
+                                    }
+									FlxFlicker.flicker(grpControls.members[curSelected], 1, 0.06, true, false, function(flick:FlxFlicker)
+                                        {
+                                            go();
+                                        });
+                                        
+
                                 }
                             }
                             else

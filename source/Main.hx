@@ -81,7 +81,7 @@ class Main extends Sprite
 
 
 		var ourSource:String = "assets/videos/dontDelete.webm";
-		#if sys
+		#if desktop
 		var str1:String = "WEBM SHIT";
 		webmHandle = new WebmHandler();
 		webmHandle.source(ourSource);

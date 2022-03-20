@@ -1,7 +1,9 @@
 package;
 
 import NewOptions.OptionsMenuSubState;
+#if desktop
 import Discord.DiscordClient;
+#end
 import flixel.util.FlxGradient;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;

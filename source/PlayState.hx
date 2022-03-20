@@ -697,7 +697,7 @@ class PlayState extends MusicBeatState
 
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
-	#if sys
+	#if desktop
 	public static var luaModchart:LuaState = null;
 	#end
 	
@@ -708,7 +708,7 @@ class PlayState extends MusicBeatState
 
 		generateStaticArrows(0);
 		generateStaticArrows(1);
-		#if sys
+		#if desktop
 		if (didChart)
 			{
 				luaModchart = LuaState.createModchartState();
@@ -1828,7 +1828,7 @@ class PlayState extends MusicBeatState
 		function endSong():Void
 			{
 
-				#if sys
+				#if desktop
 				if (luaModchart != null)
 					{
 						luaModchart.die();

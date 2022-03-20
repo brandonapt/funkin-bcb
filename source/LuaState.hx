@@ -1,4 +1,4 @@
-#if sys
+#if desktop
 import openfl.display3D.textures.VideoTexture;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;

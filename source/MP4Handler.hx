@@ -17,6 +17,7 @@ import flixel.FlxSprite;
 
 class MP4Handler
 {
+	
 	public static var video:Video;
 	public static var netStream:NetStream;
 	public static var finishCallback:FlxState;

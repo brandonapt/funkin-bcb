@@ -19,6 +19,7 @@ using StringTools;
 
 class VideoState extends MusicBeatState
 {
+	#if windows
 	public var leSource:String = "";
 	public var transFunction:Void->Void;
 	public var txt:FlxText;
@@ -228,4 +229,5 @@ class VideoState extends MusicBeatState
 		GlobalVideo.get().stopped = false;
 		GlobalVideo.get().ended = false;
 	}
+	#end
 }

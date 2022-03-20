@@ -438,8 +438,9 @@ class StoryMenuState extends MusicBeatState
 				//		FlxG.switchState(new PlayState());
 				//	});
 				//}, 100, true));
+				#if windows
 				var video:MP4Handler = new MP4Handler();
-				//video.playMP4(Paths.video('ughCut'), new PlayState());
+				#end
 			});
 		}
 	}

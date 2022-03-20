@@ -12,9 +12,6 @@ import Controls.Control;
 import flixel.util.FlxTimer;
 import flixel.FlxSprite;
 
-// THIS IS FOR TESTING
-// DONT STEAL MY CODE >:(
-
 class MP4Handler
 {
 	

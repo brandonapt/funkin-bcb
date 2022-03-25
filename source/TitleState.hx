@@ -29,6 +29,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import UpdateState;
 import lime.app.Application;
 import openfl.Assets;
 import openfl.Lib;
@@ -385,7 +386,9 @@ class TitleState extends MusicBeatState
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
-
+		if (FlxG.keys.justPressed.NINE) {
+			FlxG.switchState(new UpdateState());
+		}
 		if (pressedEnter && !skippedIntro)
 		{
 			skipIntro();

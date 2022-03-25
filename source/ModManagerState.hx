@@ -103,10 +103,11 @@ class ModManagerState extends MusicBeatState
                         trace(modList[curSelected]);
                         grpControls.members[curSelected].reType(modList[curSelected].toString() + "- DISABLED");
                         enabledMods.remove(modList[curSelected]);
+                        trace(modList[curSelected]);
                         trace(enabledMods);
 
                     } else {
-                        enabledMods.insert(curSelected, modList[curSelected]);
+                        enabledMods.push(modList[curSelected]);
                         trace(enabledMods);
                         trace(modList[curSelected]);
                         grpControls.members[curSelected].reType(modList[curSelected].toString());

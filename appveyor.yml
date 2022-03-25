@@ -25,7 +25,7 @@ install:
   - haxelib install HtmlParser
   - haxelib install markdown
   - haxelib install flixel-addons
-  - haxelib git polymod https://github.com/larsiusprime/polymod.git
+  - haxelib install polymod
   - haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
   - haxelib git extension-webm https://github.com/GrowtopiaFli/extension-webm
   - haxelib run lime rebuild extension-webm windows

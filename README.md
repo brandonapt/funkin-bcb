@@ -5,6 +5,8 @@ Developed with:
 and on Microsoft Windows (lol u dont need link)
 # Friday Night Funkin': BCB
 
+
+Join our discord! We'd love to have you! https://discord.gg/beC2cddaFq
 This is a modified build of the Friday Night Funkin' Engine. Improves on input and asset loading.
 Brandon's Custom Build is a build made by me, (Brandon) and (zero) contributers :(.  
   

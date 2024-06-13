@@ -13,7 +13,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
 import Controls.Control;
 import Controls.KeyboardScheme;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import haxe.Json;
 import flixel.animation.FlxBaseAnimation;

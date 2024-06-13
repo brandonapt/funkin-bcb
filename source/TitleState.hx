@@ -21,7 +21,7 @@ import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import polymod.Polymod;
 import flixel.system.ui.FlxSoundTray;
 import flixel.text.FlxText;

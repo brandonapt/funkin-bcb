@@ -31,7 +31,7 @@ import flixel.math.FlxRect;
 #if sys
 import sys.FileSystem;
 #end
-import flixel.system.FlxSound;
+import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -1835,7 +1835,7 @@ class PlayState extends MusicBeatState
 						luaModchart = null;
 					}
 					#end
-				//openSubState(new EndScreenSubstate(accuracy, totalNotesHit, songMisses, songMisses, shits, bads, goods, sicks, songScore, camHUD));
+				openSubState(new EndScreenSubstate(accuracy, totalNotesHit, songMisses, songMisses, shits, bads, goods, sicks, songScore, camHUD));
 				trace(totalNotesHit);
 				canPause = false;
 				paused = true;
@@ -1867,7 +1867,7 @@ class PlayState extends MusicBeatState
 						transOut = FlxTransitionableState.defaultTransOut;
 						new FlxTimer().start(0.7);
 						FlxG.switchState(new StoryMenuState());
-						//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+						openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 						// if ()
 						StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
 		

@@ -76,19 +76,7 @@ class Main extends Sprite
 		initialState = TitleState;
 		#end
 
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, skipSplash, skipSplash));
-
-
-		var ourSource:String = "assets/videos/dontDelete.webm";
-		#if desktop
-		var str1:String = "WEBM SHIT";
-		webmHandle = new WebmHandler();
-		webmHandle.source(ourSource);
-		webmHandle.makePlayer();
-		webmHandle.webm.name = str1;
-		addChild(webmHandle.webm);
-		GlobalVideo.setWebm(webmHandle);
-		#end
+		addChild(new FlxGame(gameWidth, gameHeight, initialState));
 
 		#if debug
 		var debugMark:Alphabet = new Alphabet(0,0,"DEBUG",false,false,false);

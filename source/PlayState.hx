@@ -1919,8 +1919,8 @@ class PlayState extends MusicBeatState
 					trace('WENT BACK TO FREEPLAY??');
 					new FlxTimer().start(0.7);
 					resetScore();
-					LoadingState.loadAndSwitchState(new FreeplayState());
-					//openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+					//LoadingState.loadAndSwitchState(new FreeplayState());
+					openSubState(new ResultsSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 				}
 			}
 

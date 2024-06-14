@@ -135,7 +135,7 @@ class Note extends FlxSkewedSprite
 			animation.addByPrefix('redhold', 'red hold piece');
 			animation.addByPrefix('bluehold', 'blue hold piece');
 
-			setGraphicSize(Std.int(width * 0.7));
+			//setGraphicSize(Std.int(width * 0.7));
 			updateHitbox();
 			antialiasing = true;
 		}
@@ -143,7 +143,7 @@ class Note extends FlxSkewedSprite
 
 		
 		
-			//setGraphicSize(Std.int(width * 0.7));
+			//setGraphicSize(Std.int(width * 1.1));
 			
 
 		/*	switch (noteData)
